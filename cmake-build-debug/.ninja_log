@@ -1,0 +1,13 @@
+# ninja log v5
+1	88	6839016207513584	src/CMakeFiles/example.dir/example.cpp.obj	5feeddee4b85413f
+89	195	6839016208599514	lib/libexample.a	df54a7fd88d3b3cf
+9	923	6839016215866227	test/CMakeFiles/unit_tests.dir/example_multiply.cpp.obj	70187c2250f233e0
+6	927	6839016215889114	test/CMakeFiles/unit_tests.dir/example_add.cpp.obj	9ece513d4fa53702
+24	928	6839016215899105	_deps/gtest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj	1946a055fb7ea11c
+14	940	6839016216039695	test/CMakeFiles/unit_tests.dir/example_subtract.cpp.obj	ba890f86a92f1309
+18	5172	6839016258261092	_deps/gtest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj	274873b0d1b02ee5
+5174	6475	6839016271392705	lib/libgtestd.a	def478084998d0e
+6481	6558	6839016272243554	lib/libgtest_maind.a	ac955e7bc9baa066
+6559	8250	6839016289135494	bin/unit_tests.exe	dddcda8746df29fd
+6559	8250	6839016289135494	test/unit_tests[1]_tests.cmake	dddcda8746df29fd
+6559	8250	6839016289135494	D:/Cppess/cmake-build-debug/test/unit_tests[1]_tests.cmake	dddcda8746df29fd

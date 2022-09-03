@@ -1,0 +1,7 @@
+add_test( example.multiply D:/Cppess/cmake-build-debug/bin/unit_tests.exe [==[--gtest_filter=example.multiply]==] --gtest_also_run_disabled_tests)
+set_tests_properties( example.multiply PROPERTIES WORKING_DIRECTORY D:/Cppess/cmake-build-debug/test SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==] LABELS unit)
+add_test( example.subtract D:/Cppess/cmake-build-debug/bin/unit_tests.exe [==[--gtest_filter=example.subtract]==] --gtest_also_run_disabled_tests)
+set_tests_properties( example.subtract PROPERTIES WORKING_DIRECTORY D:/Cppess/cmake-build-debug/test SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==] LABELS unit)
+add_test( example.add D:/Cppess/cmake-build-debug/bin/unit_tests.exe [==[--gtest_filter=example.add]==] --gtest_also_run_disabled_tests)
+set_tests_properties( example.add PROPERTIES WORKING_DIRECTORY D:/Cppess/cmake-build-debug/test SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==] LABELS unit)
+set( unit_tests_TESTS example.multiply example.subtract example.add)
