@@ -12,6 +12,15 @@ if(NOT sfml_POPULATED)
   add_subdirectory(${sfml_SOURCE_DIR} ${sfml_BINARY_DIR})
 endif()
 
+# Asio
+include(FetchContent)
+FetchContent_Declare(
+        asiocmake
+        GIT_REPOSITORY "https://github.com/OlivierLDff/asio.cmake"
+        GIT_TAG        "main"
+)
+FetchContent_MakeAvailable(asiocmake)
+
 add_executable(Cppess
         main.cpp
         )
@@ -21,7 +30,13 @@ target_link_libraries(Cppess PRIVATE
         sfml-graphics
         sfml-system
         sfml-window
+
+        asio::asio
         )
+
+if(MINGW)
+  target_link_libraries(Cppess PRIVATE ws2_32 wsock32 bcrypt)
+endif()
 
 # Library format used by the test package
 add_library(cppess_test)
