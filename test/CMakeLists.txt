@@ -17,7 +17,7 @@ add_executable(
 
 target_link_libraries(unit_tests
   PRIVATE
-    example
+    cppess_test
     gtest_main
   )
 
