@@ -44,22 +44,16 @@ auto addPositions(const int &scaleX, const int &scaleY,
 std::vector<std::pair<int, int>> Bishop::nextPositions(int tableSize) const {
     std::vector < std::pair < int, int >> allPositions;
 
-    /* add all possible positions in the left, down of the current position */
-    auto generatedPositions = addPositions(-1, -1, position_x, position_y, tableSize);
-    allPositions.insert(allPositions.end(), generatedPositions.begin(), generatedPositions.end());
+    const int scales[] = {-1, 1};
 
-    /* add all possible positions in the left, up of the current position */
-    generatedPositions = addPositions(-1, 1, position_x, position_y, tableSize);
-    allPositions.insert(allPositions.end(), generatedPositions.begin(), generatedPositions.end());
+    /* add all possible positions straight on horizontally or vertically or diagonally */
+    for(int indexScaleX = 0 ; indexScaleX < 3 ; indexScaleX++)
+        for(int indexScaleY = 0 ; indexScaleY < 3 ; indexScaleY++) {
+            auto generatedPositions = addPositions(scales[indexScaleX], scales[indexScaleY], position_x, position_y, tableSize);
+            allPositions.insert(allPositions.end(), generatedPositions.begin(), generatedPositions.end());
+        }
 
-    /* add all possible positions in the right, down of the current position */
-    generatedPositions = addPositions(1, -1, position_x, position_y, tableSize);
-    allPositions.insert(allPositions.end(), generatedPositions.begin(), generatedPositions.end());
-
-    /* add all possible positions in the right, up of the current position */
-    generatedPositions = addPositions(1, 1, position_x, position_y, tableSize);
-    allPositions.insert(allPositions.end(), generatedPositions.begin(), generatedPositions.end());
-
+    return allPositions;
     return allPositions;
 
 }
