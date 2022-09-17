@@ -11,8 +11,12 @@ class Pawn {
 private:
     int position_x;
     int position_y;
+
+    bool doubleMoveAvailable;
 public:
-    Pawn(const int &position_x, const int &position_y): position_x{position_x}, position_y{position_y}{};
+    Pawn(const int &position_x, const int &position_y): position_x{position_x}, position_y{position_y}{
+        doubleMoveAvailable = true;
+    };
 
     std::vector < std::pair < int, int > > nextPositions(int tableSize) const;
 
