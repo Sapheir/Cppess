@@ -34,6 +34,21 @@ target_link_libraries(Cppess PRIVATE
         asio::asio
         )
 
+
+
+# Model
+add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/Model)
+
+target_link_libraries(Cppess
+PRIVATE
+        Bishop
+        King
+        Knight
+        Pawn
+        Queen
+        Rook
+)
+
 if(MINGW)
   target_link_libraries(Cppess PRIVATE ws2_32 wsock32 bcrypt)
 endif()
