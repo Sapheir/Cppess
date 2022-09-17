@@ -3,6 +3,7 @@
 //
 
 #include <vector>
+#include "../Utils/ModelUtils.h"
 
 #ifndef CPPESS_BISHOP_H
 #define CPPESS_BISHOP_H
@@ -21,7 +22,7 @@ public:
      *
      * @return vector < pair < int, int > > - all possible positions
      */
-    std::vector<std::pair<int, int>> nextPositions(int tableSize) const;
+    [[nodiscard]] std::vector<std::pair<int, int>> nextPositions(int tableSize) const;
 
 };
 

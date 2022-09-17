@@ -4,6 +4,8 @@
 
 #include <vector>
 
+#include "../Utils/ModelUtils.h"
+
 #ifndef CPPESS_QUEEN_H
 #define CPPESS_QUEEN_H
 
@@ -14,7 +16,7 @@ private:
 public:
     Queen(const int &position_x, const int &position_y): position_x{position_x}, position_y{position_y}{};
 
-    std::vector < std::pair < int, int > > nextPositions(int tableSize) const;
+    [[nodiscard]] std::vector < std::pair < int, int > > nextPositions(int tableSize) const;
 
 };
 

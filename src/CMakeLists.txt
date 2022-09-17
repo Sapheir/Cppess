@@ -41,6 +41,7 @@ add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/Model)
 
 target_link_libraries(Cppess
 PRIVATE
+        ModelUtils
         Bishop
         King
         Knight
