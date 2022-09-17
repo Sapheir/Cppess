@@ -54,7 +54,5 @@ std::vector<std::pair<int, int>> Bishop::nextPositions(int tableSize) const {
         }
 
     return allPositions;
-    return allPositions;
-
 }
 
