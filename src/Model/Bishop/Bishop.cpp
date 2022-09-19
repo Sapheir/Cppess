@@ -4,7 +4,7 @@
 
 #include "Bishop.h"
 
-std::vector<std::pair<int, int>> Bishop::nextPositions(int tableSize) const {
+std::vector<std::pair<int, int>> Bishop::nextPositions(const int &tableSize) const {
     std::vector < std::pair < int, int >> allPositions;
 
     const int scales[] = {-1, 1};
@@ -12,7 +12,7 @@ std::vector<std::pair<int, int>> Bishop::nextPositions(int tableSize) const {
     /* add all possible positions straight on horizontally or vertically or diagonally */
     for(int indexScaleX = 0 ; indexScaleX < 3 ; indexScaleX++)
         for(int indexScaleY = 0 ; indexScaleY < 3 ; indexScaleY++) {
-            auto generatedPositions = addPositions(scales[indexScaleX], scales[indexScaleY], position_x, position_y, tableSize);
+            std::vector < std::pair < int, int >> generatedPositions = ModelUtils::addPositions(scales[indexScaleX], scales[indexScaleY], position_x, position_y, tableSize);
             allPositions.insert(allPositions.end(), generatedPositions.begin(), generatedPositions.end());
         }
 

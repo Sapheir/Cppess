@@ -4,8 +4,8 @@
 
 #include "ModelUtils.h"
 
-auto addPositions(const int &scaleX, const int &scaleY,
-                  const int &initialX, const int &initialY, int tableSize) {
+std::vector<std::pair<int, int >> ModelUtils::addPositions(const int &scaleX, const int &scaleY, const int &initialX, const int &initialY,
+                         const int &tableSize) {
     std::vector < std::pair < int, int >> positions;
     int variation = 1;
     int possiblePositionX;

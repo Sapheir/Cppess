@@ -18,7 +18,7 @@ public:
         doubleMoveAvailable = true;
     };
 
-    [[nodiscard]] std::vector < std::pair < int, int > > nextPositions(int tableSize) const;
+    [[nodiscard]] std::vector < std::pair < int, int > > nextPositions(const int &tableSize) const;
 
 };
 

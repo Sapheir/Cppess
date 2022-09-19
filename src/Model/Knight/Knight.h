@@ -14,7 +14,7 @@ private:
 public:
     Knight(const int &position_x, const int &position_y): position_x{position_x}, position_y{position_y}{};
 
-    [[nodiscard]] std::vector < std::pair < int, int > > nextPositions(int tableSize) const;
+    [[nodiscard]] std::vector < std::pair < int, int > > nextPositions(const int &tableSize) const;
 
 };
 

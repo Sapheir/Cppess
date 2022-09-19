@@ -22,7 +22,7 @@ public:
      *
      * @return vector < pair < int, int > > - all possible positions
      */
-    [[nodiscard]] std::vector<std::pair<int, int>> nextPositions(int tableSize) const;
+    [[nodiscard]] std::vector<std::pair<int, int>> nextPositions(const int &tableSize) const;
 
 };
 

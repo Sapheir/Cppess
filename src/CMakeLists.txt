@@ -21,7 +21,18 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(asiocmake)
 
+
+# Model
+add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/Model)
+
 add_executable(Cppess
+        ${CMAKE_CURRENT_LIST_DIR}/Model/Utils/ModelUtils.cpp ${CMAKE_CURRENT_LIST_DIR}/Model/Utils/ModelUtils.h
+        ${CMAKE_CURRENT_LIST_DIR}/Model/Bishop/Bishop.cpp ${CMAKE_CURRENT_LIST_DIR}/Model/Bishop/Bishop.h
+        ${CMAKE_CURRENT_LIST_DIR}/Model/King/King.cpp ${CMAKE_CURRENT_LIST_DIR}/Model/King/King.h
+        ${CMAKE_CURRENT_LIST_DIR}/Model/Knight/Knight.cpp ${CMAKE_CURRENT_LIST_DIR}/Model/Knight/Knight.h
+        ${CMAKE_CURRENT_LIST_DIR}/Model/Pawn/Pawn.cpp ${CMAKE_CURRENT_LIST_DIR}/Model/Pawn/Pawn.h
+        ${CMAKE_CURRENT_LIST_DIR}/Model/Queen/Queen.cpp ${CMAKE_CURRENT_LIST_DIR}/Model/Queen/Queen.h
+        ${CMAKE_CURRENT_LIST_DIR}/Model/Rook/Rook.cpp ${CMAKE_CURRENT_LIST_DIR}/Model/Rook/Rook.h
         main.cpp
         )
 
@@ -35,20 +46,6 @@ target_link_libraries(Cppess PRIVATE
         )
 
 
-
-# Model
-add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/Model)
-
-target_link_libraries(Cppess
-PRIVATE
-        ModelUtils
-        Bishop
-        King
-        Knight
-        Pawn
-        Queen
-        Rook
-)
 
 if(MINGW)
   target_link_libraries(Cppess PRIVATE ws2_32 wsock32 bcrypt)

@@ -4,7 +4,7 @@
 
 #include "Rook.h"
 
-std::vector<std::pair<int, int>> Rook::nextPositions(int tableSize) const {
+std::vector<std::pair<int, int>> Rook::nextPositions(const int &tableSize) const {
     std::vector < std::pair < int, int >> allPositions;
 
     const int scalesOnX[] = {-1, 1, 0,  0};
@@ -12,7 +12,7 @@ std::vector<std::pair<int, int>> Rook::nextPositions(int tableSize) const {
 
     /* add all possible positions straight on horizontally or vertically*/
     for(int index = 0 ; index < 4 ; index++){
-        auto generatedPositions = addPositions(scalesOnX[index], scalesOnY[index], position_x, position_y, tableSize);
+        std::vector < std::pair < int, int >> generatedPositions = ModelUtils::addPositions(scalesOnX[index], scalesOnY[index], position_x, position_y, tableSize);
         allPositions.insert(allPositions.end(), generatedPositions.begin(), generatedPositions.end());
     }
 

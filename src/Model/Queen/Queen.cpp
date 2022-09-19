@@ -4,7 +4,7 @@
 
 #include "Queen.h"
 
-std::vector<std::pair<int, int>> Queen::nextPositions(int tableSize) const {
+std::vector<std::pair<int, int>> Queen::nextPositions(const int &tableSize) const {
     std::vector < std::pair < int, int >> allPositions;
 
     const int scales[] = {-1, 0, 1};
@@ -14,7 +14,7 @@ std::vector<std::pair<int, int>> Queen::nextPositions(int tableSize) const {
         for(int indexScaleY = 0 ; indexScaleY < 3 ; indexScaleY++) {
             if(scales[indexScaleX] == 0 && indexScaleX == indexScaleY)
                 continue; /* it would lead to movement to the same position */
-            auto generatedPositions = addPositions(scales[indexScaleX], scales[indexScaleY], position_x, position_y, tableSize);
+            std::vector < std::pair < int, int >>generatedPositions =  ModelUtils::addPositions(scales[indexScaleX], scales[indexScaleY], position_x, position_y, tableSize);
             allPositions.insert(allPositions.end(), generatedPositions.begin(), generatedPositions.end());
         }
 

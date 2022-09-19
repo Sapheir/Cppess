@@ -16,7 +16,7 @@ bool insideTable(const int& newPositionX, const int& newPositionY, const int &ta
     return true;
 }
 
-std::vector<std::pair<int, int>> Knight::nextPositions(int tableSize) const {
+std::vector<std::pair<int, int>> Knight::nextPositions(const int &tableSize) const {
     std::vector < std::pair < int, int >> allPositions;
 
     const int variationX[] = {-2, -2, -1, -1, 2,  2,  1,  1};
