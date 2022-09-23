@@ -23,8 +23,6 @@ FetchContent_MakeAvailable(asiocmake)
 
 
 # Model
-add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/Model)
-
 add_executable(Cppess
         ${CMAKE_CURRENT_LIST_DIR}/Model/Utils/ModelUtils.cpp ${CMAKE_CURRENT_LIST_DIR}/Model/Utils/ModelUtils.h
         ${CMAKE_CURRENT_LIST_DIR}/Model/Bishop/Bishop.cpp ${CMAKE_CURRENT_LIST_DIR}/Model/Bishop/Bishop.h
@@ -59,11 +57,13 @@ target_sources(cppess_test
     example.cpp
   PUBLIC
     example.h
+    Model
   )
 
 target_include_directories(cppess_test
   PUBLIC
     ${CMAKE_CURRENT_LIST_DIR}
+    ${CMAKE_CURRENT_LIST_DIR}/Model/Utils/ModelUtils.cpp ${CMAKE_CURRENT_LIST_DIR}/Model/Utils/ModelUtils.h
   )
 
 # we use this to get code coverage

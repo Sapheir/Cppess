@@ -8,11 +8,13 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 set(BUILD_GMOCK OFF CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(gtest)
 
-add_executable(
-    unit_tests
-    example_add.cpp
-    example_subtract.cpp
-    example_multiply.cpp
+add_executable(unit_tests
+        ${CMAKE_CURRENT_LIST_DIR}/Model/Utils/TestModelUtils.cpp
+        ../src/Model/Utils/ModelUtils.h
+        ../src/Model/Utils/ModelUtils.cpp
+        example_add.cpp
+        example_subtract.cpp
+        example_multiply.cpp
 )
 
 target_link_libraries(unit_tests

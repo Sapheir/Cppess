@@ -4,6 +4,8 @@
 
 #include "ModelUtils.h"
 
+#include <iostream>
+
 std::vector<std::pair<int, int >> ModelUtils::addPositions(const int &scaleX, const int &scaleY, const int &initialX, const int &initialY,
                          const int &tableSize) {
     std::vector < std::pair < int, int >> positions;
@@ -12,8 +14,8 @@ std::vector<std::pair<int, int >> ModelUtils::addPositions(const int &scaleX, co
     int possiblePositionY;
     while(true){
         /* compute a new possible position where the piece can go */
-        possiblePositionX = initialX - variation * scaleX;
-        possiblePositionY = initialY - variation * scaleY;
+        possiblePositionX = initialX + variation * scaleX;
+        possiblePositionY = initialY + variation * scaleY;
 
         /* we reached the end of the table */
         if(tableSize < possiblePositionX || possiblePositionX <= 0)
