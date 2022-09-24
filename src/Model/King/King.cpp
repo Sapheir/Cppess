@@ -20,7 +20,7 @@ std::vector<std::pair<int, int>> King::nextPositions(const int &tableSize) const
     }
 
     /* we can increase on x */
-    if(position_x > 1){
+    if(position_x < tableSize){
         /* decrease on y */
         if(position_y > 1)
             allPositions.emplace_back(position_x + 1, position_y - 1);

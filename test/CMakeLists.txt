@@ -15,6 +15,9 @@ add_executable(unit_tests
         ${CMAKE_CURRENT_LIST_DIR}/Model/Bishop/TestBishop.cpp
         ../src/Model/Bishop/Bishop.h
         ../src/Model/Bishop/Bishop.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Model/King/TestKing.cpp
+        ../src/Model/King/King.h
+        ../src/Model/King/King.cpp
         example_add.cpp
         example_subtract.cpp
         example_multiply.cpp

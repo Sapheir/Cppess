@@ -6,8 +6,6 @@
 #include <algorithm>
 #include "Model/Bishop/Bishop.h"
 
-#include <iostream>
-
 TEST(Bishop, nextPositions_test1) {
     Bishop bishop{5, 5};
 
