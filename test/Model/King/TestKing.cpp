@@ -6,7 +6,6 @@
 #include <algorithm>
 
 #include "Model/King/King.h"
-#include <iostream>
 
 TEST(King, KingInMiddle){
     King king{5, 5};

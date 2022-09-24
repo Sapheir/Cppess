@@ -23,7 +23,7 @@ std::vector<std::pair<int, int>> Knight::nextPositions(const int &tableSize) con
     const int variationY[] = {-1, 1,  -2, 2,  -1, 1,  -2, 2};
     int numberOfVariations = 8;
 
-    for(int iterator = 0 ; iterator <= numberOfVariations ; iterator++){
+    for(int iterator = 0 ; iterator < numberOfVariations ; iterator++){
         int newPositionX = position_x + variationX[iterator];
         int newPositionY = position_y + variationY[iterator];
 

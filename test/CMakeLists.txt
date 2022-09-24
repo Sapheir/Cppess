@@ -18,6 +18,9 @@ add_executable(unit_tests
         ${CMAKE_CURRENT_LIST_DIR}/Model/King/TestKing.cpp
         ../src/Model/King/King.h
         ../src/Model/King/King.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Model/Knight/TestKnight.cpp
+        ../src/Model/Knight/Knight.h
+        ../src/Model/Knight/Knight.cpp
         example_add.cpp
         example_subtract.cpp
         example_multiply.cpp

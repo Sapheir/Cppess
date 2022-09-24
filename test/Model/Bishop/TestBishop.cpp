@@ -66,7 +66,6 @@ TEST(Bishop, nextPositions_test5){
     sort(positions.begin(), positions.end());
     ASSERT_TRUE(positions.size() == 9);
     for(int i = 0 ; i < positions.size() ; i++) {
-        std::cout << positions[i].first << " " << positions[i].second << "\n";
         ASSERT_TRUE(positions[i].first == i + 1);
         ASSERT_TRUE(positions[i].second == 10 - i);
     }
