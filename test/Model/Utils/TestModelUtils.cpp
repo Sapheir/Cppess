@@ -4,9 +4,6 @@
 #include <vector>
 #include <algorithm>
 
-#include <iostream>
-
-
 /* Test if behaviour with increase only on x*/
 TEST(model_utils, addPositions_test_increaseOnX) {
     auto positions1 = ModelUtils::addPositions(1, 0, 10, 10, 20);

@@ -12,6 +12,9 @@ add_executable(unit_tests
         ${CMAKE_CURRENT_LIST_DIR}/Model/Utils/TestModelUtils.cpp
         ../src/Model/Utils/ModelUtils.h
         ../src/Model/Utils/ModelUtils.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Model/Bishop/TestBishop.cpp
+        ../src/Model/Bishop/Bishop.h
+        ../src/Model/Bishop/Bishop.cpp
         example_add.cpp
         example_subtract.cpp
         example_multiply.cpp
