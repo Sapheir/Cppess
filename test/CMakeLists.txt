@@ -21,6 +21,9 @@ add_executable(unit_tests
         ${CMAKE_CURRENT_LIST_DIR}/Model/Knight/TestKnight.cpp
         ../src/Model/Knight/Knight.h
         ../src/Model/Knight/Knight.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Model/Pawn/TestPawn.cpp
+        ../src/Model/Pawn/Pawn.h
+        ../src/Model/Pawn/Pawn.cpp
         example_add.cpp
         example_subtract.cpp
         example_multiply.cpp

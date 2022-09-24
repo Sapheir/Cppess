@@ -6,11 +6,14 @@
 
 std::vector<std::pair<int, int>> Pawn::nextPositions(const int &tableSize) const {
     std::vector < std::pair < int, int >> allPositions;
-    if(doubleMoveAvailable)
+    if(doubleMoveAvailable && position_y + 2 <= tableSize)
         allPositions.emplace_back(position_x, position_y + 2);
-    allPositions.emplace_back(position_x, position_y + 1);
-    allPositions.emplace_back(position_x + 1, position_y + 1);
-    allPositions.emplace_back(position_x - 1, position_y + 1);
+    if(position_y < tableSize)
+        allPositions.emplace_back(position_x, position_y + 1);
+    if(position_x < tableSize && position_y < tableSize)
+        allPositions.emplace_back(position_x + 1, position_y + 1);
+    if(position_x > 1 && position_y < tableSize)
+        allPositions.emplace_back(position_x - 1, position_y + 1);
 
     return allPositions;
 }
