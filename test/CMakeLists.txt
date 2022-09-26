@@ -24,6 +24,12 @@ add_executable(unit_tests
         ${CMAKE_CURRENT_LIST_DIR}/Model/Pawn/TestPawn.cpp
         ../src/Model/Pawn/Pawn.h
         ../src/Model/Pawn/Pawn.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Model/Queen/TestQueen.cpp
+        ../src/Model/Queen/Queen.h
+        ../src/Model/Queen/Queen.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Model/Rook/TestRook.cpp
+        ../src/Model/Rook/Rook.h
+        ../src/Model/Rook/Rook.cpp
         example_add.cpp
         example_subtract.cpp
         example_multiply.cpp
