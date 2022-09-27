@@ -1,13 +1,13 @@
 //
 // Created by User on 16/09/2022.
 //
-
+#include "../Piece.h"
 #include <vector>
 
 #ifndef CPPESS_PAWN_H
 #define CPPESS_PAWN_H
 
-class Pawn {
+class Pawn: public Piece{
 private:
     int positionX;
     int positionY;
@@ -25,7 +25,7 @@ public:
      *
      * @return vector < pair < int, int > > - all possible positions
      */
-    [[nodiscard]] std::vector < std::pair < int, int > > nextPositions(const int &tableSize) const;
+    [[nodiscard]] std::vector < std::pair < int, int > > nextPositions(const int &tableSize) const override;
 
 };
 

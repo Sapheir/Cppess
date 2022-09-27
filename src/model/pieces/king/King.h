@@ -3,11 +3,12 @@
 //
 
 #include <vector>
+#include "../Piece.h"
 
 #ifndef CPPESS_KING_H
 #define CPPESS_KING_H
 
-class King {
+class King: public Piece{
 private:
     int positionX;
     int positionY;
@@ -21,7 +22,7 @@ public:
      *
      * @return vector < pair < int, int > > - all possible positions
      */
-    [[nodiscard]] std::vector < std::pair < int, int > > nextPositions(const int &tableSize) const;
+    [[nodiscard]] std::vector < std::pair < int, int > > nextPositions(const int &tableSize) const override;
 
 };
 

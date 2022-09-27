@@ -3,12 +3,13 @@
 //
 
 #include <vector>
-#include "../Utils/ModelUtils.h"
+#include "../utils/ModelUtils.h"
+#include "../Piece.h"
 
 #ifndef CPPESS_BISHOP_H
 #define CPPESS_BISHOP_H
 
-class Bishop {
+class Bishop: public Piece{
 private:
     int positionX;
     int positionY;
@@ -22,7 +23,7 @@ public:
      *
      * @return vector < pair < int, int > > - all possible positions
      */
-    [[nodiscard]] std::vector<std::pair<int, int>> nextPositions(const int &tableSize) const;
+    [[nodiscard]] std::vector<std::pair<int, int>> nextPositions(const int &tableSize) const override;
 
 };
 
