@@ -24,8 +24,8 @@ std::vector<std::pair<int, int>> Knight::nextPositions(const int &tableSize) con
     int numberOfVariations = 8;
 
     for(int iterator = 0 ; iterator < numberOfVariations ; iterator++){
-        int newPositionX = position_x + variationX[iterator];
-        int newPositionY = position_y + variationY[iterator];
+        int newPositionX = positionX + variationX[iterator];
+        int newPositionY = positionY + variationY[iterator];
 
         if(insideTable(newPositionX, newPositionY, tableSize))
             allPositions.emplace_back(newPositionX, newPositionY);

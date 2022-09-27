@@ -9,30 +9,27 @@ set(BUILD_GMOCK OFF CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(gtest)
 
 add_executable(unit_tests
-        ${CMAKE_CURRENT_LIST_DIR}/Model/Utils/TestModelUtils.cpp
-        ../src/Model/Utils/ModelUtils.h
-        ../src/Model/Utils/ModelUtils.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/Model/Bishop/TestBishop.cpp
-        ../src/Model/Bishop/Bishop.h
-        ../src/Model/Bishop/Bishop.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/Model/King/TestKing.cpp
-        ../src/Model/King/King.h
-        ../src/Model/King/King.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/Model/Knight/TestKnight.cpp
-        ../src/Model/Knight/Knight.h
-        ../src/Model/Knight/Knight.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/Model/Pawn/TestPawn.cpp
-        ../src/Model/Pawn/Pawn.h
-        ../src/Model/Pawn/Pawn.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/Model/Queen/TestQueen.cpp
-        ../src/Model/Queen/Queen.h
-        ../src/Model/Queen/Queen.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/Model/Rook/TestRook.cpp
-        ../src/Model/Rook/Rook.h
-        ../src/Model/Rook/Rook.cpp
-        example_add.cpp
-        example_subtract.cpp
-        example_multiply.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/model/utils/TestModelUtils.cpp
+        ../src/model/utils/ModelUtils.h
+        ../src/model/utils/ModelUtils.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/model/bishop/TestBishop.cpp
+        ../src/model/bishop/Bishop.h
+        ../src/model/bishop/Bishop.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/model/king/TestKing.cpp
+        ../src/model/king/King.h
+        ../src/model/king/King.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/model/knight/TestKnight.cpp
+        ../src/model/knight/Knight.h
+        ../src/model/knight/Knight.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/model/pawn/TestPawn.cpp
+        ../src/model/pawn/Pawn.h
+        ../src/model/pawn/Pawn.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/model/queen/TestQueen.cpp
+        ../src/model/queen/Queen.h
+        ../src/model/queen/Queen.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/model/rook/TestRook.cpp
+        ../src/model/rook/Rook.h
+        ../src/model/rook/Rook.cpp
 )
 
 target_link_libraries(unit_tests

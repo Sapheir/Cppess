@@ -3,17 +3,18 @@
 //
 
 #include <vector>
+
 #include "../Utils/ModelUtils.h"
 
-#ifndef CPPESS_BISHOP_H
-#define CPPESS_BISHOP_H
+#ifndef CPPESS_QUEEN_H
+#define CPPESS_QUEEN_H
 
-class Bishop {
+class Queen {
 private:
-    int position_x;
-    int position_y;
+    int positionX;
+    int positionY;
 public:
-    Bishop(const int &position_x, const int &position_y): position_x{position_x}, position_y{position_y}{};
+    Queen(const int &positionX, const int &positionY): positionX{positionX}, positionY{positionY}{};
 
     /*
      * Return a list of all possible positions inside the chess table where the bishop could be moved
@@ -22,8 +23,8 @@ public:
      *
      * @return vector < pair < int, int > > - all possible positions
      */
-    [[nodiscard]] std::vector<std::pair<int, int>> nextPositions(const int &tableSize) const;
+    [[nodiscard]] std::vector < std::pair < int, int > > nextPositions(const int &tableSize) const;
 
 };
 
-#endif //CPPESS_BISHOP_H
+#endif //CPPESS_QUEEN_H

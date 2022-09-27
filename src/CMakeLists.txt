@@ -22,15 +22,15 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(asiocmake)
 
 
-# Model
+# model
 add_executable(Cppess
-        ${CMAKE_CURRENT_LIST_DIR}/Model/Utils/ModelUtils.cpp ${CMAKE_CURRENT_LIST_DIR}/Model/Utils/ModelUtils.h
-        ${CMAKE_CURRENT_LIST_DIR}/Model/Bishop/Bishop.cpp ${CMAKE_CURRENT_LIST_DIR}/Model/Bishop/Bishop.h
-        ${CMAKE_CURRENT_LIST_DIR}/Model/King/King.cpp ${CMAKE_CURRENT_LIST_DIR}/Model/King/King.h
-        ${CMAKE_CURRENT_LIST_DIR}/Model/Knight/Knight.cpp ${CMAKE_CURRENT_LIST_DIR}/Model/Knight/Knight.h
-        ${CMAKE_CURRENT_LIST_DIR}/Model/Pawn/Pawn.cpp ${CMAKE_CURRENT_LIST_DIR}/Model/Pawn/Pawn.h
-        ${CMAKE_CURRENT_LIST_DIR}/Model/Queen/Queen.cpp ${CMAKE_CURRENT_LIST_DIR}/Model/Queen/Queen.h
-        ${CMAKE_CURRENT_LIST_DIR}/Model/Rook/Rook.cpp ${CMAKE_CURRENT_LIST_DIR}/Model/Rook/Rook.h
+        ${CMAKE_CURRENT_LIST_DIR}/model/utils/ModelUtils.cpp ${CMAKE_CURRENT_LIST_DIR}/model/utils/ModelUtils.h
+        ${CMAKE_CURRENT_LIST_DIR}/model/bishop/Bishop.cpp ${CMAKE_CURRENT_LIST_DIR}/model/bishop/Bishop.h
+        ${CMAKE_CURRENT_LIST_DIR}/model/king/King.cpp ${CMAKE_CURRENT_LIST_DIR}/model/king/King.h
+        ${CMAKE_CURRENT_LIST_DIR}/model/knight/Knight.cpp ${CMAKE_CURRENT_LIST_DIR}/model/knight/Knight.h
+        ${CMAKE_CURRENT_LIST_DIR}/model/pawn/Pawn.cpp ${CMAKE_CURRENT_LIST_DIR}/model/pawn/Pawn.h
+        ${CMAKE_CURRENT_LIST_DIR}/model/queen/Queen.cpp ${CMAKE_CURRENT_LIST_DIR}/model/queen/Queen.h
+        ${CMAKE_CURRENT_LIST_DIR}/model/rook/Rook.cpp ${CMAKE_CURRENT_LIST_DIR}/model/rook/Rook.h
         main.cpp
         )
 
@@ -54,16 +54,16 @@ add_library(cppess_test)
 
 target_sources(cppess_test
   PRIVATE
-    example.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/model/utils/ModelUtils.cpp
   PUBLIC
-    example.h
-    Model
+        ${CMAKE_CURRENT_LIST_DIR}/model/utils/ModelUtils.h
+        model
   )
 
 target_include_directories(cppess_test
   PUBLIC
     ${CMAKE_CURRENT_LIST_DIR}
-    ${CMAKE_CURRENT_LIST_DIR}/Model/Utils/ModelUtils.cpp ${CMAKE_CURRENT_LIST_DIR}/Model/Utils/ModelUtils.h
+        ${CMAKE_CURRENT_LIST_DIR}/model/utils/ModelUtils.cpp ${CMAKE_CURRENT_LIST_DIR}/model/utils/ModelUtils.h
   )
 
 # we use this to get code coverage
