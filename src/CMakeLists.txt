@@ -24,13 +24,13 @@ FetchContent_MakeAvailable(asiocmake)
 
 # model
 add_executable(Cppess
-        ${CMAKE_CURRENT_LIST_DIR}/model/utils/ModelUtils.cpp ${CMAKE_CURRENT_LIST_DIR}/model/utils/ModelUtils.h
-        ${CMAKE_CURRENT_LIST_DIR}/model/bishop/Bishop.cpp ${CMAKE_CURRENT_LIST_DIR}/model/bishop/Bishop.h
-        ${CMAKE_CURRENT_LIST_DIR}/model/king/King.cpp ${CMAKE_CURRENT_LIST_DIR}/model/king/King.h
-        ${CMAKE_CURRENT_LIST_DIR}/model/knight/Knight.cpp ${CMAKE_CURRENT_LIST_DIR}/model/knight/Knight.h
-        ${CMAKE_CURRENT_LIST_DIR}/model/pawn/Pawn.cpp ${CMAKE_CURRENT_LIST_DIR}/model/pawn/Pawn.h
-        ${CMAKE_CURRENT_LIST_DIR}/model/queen/Queen.cpp ${CMAKE_CURRENT_LIST_DIR}/model/queen/Queen.h
-        ${CMAKE_CURRENT_LIST_DIR}/model/rook/Rook.cpp ${CMAKE_CURRENT_LIST_DIR}/model/rook/Rook.h
+        model/pieces/utils/ModelUtils.cpp model/pieces/utils/ModelUtils.h
+        model/pieces/bishop/Bishop.cpp model/pieces/bishop/Bishop.h
+        model/pieces/king/King.cpp model/pieces/king/King.h
+        model/pieces/knight/Knight.cpp model/pieces/knight/Knight.h
+        model/pieces/pawn/Pawn.cpp model/pieces/pawn/Pawn.h
+        model/pieces/queen/Queen.cpp model/pieces/queen/Queen.h
+        model/pieces/rook/Rook.cpp model/pieces/rook/Rook.h
         main.cpp
         )
 
@@ -54,16 +54,16 @@ add_library(cppess_test)
 
 target_sources(cppess_test
   PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/model/utils/ModelUtils.cpp
+        model/pieces/utils/ModelUtils.cpp
   PUBLIC
-        ${CMAKE_CURRENT_LIST_DIR}/model/utils/ModelUtils.h
+        model/pieces/utils/ModelUtils.h
         model
   )
 
 target_include_directories(cppess_test
   PUBLIC
     ${CMAKE_CURRENT_LIST_DIR}
-        ${CMAKE_CURRENT_LIST_DIR}/model/utils/ModelUtils.cpp ${CMAKE_CURRENT_LIST_DIR}/model/utils/ModelUtils.h
+        model/pieces/utils/ModelUtils.cpp model/pieces/utils/ModelUtils.h
   )
 
 # we use this to get code coverage

@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "Model/Utils/ModelUtils.h"
+#include "model/pieces/utils/ModelUtils.h"
 #include <vector>
 #include <algorithm>
 

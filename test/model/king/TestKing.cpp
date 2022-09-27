@@ -5,7 +5,7 @@
 #include <gtest/gtest.h>
 #include <algorithm>
 
-#include "Model/King/King.h"
+#include "model/pieces/king/King.h"
 
 TEST(King, KingInMiddle){
     King king{5, 5};

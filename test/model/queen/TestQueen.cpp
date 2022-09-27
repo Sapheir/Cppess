@@ -4,11 +4,10 @@
 
 #include <gtest/gtest.h>
 #include <algorithm>
-#include <iostream>
 
-#include "Model/Queen/Queen.h"
-#include "Model/Rook/Rook.h"
-#include "Model/Bishop/Bishop.h"
+#include "model/pieces/queen/Queen.h"
+#include "model/pieces/rook/Rook.h"
+#include "model/pieces/bishop/Bishop.h"
 
 #define pint std::pair < int, int >
 #define vpint std::vector < pint>

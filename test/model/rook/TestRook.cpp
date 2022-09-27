@@ -6,7 +6,7 @@
 #include <algorithm>
 #include <iostream>
 
-#include "Model/Rook/Rook.h"
+#include "model/pieces/rook/Rook.h"
 
 TEST(Rook, RookInMiddle){
     int rookX = 5;

@@ -4,7 +4,7 @@
 #include <gtest/gtest.h>
 #include <vector>
 #include <algorithm>
-#include "Model/Bishop/Bishop.h"
+#include "model/pieces/bishop/Bishop.h"
 
 TEST(Bishop, nextPositions_test1) {
     Bishop bishop{5, 5};

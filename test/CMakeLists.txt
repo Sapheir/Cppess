@@ -10,26 +10,26 @@ FetchContent_MakeAvailable(gtest)
 
 add_executable(unit_tests
         ${CMAKE_CURRENT_LIST_DIR}/model/utils/TestModelUtils.cpp
-        ../src/model/utils/ModelUtils.h
-        ../src/model/utils/ModelUtils.cpp
+        ../src/model/pieces/utils/ModelUtils.h
+        ../src/model/pieces/utils/ModelUtils.cpp
         ${CMAKE_CURRENT_LIST_DIR}/model/bishop/TestBishop.cpp
-        ../src/model/bishop/Bishop.h
-        ../src/model/bishop/Bishop.cpp
+        ../src/model/pieces/bishop/Bishop.h
+        ../src/model/pieces/bishop/Bishop.cpp
         ${CMAKE_CURRENT_LIST_DIR}/model/king/TestKing.cpp
-        ../src/model/king/King.h
-        ../src/model/king/King.cpp
+        ../src/model/pieces/king/King.h
+        ../src/model/pieces/king/King.cpp
         ${CMAKE_CURRENT_LIST_DIR}/model/knight/TestKnight.cpp
-        ../src/model/knight/Knight.h
-        ../src/model/knight/Knight.cpp
+        ../src/model/pieces/knight/Knight.h
+        ../src/model/pieces/knight/Knight.cpp
         ${CMAKE_CURRENT_LIST_DIR}/model/pawn/TestPawn.cpp
-        ../src/model/pawn/Pawn.h
-        ../src/model/pawn/Pawn.cpp
+        ../src/model/pieces/pawn/Pawn.h
+        ../src/model/pieces/pawn/Pawn.cpp
         ${CMAKE_CURRENT_LIST_DIR}/model/queen/TestQueen.cpp
-        ../src/model/queen/Queen.h
-        ../src/model/queen/Queen.cpp
+        ../src/model/pieces/queen/Queen.h
+        ../src/model/pieces/queen/Queen.cpp
         ${CMAKE_CURRENT_LIST_DIR}/model/rook/TestRook.cpp
-        ../src/model/rook/Rook.h
-        ../src/model/rook/Rook.cpp
+        ../src/model/pieces/rook/Rook.h
+        ../src/model/pieces/rook/Rook.cpp
 )
 
 target_link_libraries(unit_tests

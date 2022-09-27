@@ -5,7 +5,7 @@
 #include <gtest/gtest.h>
 #include <algorithm>
 
-#include "Model/Knight/Knight.h"
+#include "model/pieces/knight/Knight.h"
 
 TEST(Knight, KnightInMiddle){
     int knightX = 5;
