@@ -9,27 +9,29 @@ set(BUILD_GMOCK OFF CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(gtest)
 
 add_executable(unit_tests
-        ${CMAKE_CURRENT_LIST_DIR}/model/utils/TestModelUtils.cpp
+        model/Pieces/utils/TestModelUtils.cpp
         ../src/model/pieces/utils/ModelUtils.h
         ../src/model/pieces/utils/ModelUtils.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/model/bishop/TestBishop.cpp
+        model/Pieces/bishop/TestBishop.cpp
         ../src/model/pieces/bishop/Bishop.h
         ../src/model/pieces/bishop/Bishop.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/model/king/TestKing.cpp
+        model/Pieces/king/TestKing.cpp
         ../src/model/pieces/king/King.h
         ../src/model/pieces/king/King.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/model/knight/TestKnight.cpp
+        model/Pieces/knight/TestKnight.cpp
         ../src/model/pieces/knight/Knight.h
         ../src/model/pieces/knight/Knight.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/model/pawn/TestPawn.cpp
+        model/Pieces/pawn/TestPawn.cpp
         ../src/model/pieces/pawn/Pawn.h
         ../src/model/pieces/pawn/Pawn.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/model/queen/TestQueen.cpp
+        model/Pieces/queen/TestQueen.cpp
         ../src/model/pieces/queen/Queen.h
         ../src/model/pieces/queen/Queen.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/model/rook/TestRook.cpp
+        model/Pieces/rook/TestRook.cpp
         ../src/model/pieces/rook/Rook.h
         ../src/model/pieces/rook/Rook.cpp
+        model/Pieces/TestPiece.cpp
+        ../src/model/pieces/Piece.h
 )
 
 target_link_libraries(unit_tests

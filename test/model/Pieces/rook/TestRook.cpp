@@ -4,7 +4,6 @@
 
 #include <gtest/gtest.h>
 #include <algorithm>
-#include <iostream>
 
 #include "model/pieces/rook/Rook.h"
 
