@@ -32,8 +32,10 @@ add_executable(unit_tests
         ../src/model/pieces/rook/Rook.cpp
         model/pieces/TestPiece.cpp
         ../src/model/pieces/Piece.h
+        ../src/model/pieces/Piece.cpp
         model/table/TestTable.cpp
         ../src/model/table/Table.h
+        ../src/model/table/Table.cpp
 )
 
 target_link_libraries(unit_tests

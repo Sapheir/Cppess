@@ -22,7 +22,7 @@ public:
     /*
      * Check if possible new coordinates for a piece are inside the table
      *
-     * @param newPositionX, newPositionY: possible new position of the piece on the chess board
+     * @param newPositionX, newPositionY: possible new position of the piece on the chess table
      * @param tableSize: the size of the table
      *
      * return true if the current potential position is on table and false otherwise
@@ -32,7 +32,7 @@ public:
     /*
     * Generate all possible movements from the initial position inside the chess table
     *
-    * @param initialX, initialY: initial position of the piece on the chess board
+    * @param initialX, initialY: initial position of the piece on the chess table
     * @param scaleX: parameters that show if the position on X should increase(1) or decrease(-1)
     * @param scaleY: parameters that show if the position on Y should increase(1) or decrease(-1)
     * @param tableSize: the size of the table

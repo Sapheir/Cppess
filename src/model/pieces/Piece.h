@@ -25,6 +25,17 @@ public:
      */
     [[nodiscard]] virtual std::vector < std::pair < int, int > > nextPositions(const int &tableSize) const = 0;
 
+    /*
+     * Get the offset on X of the piece as an int
+     */
+    [[nodiscard]] int getX() const;
+
+    /*
+     * Get the offset on Y of the piece as an int
+     */
+    [[nodiscard]] int getY() const;
+
 };
+
 
 #endif //CPPESS_PIECE_H
