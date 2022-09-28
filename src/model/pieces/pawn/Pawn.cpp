@@ -1,11 +1,11 @@
 //
-// Created by User on 16/09/2022.
+// Created by Turca Vasile
 //
 
 #include "Pawn.h"
 
-std::vector<std::pair<int, int>> Pawn::nextPositions(const int &tableSize) const {
-    std::vector < std::pair < int, int >> allPositions;
+std::vector<std::pair<int, int> > Pawn::nextPositions(const int &tableSize) const {
+    std::vector < std::pair < int, int > > allPositions;
     if(doubleMoveAvailable && positionY + 2 <= tableSize)
         allPositions.emplace_back(positionX, positionY + 2);
     if(positionY < tableSize)

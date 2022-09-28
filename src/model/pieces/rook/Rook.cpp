@@ -1,11 +1,11 @@
 //
-// Created by User on 17/09/2022.
+// Created by Turca Vasile
 //
 
 #include "Rook.h"
 
-std::vector<std::pair<int, int>> Rook::nextPositions(const int &tableSize) const {
-    std::vector < std::pair < int, int >> allPositions;
+std::vector<std::pair<int, int> > Rook::nextPositions(const int &tableSize) const {
+    std::vector < std::pair < int, int > > allPositions;
 
     const int scalesOnX[] = {-1, 1, 0,  0};
     const int scalesOnY[] = {0,  0, -1, 1};

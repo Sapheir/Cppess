@@ -1,23 +1,11 @@
 //
-// Created by User on 17/09/2022.
+// Created by Turca Vasile
 //
 
 #include "Knight.h"
 
-bool inTableRange(const int  &position, const int &tableSize){
-    if(position <= 0) return false;
-    if(position > tableSize) return false;
-    return true;
-}
-
-bool insideTable(const int& newPositionX, const int& newPositionY, const int &tableSize){
-    if(!inTableRange(newPositionX, tableSize)) return false;
-    if(!inTableRange(newPositionY, tableSize)) return false;
-    return true;
-}
-
-std::vector<std::pair<int, int>> Knight::nextPositions(const int &tableSize) const {
-    std::vector < std::pair < int, int >> allPositions;
+std::vector<std::pair<int, int> > Knight::nextPositions(const int &tableSize) const {
+    std::vector < std::pair < int, int > > allPositions;
 
     const int variationX[] = {-2, -2, -1, -1, 2,  2,  1,  1};
     const int variationY[] = {-1, 1,  -2, 2,  -1, 1,  -2, 2};
@@ -27,7 +15,7 @@ std::vector<std::pair<int, int>> Knight::nextPositions(const int &tableSize) con
         int newPositionX = positionX + variationX[iterator];
         int newPositionY = positionY + variationY[iterator];
 
-        if(insideTable(newPositionX, newPositionY, tableSize))
+        if(ModelUtils::insideTable(newPositionX, newPositionY, tableSize))
             allPositions.emplace_back(newPositionX, newPositionY);
     }
 

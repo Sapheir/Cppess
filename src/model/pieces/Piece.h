@@ -1,5 +1,5 @@
 //
-// Created by User on 27/09/2022.
+// Created by Turca Vasile
 //
 
 #include <vector>
@@ -7,10 +7,15 @@
 #ifndef CPPESS_PIECE_H
 #define CPPESS_PIECE_H
 
-class Piece{
-private:
-    
+class Piece {
+protected:
+    int positionX;
+    int positionY;
 public:
+
+    /* Constructor for piece */
+    Piece(const int &positionX, const int &positionY): positionX{positionX}, positionY{positionY}{};
+
     /*
      * Return a list of all possible positions inside the chess table where the bishop could be moved
      *

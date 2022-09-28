@@ -1,8 +1,9 @@
 //
-// Created by User on 27/09/2022.
+// Created by Turca Vasile
 //
 
 #include <gtest/gtest.h>
+#include <memory>
 
 #include "model/pieces/bishop/Bishop.h"
 #include "model/pieces/king/King.h"
@@ -11,8 +12,8 @@
 #include "model/pieces/queen/Queen.h"
 #include "model/pieces/rook/Rook.h"
 
-TEST(Piece, bishop){
-    Piece* piece = new Bishop{5, 5};
+TEST(Piece, bishop) {
+    std::unique_ptr<Piece> piece = std::make_unique<Bishop>(5,5);
     Bishop bishop{5,5};
 
     auto pieceMoves = piece->nextPositions(10);
@@ -23,8 +24,8 @@ TEST(Piece, bishop){
         ASSERT_TRUE(pieceMoves[i] == bishopMoves[i]);
 }
 
-TEST(Piece, king){
-    Piece* piece = new King{5, 5};
+TEST(Piece, king) {
+    std::unique_ptr<Piece> piece = std::make_unique<King>(5,5);
     King king{5,5};
 
     auto pieceMoves = piece->nextPositions(10);
@@ -35,8 +36,8 @@ TEST(Piece, king){
         ASSERT_TRUE(pieceMoves[i] == kingMoves[i]);
 }
 
-TEST(Piece, knight){
-    Piece* piece = new Knight{5, 5};
+TEST(Piece, knight) {
+    std::unique_ptr<Piece> piece = std::make_unique<Knight>(5,5);
     Knight knight{5,5};
 
     auto pieceMoves = piece->nextPositions(10);
@@ -47,8 +48,8 @@ TEST(Piece, knight){
         ASSERT_TRUE(pieceMoves[i] == knightMoves[i]);
 }
 
-TEST(Piece, pawn){
-    Piece* piece = new Pawn{5, 5};
+TEST(Piece, pawn) {
+    std::unique_ptr<Piece> piece = std::make_unique<Pawn>(5,5);
     Pawn pawn{5,5};
 
     auto pieceMoves = piece->nextPositions(10);
@@ -59,8 +60,8 @@ TEST(Piece, pawn){
         ASSERT_TRUE(pieceMoves[i] == pawnMoves[i]);
 }
 
-TEST(Piece, queen){
-    Piece* piece = new Queen{5, 5};
+TEST(Piece, queen) {
+    std::unique_ptr<Piece> piece = std::make_unique<Queen>(5,5);
     Queen queen{5,5};
 
     auto pieceMoves = piece->nextPositions(10);
@@ -71,8 +72,8 @@ TEST(Piece, queen){
         ASSERT_TRUE(pieceMoves[i] == queenMoves[i]);
 }
 
-TEST(Piece, rook){
-    Piece* piece = new Rook{5, 5};
+TEST(Piece, rook) {
+    std::unique_ptr<Piece> piece = std::make_unique<Rook>(5,5);
     Rook rook{5,5};
 
     auto pieceMoves = piece->nextPositions(10);

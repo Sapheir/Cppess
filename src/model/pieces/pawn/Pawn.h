@@ -1,5 +1,5 @@
 //
-// Created by User on 16/09/2022.
+// Created by Turca Vasile
 //
 #include "../Piece.h"
 #include <vector>
@@ -7,14 +7,11 @@
 #ifndef CPPESS_PAWN_H
 #define CPPESS_PAWN_H
 
-class Pawn: public Piece{
+class Pawn: public Piece {
 private:
-    int positionX;
-    int positionY;
-
     bool doubleMoveAvailable;
 public:
-    Pawn(const int &positionX, const int &positionY): positionX{positionX}, positionY{positionY}{
+    Pawn(const int &positionX, const int &positionY): Piece{positionX, positionY}{
         doubleMoveAvailable = true;
     };
 

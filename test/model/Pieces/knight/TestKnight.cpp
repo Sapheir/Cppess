@@ -1,5 +1,5 @@
 //
-// Created by User on 24/09/2022.
+// Created by Turca Vasile
 //
 
 #include <gtest/gtest.h>
@@ -7,12 +7,13 @@
 
 #include "model/pieces/knight/Knight.h"
 
-TEST(Knight, KnightInMiddle){
+TEST(Knight, KnightInMiddle) {
     int knightX = 5;
     int knightY = 5;
+    int tableSize = 10;
     Knight knight{knightX,knightY};
 
-    auto positions = knight.nextPositions(10);
+    auto positions = knight.nextPositions(tableSize);
     ASSERT_TRUE(positions.size() == 8);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i < positions.size() - 1 ; i++)
@@ -31,9 +32,10 @@ TEST(Knight, KnightInMiddle){
 TEST(Knight, KnightInLeft){
     int knightX = 1;
     int knightY = 5;
+    int tableSize = 10;
     Knight knight{knightX,knightY};
 
-    auto positions = knight.nextPositions(10);
+    auto positions = knight.nextPositions(tableSize);
     ASSERT_TRUE(positions.size() == 4);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i < positions.size() - 1 ; i++)
@@ -52,9 +54,10 @@ TEST(Knight, KnightInLeft){
 TEST(Knight, KnightInRight){
     int knightX = 10;
     int knightY = 5;
+    int tableSize = 10;
     Knight knight{knightX,knightY};
 
-    auto positions = knight.nextPositions(10);
+    auto positions = knight.nextPositions(tableSize);
     ASSERT_TRUE(positions.size() == 4);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i < positions.size() - 1 ; i++)
@@ -73,9 +76,10 @@ TEST(Knight, KnightInRight){
 TEST(Knight, KnightUp){
     int knightX = 5;
     int knightY = 10;
+    int tableSize = 10;
     Knight knight{knightX,knightY};
 
-    auto positions = knight.nextPositions(10);
+    auto positions = knight.nextPositions(tableSize);
     ASSERT_TRUE(positions.size() == 4);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i < positions.size() - 1 ; i++)
@@ -94,9 +98,10 @@ TEST(Knight, KnightUp){
 TEST(Knight, KnightDown){
     int knightX = 5;
     int knightY = 1;
+    int tableSize = 10;
     Knight knight{knightX,knightY};
 
-    auto positions = knight.nextPositions(10);
+    auto positions = knight.nextPositions(tableSize);
     ASSERT_TRUE(positions.size() == 4);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i < positions.size() - 1 ; i++)
@@ -115,9 +120,10 @@ TEST(Knight, KnightDown){
 TEST(Knight, KnightLeftUpCorner){
     int knightX = 1;
     int knightY = 1;
+    int tableSize = 10;
     Knight knight{knightX,knightY};
 
-    auto positions = knight.nextPositions(10);
+    auto positions = knight.nextPositions(tableSize);
     ASSERT_TRUE(positions.size() == 2);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i < positions.size() - 1 ; i++)
@@ -136,9 +142,10 @@ TEST(Knight, KnightLeftUpCorner){
 TEST(Knight, KnightLeftDownCorner){
     int knightX = 1;
     int knightY = 10;
+    int tableSize = 10;
     Knight knight{knightX,knightY};
 
-    auto positions = knight.nextPositions(10);
+    auto positions = knight.nextPositions(tableSize);
     ASSERT_TRUE(positions.size() == 2);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i < positions.size() - 1 ; i++)
@@ -158,9 +165,10 @@ TEST(Knight, KnightLeftDownCorner){
 TEST(Knight, KnightRightUpCorner){
     int knightX = 10;
     int knightY = 1;
+    int tableSize = 10;
     Knight knight{knightX,knightY};
 
-    auto positions = knight.nextPositions(10);
+    auto positions = knight.nextPositions(tableSize);
     ASSERT_TRUE(positions.size() == 2);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i < positions.size() - 1 ; i++)
@@ -179,9 +187,10 @@ TEST(Knight, KnightRightUpCorner){
 TEST(Knight, KnightRightDownCorner){
     int knightX = 10;
     int knightY = 10;
+    int tableSize = 10;
     Knight knight{knightX,knightY};
 
-    auto positions = knight.nextPositions(10);
+    auto positions = knight.nextPositions(tableSize);
     ASSERT_TRUE(positions.size() == 2);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i < positions.size() - 1 ; i++)

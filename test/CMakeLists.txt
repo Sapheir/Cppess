@@ -9,29 +9,31 @@ set(BUILD_GMOCK OFF CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(gtest)
 
 add_executable(unit_tests
-        model/Pieces/utils/TestModelUtils.cpp
+        model/pieces/utils/TestModelUtils.cpp
         ../src/model/pieces/utils/ModelUtils.h
         ../src/model/pieces/utils/ModelUtils.cpp
-        model/Pieces/bishop/TestBishop.cpp
+        model/pieces/bishop/TestBishop.cpp
         ../src/model/pieces/bishop/Bishop.h
         ../src/model/pieces/bishop/Bishop.cpp
-        model/Pieces/king/TestKing.cpp
+        model/pieces/king/TestKing.cpp
         ../src/model/pieces/king/King.h
         ../src/model/pieces/king/King.cpp
-        model/Pieces/knight/TestKnight.cpp
+        model/pieces/knight/TestKnight.cpp
         ../src/model/pieces/knight/Knight.h
         ../src/model/pieces/knight/Knight.cpp
-        model/Pieces/pawn/TestPawn.cpp
+        model/pieces/pawn/TestPawn.cpp
         ../src/model/pieces/pawn/Pawn.h
         ../src/model/pieces/pawn/Pawn.cpp
-        model/Pieces/queen/TestQueen.cpp
+        model/pieces/queen/TestQueen.cpp
         ../src/model/pieces/queen/Queen.h
         ../src/model/pieces/queen/Queen.cpp
-        model/Pieces/rook/TestRook.cpp
+        model/pieces/rook/TestRook.cpp
         ../src/model/pieces/rook/Rook.h
         ../src/model/pieces/rook/Rook.cpp
-        model/Pieces/TestPiece.cpp
+        model/pieces/TestPiece.cpp
         ../src/model/pieces/Piece.h
+        model/table/TestTable.cpp
+        ../src/model/table/Table.h
 )
 
 target_link_libraries(unit_tests

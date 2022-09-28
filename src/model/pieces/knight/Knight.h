@@ -1,19 +1,19 @@
 //
-// Created by User on 17/09/2022.
+// Created by Turca Vasile
 //
 
 #include <vector>
+#include "../utils/ModelUtils.h"
 #include "../Piece.h"
 
 #ifndef CPPESS_KNIGHT_H
 #define CPPESS_KNIGHT_H
 
-class Knight: public Piece{
+class Knight: public Piece {
 private:
-    int positionX;
-    int positionY;
+
 public:
-    Knight(const int &positionX, const int &positionY): positionX{positionX}, positionY{positionY}{};
+    Knight(const int &positionX, const int &positionY): Piece{positionX, positionY}{};
 
     /*
      * Return a list of all possible positions inside the chess table where the bishop could be moved

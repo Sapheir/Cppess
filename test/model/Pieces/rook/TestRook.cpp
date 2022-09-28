@@ -1,5 +1,5 @@
 //
-// Created by User on 25/09/2022.
+// Created by Turca Vasile
 //
 
 #include <gtest/gtest.h>
@@ -7,12 +7,13 @@
 
 #include "model/pieces/rook/Rook.h"
 
-TEST(Rook, RookInMiddle){
+TEST(Rook, RookInMiddle) {
     int rookX = 5;
     int rookY = 5;
+    int tableSize = 10;
     Rook rook{rookX, rookY};
 
-    auto positions = rook.nextPositions(10);
+    auto positions = rook.nextPositions(tableSize);
     ASSERT_TRUE(positions.size() == 18);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i <= 3 ; i++){
@@ -36,9 +37,10 @@ TEST(Rook, RookInMiddle){
 TEST(Rook, RookInLeft){
     int rookX = 1;
     int rookY = 5;
+    int tableSize = 10;
     Rook rook{rookX, rookY};
 
-    auto positions = rook.nextPositions(10);
+    auto positions = rook.nextPositions(tableSize);
     ASSERT_TRUE(positions.size() == 18);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i <= 3 ; i++){
@@ -58,9 +60,10 @@ TEST(Rook, RookInLeft){
 TEST(Rook, RookInRight){
     int rookX = 10;
     int rookY = 5;
+    int tableSize = 10;
     Rook rook{rookX, rookY};
 
-    auto positions = rook.nextPositions(10);
+    auto positions = rook.nextPositions(tableSize);
     ASSERT_TRUE(positions.size() == 18);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i <= 8 ; i++){
@@ -80,9 +83,10 @@ TEST(Rook, RookInRight){
 TEST(Rook, RookUp){
     int rookX = 5;
     int rookY = 10;
+    int tableSize = 10;
     Rook rook{rookX, rookY};
 
-    auto positions = rook.nextPositions(10);
+    auto positions = rook.nextPositions(tableSize);
     ASSERT_TRUE(positions.size() == 18);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i <= 3 ; i++){
@@ -102,9 +106,10 @@ TEST(Rook, RookUp){
 TEST(Rook, RookDown){
     int rookX = 5;
     int rookY = 1;
+    int tableSize = 10;
     Rook rook{rookX, rookY};
 
-    auto positions = rook.nextPositions(10);
+    auto positions = rook.nextPositions(tableSize);
     ASSERT_TRUE(positions.size() == 18);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i <= 3 ; i++){
@@ -124,9 +129,10 @@ TEST(Rook, RookDown){
 TEST(Rook, RookLeftUp){
     int rookX = 1;
     int rookY = 10;
+    int tableSize = 10;
     Rook rook{rookX, rookY};
 
-    auto positions = rook.nextPositions(10);
+    auto positions = rook.nextPositions(tableSize);
     ASSERT_TRUE(positions.size() == 18);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i <= 8 ; i++){
@@ -142,9 +148,10 @@ TEST(Rook, RookLeftUp){
 TEST(Rook, RookRightUp){
     int rookX = 10;
     int rookY = 10;
+    int tableSize = 10;
     Rook rook{rookX, rookY};
 
-    auto positions = rook.nextPositions(10);
+    auto positions = rook.nextPositions(tableSize);
     ASSERT_TRUE(positions.size() == 18);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i <= 8 ; i++){
@@ -160,9 +167,10 @@ TEST(Rook, RookRightUp){
 TEST(Rook, RookLeftDown){
     int rookX = 1;
     int rookY = 1;
+    int tableSize = 10;
     Rook rook{rookX, rookY};
 
-    auto positions = rook.nextPositions(10);
+    auto positions = rook.nextPositions(tableSize);
     ASSERT_TRUE(positions.size() == 18);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i <= 8 ; i++){
@@ -178,9 +186,10 @@ TEST(Rook, RookLeftDown){
 TEST(Rook, RookRightDown){
     int rookX = 10;
     int rookY = 1;
+    int tableSize = 10;
     Rook rook{rookX, rookY};
 
-    auto positions = rook.nextPositions(10);
+    auto positions = rook.nextPositions(tableSize);
     ASSERT_TRUE(positions.size() == 18);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i <= 8 ; i++){

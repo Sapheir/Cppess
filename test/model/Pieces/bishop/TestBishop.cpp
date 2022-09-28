@@ -1,5 +1,5 @@
 //
-// Created by User on 23/09/2022.
+// Created by Turca Vasile
 //
 #include <gtest/gtest.h>
 #include <vector>
@@ -7,9 +7,12 @@
 #include "model/pieces/bishop/Bishop.h"
 
 TEST(Bishop, nextPositions_test1) {
-    Bishop bishop{5, 5};
+    int posX = 5;
+    int posY = 5;
+    int tableSize = 10;
+    Bishop bishop{posX, posY};
 
-    auto positions = bishop.nextPositions(10);
+    auto positions = bishop.nextPositions(tableSize);
     sort(positions.begin(), positions.end());
     ASSERT_TRUE(17 == positions.size());
     for (int i = 0; i < 8; i += 2) {
@@ -27,9 +30,13 @@ TEST(Bishop, nextPositions_test1) {
     ASSERT_TRUE(positions[16].first == 10 && positions[16].second == 10);
 }
 
-TEST(Bishop, nextPositions_test2){
-    Bishop bishop{1, 1};
-    auto positions = bishop.nextPositions(10);
+TEST(Bishop, nextPositions_test2) {
+    int posX = 1;
+    int posY = 1;
+    int tableSize = 10;
+    Bishop bishop{posX, posY};
+
+    auto positions = bishop.nextPositions(tableSize);
     sort(positions.begin(), positions.end());
     ASSERT_TRUE(positions.size() == 9);
     for(int i = 0 ; i < positions.size() ; i++) {
@@ -38,9 +45,13 @@ TEST(Bishop, nextPositions_test2){
     }
 }
 
-TEST(Bishop, nextPositions_test3){
-    Bishop bishop{10, 10};
-    auto positions = bishop.nextPositions(10);
+TEST(Bishop, nextPositions_test3) {
+    int posX = 10;
+    int posY = 10;
+    int tableSize = 10;
+    Bishop bishop{posX, posY};
+
+    auto positions = bishop.nextPositions(tableSize);
     sort(positions.begin(), positions.end());
     ASSERT_TRUE(positions.size() == 9);
     for(int i = 0 ; i < positions.size() ; i++) {
@@ -49,9 +60,13 @@ TEST(Bishop, nextPositions_test3){
     }
 }
 
-TEST(Bishop, nextPositions_test4){
-    Bishop bishop{1, 10};
-    auto positions = bishop.nextPositions(10);
+TEST(Bishop, nextPositions_test4) {
+    int posX = 1;
+    int posY = 10;
+    int tableSize = 10;
+    Bishop bishop{posX, posY};
+
+    auto positions = bishop.nextPositions(tableSize);
     sort(positions.begin(), positions.end());
     ASSERT_TRUE(positions.size() == 9);
     for(int i = 0 ; i < positions.size() ; i++) {
@@ -60,9 +75,13 @@ TEST(Bishop, nextPositions_test4){
     }
 }
 
-TEST(Bishop, nextPositions_test5){
-    Bishop bishop{10, 1};
-    auto positions = bishop.nextPositions(10);
+TEST(Bishop, nextPositions_test5) {
+    int posX = 10;
+    int posY = 1;
+    int tableSize = 10;
+    Bishop bishop{posX, posY};
+
+    auto positions = bishop.nextPositions(tableSize);
     sort(positions.begin(), positions.end());
     ASSERT_TRUE(positions.size() == 9);
     for(int i = 0 ; i < positions.size() ; i++) {

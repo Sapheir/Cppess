@@ -1,5 +1,5 @@
 //
-// Created by User on 24/09/2022.
+// Created by Turca Vasile
 //
 
 #include <gtest/gtest.h>
@@ -7,10 +7,13 @@
 
 #include "model/pieces/king/King.h"
 
-TEST(King, KingInMiddle){
-    King king{5, 5};
+TEST(King, KingInMiddle) {
+    int posX = 5;
+    int posY = 5;
+    int tableSize = 10;
+    King king{posX, posY};
 
-    auto positions = king.nextPositions(10);
+    auto positions = king.nextPositions(tableSize);
     ASSERT_TRUE(positions.size() == 8);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i < 3 ; i++){
@@ -31,9 +34,12 @@ TEST(King, KingInMiddle){
 }
 
 TEST(King, KingInLeft){
-    King king{1, 5};
+    int posX = 1;
+    int posY = 5;
+    int tableSize = 10;
+    King king{posX, posY};
 
-    auto positions = king.nextPositions(10);
+    auto positions = king.nextPositions(tableSize);
     ASSERT_TRUE(positions.size() == 5);
     sort(positions.begin(), positions.end());
 
@@ -50,9 +56,12 @@ TEST(King, KingInLeft){
 }
 
 TEST(King, KingInRight){
-    King king{10, 5};
+    int posX = 10;
+    int posY = 5;
+    int tableSize = 10;
+    King king{posX, posY};
 
-    auto positions = king.nextPositions(10);
+    auto positions = king.nextPositions(tableSize);
     ASSERT_TRUE(positions.size() == 5);
     sort(positions.begin(), positions.end());
 
@@ -69,9 +78,12 @@ TEST(King, KingInRight){
 }
 
 TEST(King, KingOnTop){
-    King king{5, 10};
+    int posX = 5;
+    int posY = 10;
+    int tableSize = 10;
+    King king{posX, posY};
 
-    auto positions = king.nextPositions(10);
+    auto positions = king.nextPositions(tableSize);
     ASSERT_TRUE(positions.size() == 5);
     sort(positions.begin(), positions.end());
 
@@ -89,9 +101,12 @@ TEST(King, KingOnTop){
 }
 
 TEST(King, KingOnDown){
-    King king{5, 1};
+    int posX = 5;
+    int posY = 1;
+    int tableSize = 10;
+    King king{posX, posY};
 
-    auto positions = king.nextPositions(10);
+    auto positions = king.nextPositions(tableSize);
     ASSERT_TRUE(positions.size() == 5);
     sort(positions.begin(), positions.end());
 

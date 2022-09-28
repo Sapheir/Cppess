@@ -1,5 +1,5 @@
 //
-// Created by User on 25/09/2022.
+// Created by Turca Vasile
 //
 
 #include <gtest/gtest.h>
@@ -12,11 +12,11 @@
 #define pint std::pair < int, int >
 #define vpint std::vector < pint>
 
-bool pairCompareEq(const pint &X, const pint &Y){
+bool pairCompareEq(const pint &X, const pint &Y) {
     return (X.first == Y.first && X.second == Y.second);
 }
 
-void testSameContentOnMerge(const vpint &x, const vpint &y, const vpint &z){
+void testSameContentOnMerge(const vpint &x, const vpint &y, const vpint &z) {
     /* Compare elements */
     int indexX = 0, indexY = 0, indexZ = 0;
     while(indexX < x.size() && indexY < y.size()){

@@ -1,5 +1,5 @@
 //
-// Created by User on 25/09/2022.
+// Created by Turca Vasile
 //
 
 #include <gtest/gtest.h>
@@ -7,12 +7,13 @@
 
 #include "model/pieces/pawn/Pawn.h"
 
-TEST(Pawn, MiddlePawn){
+TEST(Pawn, MiddlePawn) {
     int pawnX = 5;
     int pawnY = 2;
+    int tableSize = 10;
     Pawn pawn{pawnX, pawnY};
 
-    auto positions = pawn.nextPositions(10);
+    auto positions = pawn.nextPositions(tableSize);
     sort(positions.begin(), positions.end());
 
     ASSERT_TRUE(positions.size() == 4);
@@ -33,9 +34,10 @@ TEST(Pawn, MiddlePawn){
 TEST(Pawn, LeftPawn){
     int pawnX = 1;
     int pawnY = 2;
+    int tableSize = 10;
     Pawn pawn{pawnX, pawnY};
 
-    auto positions = pawn.nextPositions(10);
+    auto positions = pawn.nextPositions(tableSize);
     sort(positions.begin(), positions.end());
 
     ASSERT_TRUE(positions.size() == 3);
@@ -53,9 +55,10 @@ TEST(Pawn, LeftPawn){
 TEST(Pawn, RightPawn){
     int pawnX = 10;
     int pawnY = 2;
+    int tableSize = 10;
     Pawn pawn{pawnX, pawnY};
 
-    auto positions = pawn.nextPositions(10);
+    auto positions = pawn.nextPositions(tableSize);
     sort(positions.begin(), positions.end());
 
     ASSERT_TRUE(positions.size() == 3);
@@ -73,11 +76,12 @@ TEST(Pawn, RightPawn){
 TEST(Pawn, upPawn) {
     int pawnX = 5;
     int pawnY = 10;
+    int tableSize = 10;
     Pawn pawn{pawnX, pawnY};
 
-    auto positions = pawn.nextPositions(10);
+    auto positions = pawn.nextPositions(tableSize);
     sort(positions.begin(), positions.end());
 
-    ASSERT_TRUE(positions.size() == 0);
+    ASSERT_TRUE(positions.empty());
 }
 

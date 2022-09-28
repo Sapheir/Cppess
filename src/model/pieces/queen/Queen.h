@@ -1,5 +1,5 @@
 //
-// Created by User on 17/09/2022.
+// Created by Turca Vasile
 //
 
 #include <vector>
@@ -10,12 +10,11 @@
 #ifndef CPPESS_QUEEN_H
 #define CPPESS_QUEEN_H
 
-class Queen: public Piece{
+class Queen: public Piece {
 private:
-    int positionX;
-    int positionY;
+
 public:
-    Queen(const int &positionX, const int &positionY): positionX{positionX}, positionY{positionY}{};
+    Queen(const int &positionX, const int &positionY): Piece{positionX, positionY}{};
 
     /*
      * Return a list of all possible positions inside the chess table where the bishop could be moved

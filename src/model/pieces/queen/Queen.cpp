@@ -1,11 +1,11 @@
 //
-// Created by User on 17/09/2022.
+// Created by Turca Vasile
 //
 
 #include "Queen.h"
 
-std::vector<std::pair<int, int>> Queen::nextPositions(const int &tableSize) const {
-    std::vector < std::pair < int, int >> allPositions;
+std::vector<std::pair<int, int> > Queen::nextPositions(const int &tableSize) const {
+    std::vector < std::pair < int, int > > allPositions;
 
     const int scales[] = {-1, 0, 1};
 

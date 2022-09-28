@@ -32,6 +32,8 @@ add_executable(Cppess
         model/pieces/queen/Queen.cpp model/pieces/queen/Queen.h
         model/pieces/rook/Rook.cpp model/pieces/rook/Rook.h
         model/pieces/Piece.h
+
+        model/table/Table.h
         main.cpp
         )
 

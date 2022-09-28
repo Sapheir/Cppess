@@ -1,5 +1,5 @@
 //
-// Created by User on 17/09/2022.
+// Created by Turca Vasile
 //
 
 #include <vector>
@@ -10,12 +10,11 @@
 #ifndef CPPESS_ROOK_H
 #define CPPESS_ROOK_H
 
-class Rook: public Piece{
+class Rook: public Piece {
 private:
-    int positionX;
-    int positionY;
+
 public:
-    Rook(const int &positionX, const int &positionY): positionX{positionX}, positionY{positionY}{};
+    Rook(const int &positionX, const int &positionY):Piece{positionX, positionY}{};
 
     /*
      * Return a list of all possible positions inside the chess table where the bishop could be moved

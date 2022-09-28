@@ -1,11 +1,11 @@
 //
-// Created by User on 17/09/2022.
+// Created by Turca Vasile
 //
 
 #include "King.h"
 
-std::vector<std::pair<int, int>> King::nextPositions(const int &tableSize) const {
-    std::vector < std::pair < int, int >> allPositions;
+std::vector<std::pair<int, int> > King::nextPositions(const int &tableSize) const {
+    std::vector < std::pair < int, int > > allPositions;
 
     /* we can decrease on x */
     if(positionX > 1){
