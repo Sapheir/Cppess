@@ -14,6 +14,7 @@ TEST(Bishop, nextPositions_test1) {
 
     auto positions = bishop.nextPositions(tableSize);
     sort(positions.begin(), positions.end());
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(17 == positions.size());
     for (int i = 0; i < 8; i += 2) {
         ASSERT_TRUE(positions[i].first == i / 2 + 1);
@@ -38,6 +39,7 @@ TEST(Bishop, nextPositions_test2) {
 
     auto positions = bishop.nextPositions(tableSize);
     sort(positions.begin(), positions.end());
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(positions.size() == 9);
     for(int i = 0 ; i < positions.size() ; i++) {
         ASSERT_TRUE(positions[i].first == i + 2);
@@ -53,6 +55,7 @@ TEST(Bishop, nextPositions_test3) {
 
     auto positions = bishop.nextPositions(tableSize);
     sort(positions.begin(), positions.end());
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(positions.size() == 9);
     for(int i = 0 ; i < positions.size() ; i++) {
         ASSERT_TRUE(positions[i].first == i + 1);
@@ -68,6 +71,7 @@ TEST(Bishop, nextPositions_test4) {
 
     auto positions = bishop.nextPositions(tableSize);
     sort(positions.begin(), positions.end());
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(positions.size() == 9);
     for(int i = 0 ; i < positions.size() ; i++) {
         ASSERT_TRUE(positions[i].first == i + 2);
@@ -83,6 +87,7 @@ TEST(Bishop, nextPositions_test5) {
 
     auto positions = bishop.nextPositions(tableSize);
     sort(positions.begin(), positions.end());
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(positions.size() == 9);
     for(int i = 0 ; i < positions.size() ; i++) {
         ASSERT_TRUE(positions[i].first == i + 1);

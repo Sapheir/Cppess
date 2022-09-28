@@ -14,6 +14,7 @@ TEST(Pawn, MiddlePawn) {
     Pawn pawn{pawnX, pawnY};
 
     auto positions = pawn.nextPositions(tableSize);
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     sort(positions.begin(), positions.end());
 
     ASSERT_TRUE(positions.size() == 4);
@@ -38,6 +39,7 @@ TEST(Pawn, LeftPawn){
     Pawn pawn{pawnX, pawnY};
 
     auto positions = pawn.nextPositions(tableSize);
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     sort(positions.begin(), positions.end());
 
     ASSERT_TRUE(positions.size() == 3);
@@ -59,6 +61,7 @@ TEST(Pawn, RightPawn){
     Pawn pawn{pawnX, pawnY};
 
     auto positions = pawn.nextPositions(tableSize);
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     sort(positions.begin(), positions.end());
 
     ASSERT_TRUE(positions.size() == 3);
@@ -81,6 +84,7 @@ TEST(Pawn, upPawn) {
 
     auto positions = pawn.nextPositions(tableSize);
     sort(positions.begin(), positions.end());
+    // Check if there is the expected number of possible moves
 
     ASSERT_TRUE(positions.empty());
 }

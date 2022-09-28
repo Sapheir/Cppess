@@ -14,6 +14,7 @@ TEST(King, KingInMiddle) {
     King king{posX, posY};
 
     auto positions = king.nextPositions(tableSize);
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(positions.size() == 8);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i < 3 ; i++){
@@ -40,6 +41,7 @@ TEST(King, KingInLeft){
     King king{posX, posY};
 
     auto positions = king.nextPositions(tableSize);
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(positions.size() == 5);
     sort(positions.begin(), positions.end());
 
@@ -62,6 +64,7 @@ TEST(King, KingInRight){
     King king{posX, posY};
 
     auto positions = king.nextPositions(tableSize);
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(positions.size() == 5);
     sort(positions.begin(), positions.end());
 
@@ -84,6 +87,7 @@ TEST(King, KingOnTop){
     King king{posX, posY};
 
     auto positions = king.nextPositions(tableSize);
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(positions.size() == 5);
     sort(positions.begin(), positions.end());
 
@@ -107,6 +111,8 @@ TEST(King, KingOnDown){
     King king{posX, posY};
 
     auto positions = king.nextPositions(tableSize);
+
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(positions.size() == 5);
     sort(positions.begin(), positions.end());
 

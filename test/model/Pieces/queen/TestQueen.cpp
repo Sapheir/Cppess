@@ -71,6 +71,7 @@ void testRookPlusBishopEqualQueen(const int &posX, const int &posY, const int &t
 
     sortAll3Vectors(rookPositions, bishopPositions, queenPositions);
 
+    /* Check if queen vector has the right set of positions */
     testSameContentOnMerge(rookPositions, bishopPositions, queenPositions);
 
 }

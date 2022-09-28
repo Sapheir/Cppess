@@ -14,6 +14,7 @@ TEST(Knight, KnightInMiddle) {
     Knight knight{knightX,knightY};
 
     auto positions = knight.nextPositions(tableSize);
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(positions.size() == 8);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i < positions.size() - 1 ; i++)
@@ -36,6 +37,7 @@ TEST(Knight, KnightInLeft){
     Knight knight{knightX,knightY};
 
     auto positions = knight.nextPositions(tableSize);
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(positions.size() == 4);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i < positions.size() - 1 ; i++)
@@ -58,6 +60,7 @@ TEST(Knight, KnightInRight){
     Knight knight{knightX,knightY};
 
     auto positions = knight.nextPositions(tableSize);
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(positions.size() == 4);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i < positions.size() - 1 ; i++)
@@ -80,6 +83,7 @@ TEST(Knight, KnightUp){
     Knight knight{knightX,knightY};
 
     auto positions = knight.nextPositions(tableSize);
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(positions.size() == 4);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i < positions.size() - 1 ; i++)
@@ -102,6 +106,7 @@ TEST(Knight, KnightDown){
     Knight knight{knightX,knightY};
 
     auto positions = knight.nextPositions(tableSize);
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(positions.size() == 4);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i < positions.size() - 1 ; i++)
@@ -124,6 +129,7 @@ TEST(Knight, KnightLeftUpCorner){
     Knight knight{knightX,knightY};
 
     auto positions = knight.nextPositions(tableSize);
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(positions.size() == 2);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i < positions.size() - 1 ; i++)
@@ -146,6 +152,7 @@ TEST(Knight, KnightLeftDownCorner){
     Knight knight{knightX,knightY};
 
     auto positions = knight.nextPositions(tableSize);
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(positions.size() == 2);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i < positions.size() - 1 ; i++)
@@ -169,6 +176,7 @@ TEST(Knight, KnightRightUpCorner){
     Knight knight{knightX,knightY};
 
     auto positions = knight.nextPositions(tableSize);
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(positions.size() == 2);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i < positions.size() - 1 ; i++)
@@ -191,6 +199,7 @@ TEST(Knight, KnightRightDownCorner){
     Knight knight{knightX,knightY};
 
     auto positions = knight.nextPositions(tableSize);
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(positions.size() == 2);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i < positions.size() - 1 ; i++)

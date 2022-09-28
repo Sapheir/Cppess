@@ -14,6 +14,7 @@ TEST(Rook, RookInMiddle) {
     Rook rook{rookX, rookY};
 
     auto positions = rook.nextPositions(tableSize);
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(positions.size() == 18);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i <= 3 ; i++){
@@ -41,6 +42,7 @@ TEST(Rook, RookInLeft){
     Rook rook{rookX, rookY};
 
     auto positions = rook.nextPositions(tableSize);
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(positions.size() == 18);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i <= 3 ; i++){
@@ -64,6 +66,7 @@ TEST(Rook, RookInRight){
     Rook rook{rookX, rookY};
 
     auto positions = rook.nextPositions(tableSize);
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(positions.size() == 18);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i <= 8 ; i++){
@@ -87,6 +90,7 @@ TEST(Rook, RookUp){
     Rook rook{rookX, rookY};
 
     auto positions = rook.nextPositions(tableSize);
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(positions.size() == 18);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i <= 3 ; i++){
@@ -110,6 +114,7 @@ TEST(Rook, RookDown){
     Rook rook{rookX, rookY};
 
     auto positions = rook.nextPositions(tableSize);
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(positions.size() == 18);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i <= 3 ; i++){
@@ -133,6 +138,7 @@ TEST(Rook, RookLeftUp){
     Rook rook{rookX, rookY};
 
     auto positions = rook.nextPositions(tableSize);
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(positions.size() == 18);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i <= 8 ; i++){
@@ -152,6 +158,7 @@ TEST(Rook, RookRightUp){
     Rook rook{rookX, rookY};
 
     auto positions = rook.nextPositions(tableSize);
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(positions.size() == 18);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i <= 8 ; i++){
@@ -171,6 +178,7 @@ TEST(Rook, RookLeftDown){
     Rook rook{rookX, rookY};
 
     auto positions = rook.nextPositions(tableSize);
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(positions.size() == 18);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i <= 8 ; i++){
@@ -190,6 +198,7 @@ TEST(Rook, RookRightDown){
     Rook rook{rookX, rookY};
 
     auto positions = rook.nextPositions(tableSize);
+    // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(positions.size() == 18);
     sort(positions.begin(), positions.end());
     for(int i = 0 ; i <= 8 ; i++){
