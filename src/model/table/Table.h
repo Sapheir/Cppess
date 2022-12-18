@@ -54,6 +54,8 @@ public:
      */
     std::shared_ptr < Piece > removePiece(const int &posX, const int &posY);
 
+    
+
     ~Table() = default;
 
 };

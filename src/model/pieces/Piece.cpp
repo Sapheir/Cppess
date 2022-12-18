@@ -53,3 +53,11 @@ bool Piece::sameCoordinates(const Piece& other) const{
 bool Piece::sameCoordinates(const int &posX, const int &posY) const {
     return posX == this->positionX && posY == this->positionY;
 }
+
+void Piece::setX(int posX) {
+    this->positionX = posX;
+}
+
+void Piece::setY(int posY) {
+    this->positionY = posY;
+}

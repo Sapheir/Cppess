@@ -69,6 +69,18 @@ public:
     [[nodiscard]] int getY() const;
 
     /**
+     * Set the new value of the positionX
+     * @param posX - int
+     */
+    void setX(int posX);
+
+    /**
+     * Set the new value of the positionY
+     * @param posY - int
+     */
+    void setY(int posY);
+
+    /**
      * Returns true or false if the other piece has same coordinates
      * @param other - Piece
      * @return bool
