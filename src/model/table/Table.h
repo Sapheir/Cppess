@@ -12,37 +12,47 @@
 class Table {
 private:
     int tableSize;
-    std:: vector < std::unique_ptr < Piece > > tableContent;
+    std:: vector < std::shared_ptr < Piece > > tableContent;
 public:
 
     Table() = delete;
 
-    /*
+    /**
      * Create a table with size tableSize x tableSize
      */
     explicit Table(int tableSize);
 
-    /*
+    /**
      * Return the size of the table
      *
      * @return table size as an int
      */
     [[nodiscard]] int getTableSize() const;
 
-    /*
+    /**
      * Add a new piece on table
      *
      * @param unique_ptr < Piece > newPiece: the piece we add on table
      */
-    void addPiece(std::unique_ptr<Piece> newPiece);
+    void addPiece(std::shared_ptr<Piece> newPiece);
 
-    /*
+    /**
      * Get the piece from chosen coordinates
      *
      * @param posX, posY: the coordinates
-     * @return unique_ptr < Piece > piece: the piece from (posX, posY)
+     * @return unique_ptr < Piece > piece: the piece from (posX, posY) if there is a piece
+     *         nullptr if there is no piece on chosen coordinates
      */
-    std::unique_ptr < Piece > getPiece(const int &posX, const int &posY);
+    std::shared_ptr < Piece > getPiece(const int &posX, const int &posY);
+
+    /**
+     * Removes the piece from chosen coordinates and returns it
+     * @param posX - int
+     * @param posY  - int
+     * @return - unique_ptr < Piece >
+     *         - nullptr if there is no piece with chosen coordinates
+     */
+    std::shared_ptr < Piece > removePiece(const int &posX, const int &posY);
 
     ~Table() = default;
 

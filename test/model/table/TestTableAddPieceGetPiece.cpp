@@ -15,7 +15,7 @@
 #include "model/pieces/rook/Rook.h"
 
 
-TEST(table, emptyTable) {
+TEST(tableAddGet, emptyTable) {
     const int tableSize = 10;
     auto table = std::make_unique<Table>(tableSize);
 
@@ -68,49 +68,49 @@ void checkPieceOnTable(std::unique_ptr < Piece > piece, const int &tableSize){
     ASSERT_TRUE(table->getTableSize() == tableSize);
 
     /* Check if the piece from (posX, posY) is our piece */
-    std::unique_ptr<Piece> piece2 = table->getPiece(posX, posY);
+    std::shared_ptr<Piece> piece2 = table->getPiece(posX, posY);
     ASSERT_TRUE(piece2->getX() == posX);
     ASSERT_TRUE(piece2->getY() == posY);
 
     ASSERT_TRUE(pieceAddress == piece2.get());
 }
 
-TEST(table, addBishopOnTable) {
+TEST(tableAddGet, addBishopOnTable) {
     int posX = 5;
     int posY = 5;
     int tableSize = 10;
     checkPieceOnTable(std::make_unique<Bishop>(posX, posY), tableSize);
 }
 
-TEST(table, addKingOnTable) {
+TEST(tableAddGet, addKingOnTable) {
     int posX = 5;
     int posY = 5;
     int tableSize = 10;
     checkPieceOnTable(std::make_unique<King>(posX, posY), tableSize);
 }
 
-TEST(table, addKnightOnTable) {
+TEST(tableAddGet, addKnightOnTable) {
     int posX = 5;
     int posY = 5;
     int tableSize = 10;
     checkPieceOnTable(std::make_unique<Knight>(posX, posY), tableSize);
 }
 
-TEST(table, addPawnOnTable) {
+TEST(tableAddGet, addPawnOnTable) {
     int posX = 5;
     int posY = 5;
     int tableSize = 10;
     checkPieceOnTable(std::make_unique<Pawn>(posX, posY), tableSize);
 }
 
-TEST(table, addQueenOnTable) {
+TEST(tableAddGet, addQueenOnTable) {
     int posX = 5;
     int posY = 5;
     int tableSize = 10;
     checkPieceOnTable(std::make_unique<Queen>(posX, posY), tableSize);
 }
 
-TEST(table, addRookOnTable) {
+TEST(tableAddGet, addRookOnTable) {
     int posX = 5;
     int posY = 5;
     int tableSize = 10;

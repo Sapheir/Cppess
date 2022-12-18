@@ -45,3 +45,11 @@ std::vector<std::pair<int, int > > Piece::addPositions(const int &scaleX, const 
 
     return positions;
 }
+
+bool Piece::sameCoordinates(const Piece& other) const{
+    return other.getX() == this->positionX && other.getY() == this->positionY;
+}
+
+bool Piece::sameCoordinates(const int &posX, const int &posY) const {
+    return posX == this->positionX && posY == this->positionY;
+}

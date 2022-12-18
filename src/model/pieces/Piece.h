@@ -46,10 +46,10 @@ protected:
 
 public:
 
-    /* Constructor for piece */
+    /** Constructor for piece */
     Piece(const int &positionX, const int &positionY): positionX{positionX}, positionY{positionY}{};
 
-    /*
+    /**
      * Return a list of all possible positions inside the chess table where the bishop could be moved
      *
      * @param tableSize: the size of the table
@@ -58,16 +58,29 @@ public:
      */
     [[nodiscard]] virtual std::vector < std::pair < int, int > > nextPositions(const int &tableSize) const = 0;
 
-    /*
+    /**
      * Get the offset on X of the piece as an int
      */
     [[nodiscard]] int getX() const;
 
-    /*
+    /**
      * Get the offset on Y of the piece as an int
      */
     [[nodiscard]] int getY() const;
 
+    /**
+     * Returns true or false if the other piece has same coordinates
+     * @param other - Piece
+     * @return bool
+     */
+    [[nodiscard]] bool sameCoordinates(const Piece &other) const;
+
+    /**
+     * Returns true or false if the other piece has same coordinates
+     * @param other - Piece
+     * @return bool
+     */
+    [[nodiscard]] bool sameCoordinates(const int &posX, const int &posY) const;
 };
 
 

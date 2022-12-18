@@ -24,7 +24,6 @@ FetchContent_MakeAvailable(asiocmake)
 
 # model
 add_executable(Cppess
-        model/pieces/utils/ModelUtils.cpp
         model/pieces/bishop/Bishop.cpp model/pieces/bishop/Bishop.h
         model/pieces/king/King.cpp model/pieces/king/King.h
         model/pieces/knight/Knight.cpp model/pieces/knight/Knight.h

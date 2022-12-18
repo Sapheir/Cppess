@@ -30,9 +30,10 @@ add_executable(unit_tests
         model/pieces/TestPiece.cpp
         ../src/model/pieces/Piece.h
         ../src/model/pieces/Piece.cpp
-        model/table/TestTableAddPieceGetPiece.cpp
         ../src/model/table/Table.h
         ../src/model/table/Table.cpp
+        model/table/TestTableAddPieceGetPiece.cpp
+        model/table/TestRemovePiece.cpp
 )
 
 target_link_libraries(unit_tests
