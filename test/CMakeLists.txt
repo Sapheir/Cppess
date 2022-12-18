@@ -9,9 +9,6 @@ set(BUILD_GMOCK OFF CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(gtest)
 
 add_executable(unit_tests
-        model/pieces/utils/TestModelUtils.cpp
-        ../src/model/pieces/utils/ModelUtils.h
-        ../src/model/pieces/utils/ModelUtils.cpp
         model/pieces/bishop/TestBishop.cpp
         ../src/model/pieces/bishop/Bishop.h
         ../src/model/pieces/bishop/Bishop.cpp
@@ -33,7 +30,7 @@ add_executable(unit_tests
         model/pieces/TestPiece.cpp
         ../src/model/pieces/Piece.h
         ../src/model/pieces/Piece.cpp
-        model/table/TestTable.cpp
+        model/table/TestTableAddPieceGetPiece.cpp
         ../src/model/table/Table.h
         ../src/model/table/Table.cpp
 )

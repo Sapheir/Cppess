@@ -4,7 +4,6 @@
 
 #include <vector>
 
-#include "../utils/ModelUtils.h"
 #include "../Piece.h"
 
 #ifndef CPPESS_QUEEN_H

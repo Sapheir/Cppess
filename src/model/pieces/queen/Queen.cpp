@@ -14,7 +14,7 @@ std::vector<std::pair<int, int> > Queen::nextPositions(const int &tableSize) con
         for(int indexScaleY = 0 ; indexScaleY < 3 ; indexScaleY++) {
             if(scales[indexScaleX] == 0 && indexScaleX == indexScaleY)
                 continue; /* it would lead to movement to the same position */
-            std::vector < std::pair < int, int >>generatedPositions =  ModelUtils::addPositions(scales[indexScaleX], scales[indexScaleY], positionX, positionY, tableSize);
+            std::vector < std::pair < int, int >>generatedPositions =  addPositions(scales[indexScaleX], scales[indexScaleY], positionX, positionY, tableSize);
             allPositions.insert(allPositions.end(), generatedPositions.begin(), generatedPositions.end());
         }
 

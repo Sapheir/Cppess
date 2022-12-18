@@ -24,7 +24,7 @@ FetchContent_MakeAvailable(asiocmake)
 
 # model
 add_executable(Cppess
-        model/pieces/utils/ModelUtils.cpp model/pieces/utils/ModelUtils.h
+        model/pieces/utils/ModelUtils.cpp
         model/pieces/bishop/Bishop.cpp model/pieces/bishop/Bishop.h
         model/pieces/king/King.cpp model/pieces/king/King.h
         model/pieces/knight/Knight.cpp model/pieces/knight/Knight.h
@@ -57,9 +57,9 @@ add_library(cppess_test)
 
 target_sources(cppess_test
   PRIVATE
-        model/pieces/utils/ModelUtils.cpp
+        model/pieces/Piece.cpp
   PUBLIC
-        model/pieces/utils/ModelUtils.h
+        model/pieces/Piece.h
         model
   )
 
