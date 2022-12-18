@@ -7,12 +7,32 @@
 
 #include <vector>
 #include <memory>
+#include <map>
 #include "../pieces/Piece.h"
 
 class Table {
 private:
     int tableSize;
-    std:: vector < std::shared_ptr < Piece > > tableContent;
+    std:: map < std::pair < int, int >, std::shared_ptr < Piece > > tableContent;
+
+    /**
+     * Returns if a piece is a knight based on possible next moves
+     * @param moves - vector < pair < int, int > >
+     * @param piece - shared_ptr < Piece >
+     * @return
+     */
+    [[nodiscard]] bool isKnightBasedOnNextMoves(const std::shared_ptr<Piece>& piece) const;
+
+    /**
+     * Returns true if there is no piece between (x1, y1) and (x2, y2) and false otherwise
+     * @param x1 - int
+     * @param y1 - int
+     * @param x2 - int
+     * @param y2 - int
+     * @return bool
+     */
+    [[nodiscard]] bool noPieceBetween(int x1, int y1, int x2, int y2) const;
+
 public:
 
     Table() = delete;
@@ -34,7 +54,7 @@ public:
      *
      * @param unique_ptr < Piece > newPiece: the piece we add on table
      */
-    void addPiece(std::shared_ptr<Piece> newPiece);
+    void addPiece(const std::shared_ptr<Piece>& newPiece);
 
     /**
      * Get the piece from chosen coordinates
@@ -43,7 +63,7 @@ public:
      * @return unique_ptr < Piece > piece: the piece from (posX, posY) if there is a piece
      *         nullptr if there is no piece on chosen coordinates
      */
-    std::shared_ptr < Piece > getPiece(const int &posX, const int &posY);
+    [[nodiscard]] std::shared_ptr < Piece > getPiece(const int &posX, const int &posY) const;
 
     /**
      * Removes the piece from chosen coordinates and returns it
@@ -54,7 +74,36 @@ public:
      */
     std::shared_ptr < Piece > removePiece(const int &posX, const int &posY);
 
-    
+    /**
+     * Returns all available moves for a knight
+     * @param piece - the knight we want next moves
+     * @return vector < pair < int, int > >
+     */
+    [[nodiscard]] std::vector < std::pair < int, int > > availableMovesDestinationsKnight(const std::shared_ptr<Piece> &piece) const;
+
+    /**
+     * Returns all available moves for a knight
+     * @param piece - the knight we want next moves
+     * @return vector < pair < int, int > >
+     */
+    [[nodiscard]] std::vector < std::pair < int, int > > availableMovesDestinationsNonKnight(const std::shared_ptr<Piece> &piece) const;
+
+    /**
+     * Returns the list with all positions where the the piece from (posX, posY) can be moved
+     * @param posX - int
+     * @param posY - int
+     * @return - vector < pair < int, int > >
+     */
+    [[nodiscard]] std::vector < std::pair < int, int > > availableMovesDestinations(const int &posX, const int &posY) const;
+
+    /**
+     * Move the piece from coordinates (x, y) to (newX, newY)
+     * @param x - int
+     * @param Y - int
+     * @param posX - int
+     * @param posY - int
+     */
+    void movePiece(int x, int y, int newX, int newY);
 
     ~Table() = default;
 

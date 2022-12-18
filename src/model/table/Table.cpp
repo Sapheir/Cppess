@@ -13,24 +13,91 @@ int Table::getTableSize() const {
     return tableSize;
 }
 
-void Table::addPiece(std::shared_ptr<Piece> newPiece) {
-    tableContent.push_back(std::move(newPiece));
+void Table::addPiece(const std::shared_ptr<Piece>& newPiece) {
+    tableContent[{newPiece->getX(), newPiece->getY()}] = newPiece;
 }
 
-std::shared_ptr<Piece> Table::getPiece(const int &posX, const int &posY) {
-    for(auto &it: tableContent)
-        if(it->sameCoordinates(posX, posY))
-            return it;
+std::shared_ptr<Piece> Table::getPiece(const int &posX, const int &posY) const {
+    auto it = tableContent.find({posX, posY});
+    if(it != tableContent.end())
+        return it->second;
     return {nullptr};
 }
 
 std::shared_ptr<Piece> Table::removePiece(const int &posX, const int &posY) {
-    for(auto &it : tableContent)
-        if(it->sameCoordinates(posX, posY)){
-            auto iterator = std::find(tableContent.begin(), tableContent.end(), it);
-            std::shared_ptr<Piece> piece = it;
-            tableContent.erase(iterator);
-            return piece;
-        }
+    auto it = tableContent.find({posX, posY});
+    if(it != tableContent.end()){
+        auto piece = it->second;
+        tableContent.erase(it);
+        return piece;
+    }
     return {nullptr};
+}
+
+void Table::movePiece(int x, int y, int newX, int newY) {
+    std::shared_ptr<Piece> piece = this->getPiece(x, y);
+
+
+
+
+}
+
+std::vector<std::pair<int, int> > Table::availableMovesDestinations(const int &posX, const int &posY) const {
+    std::shared_ptr < Piece > piece = this->getPiece(posX, posY);
+    if(piece == nullptr)
+        return {};
+
+    if(isKnightBasedOnNextMoves(piece))
+        return availableMovesDestinationsKnight(piece);
+    return availableMovesDestinationsNonKnight(piece);
+}
+
+std::vector<std::pair<int, int> > Table::availableMovesDestinationsKnight(const std::shared_ptr<Piece> &piece) const {
+    auto allNextMoves = piece->nextPositions(this->tableSize);
+    std::vector < std::pair < int, int > > availableNextMoves;
+    for(auto nextMove: allNextMoves)
+        if(tableContent.find(nextMove) == tableContent.end())
+            availableNextMoves.push_back(nextMove);
+
+    return availableNextMoves;
+}
+
+std::vector<std::pair<int, int> > Table::availableMovesDestinationsNonKnight(const std::shared_ptr<Piece> &piece) const {
+    auto destinations = piece->nextPositions(this->tableSize);
+    std::vector < std::pair < int, int > > availableDestinations;
+    for(auto destination: destinations)
+        if(noPieceBetween(piece->getX(), piece->getY(), destination.first, destination.second))
+            availableDestinations.push_back(destination);
+
+    return availableDestinations;
+}
+
+bool Table::isKnightBasedOnNextMoves(const std::shared_ptr<Piece>& piece) const {
+    auto moves = piece->nextPositions(this->tableSize);
+    if(moves.empty())
+        return false;
+
+    int xDeviation = abs(moves[0].first - piece->getX());
+    int yDeviation = abs(moves[0].second - piece->getY());
+
+    if(xDeviation && yDeviation && abs(xDeviation - yDeviation) == 1)
+        return true;
+    return false;
+}
+
+bool Table::noPieceBetween(int x1, int y1, int x2, int y2) const {
+    if(x1 > x2)
+        std::swap(x1, x2);
+
+    if(y1 > y2)
+        std::swap(y1, y2);
+
+    for(int x = x1 ; x <= x2 ; x++)
+        for(int y = y1 ; y <= y2 ; y++) {
+            if(x == x1 && y == y1) continue;
+            if(x == x2 && y == y2) continue;
+            if (getPiece(x, y) != nullptr)
+                return false;
+        }
+    return true;
 }
