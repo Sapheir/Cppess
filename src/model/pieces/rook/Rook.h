@@ -24,6 +24,12 @@ public:
      */
     [[nodiscard]] std::vector < std::pair < int, int > > nextPositions(const int &tableSize) const override;
 
+    /**
+     * Returns false because current piece is not a knight
+     * @return bool
+     */
+    [[nodiscard]] bool isKnight() const override;
+
 };
 
 #endif //CPPESS_ROOK_H

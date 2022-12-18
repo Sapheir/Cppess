@@ -19,3 +19,7 @@ std::vector<std::pair<int, int> > Rook::nextPositions(const int &tableSize) cons
 
     return allPositions;
 }
+
+bool Rook::isKnight() const {
+    return false;
+}

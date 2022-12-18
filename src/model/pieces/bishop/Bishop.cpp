@@ -20,3 +20,7 @@ std::vector<std::pair<int, int> > Bishop::nextPositions(const int &tableSize) co
     return allPositions;
 }
 
+bool Bishop::isKnight() const {
+    return false;
+}
+

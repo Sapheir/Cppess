@@ -47,7 +47,7 @@ std::vector<std::pair<int, int> > Table::availableMovesDestinations(const int &p
     if(piece == nullptr)
         return {};
 
-    if(isKnightBasedOnNextMoves(piece))
+    if(piece->isKnight())
         return availableMovesDestinationsKnight(piece);
     return availableMovesDestinationsNonKnight(piece);
 }
@@ -70,19 +70,6 @@ std::vector<std::pair<int, int> > Table::availableMovesDestinationsNonKnight(con
             availableDestinations.push_back(destination);
 
     return availableDestinations;
-}
-
-bool Table::isKnightBasedOnNextMoves(const std::shared_ptr<Piece>& piece) const {
-    auto moves = piece->nextPositions(this->tableSize);
-    if(moves.empty())
-        return false;
-
-    int xDeviation = abs(moves[0].first - piece->getX());
-    int yDeviation = abs(moves[0].second - piece->getY());
-
-    if(xDeviation && yDeviation && abs(xDeviation - yDeviation) == 1)
-        return true;
-    return false;
 }
 
 bool Table::noPieceBetween(int x1, int y1, int x2, int y2) const {

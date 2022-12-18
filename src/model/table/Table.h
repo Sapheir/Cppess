@@ -16,14 +16,6 @@ private:
     std:: map < std::pair < int, int >, std::shared_ptr < Piece > > tableContent;
 
     /**
-     * Returns if a piece is a knight based on possible next moves
-     * @param moves - vector < pair < int, int > >
-     * @param piece - shared_ptr < Piece >
-     * @return
-     */
-    [[nodiscard]] bool isKnightBasedOnNextMoves(const std::shared_ptr<Piece>& piece) const;
-
-    /**
      * Returns true if there is no piece between (x1, y1) and (x2, y2) and false otherwise
      * @param x1 - int
      * @param y1 - int

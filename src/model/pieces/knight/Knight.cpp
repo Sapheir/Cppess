@@ -23,3 +23,7 @@ std::vector<std::pair<int, int> > Knight::nextPositions(const int &tableSize) co
 
 }
 
+bool Knight::isKnight() const {
+    return true;
+}
+

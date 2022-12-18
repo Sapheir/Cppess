@@ -23,6 +23,12 @@ public:
      */
     [[nodiscard]] std::vector < std::pair < int, int > > nextPositions(const int &tableSize) const override;
 
+    /**
+     * Returns true because current piece is a knight
+     * @return bool
+     */
+    [[nodiscard]] bool isKnight() const override;
+
 };
 
 #endif //CPPESS_KNIGHT_H

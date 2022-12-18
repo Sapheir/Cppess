@@ -22,4 +22,8 @@ std::vector<std::pair<int, int> > Queen::nextPositions(const int &tableSize) con
 
 }
 
+bool Queen::isKnight() const {
+    return false;
+}
+
 
