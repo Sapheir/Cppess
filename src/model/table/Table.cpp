@@ -79,14 +79,11 @@ std::vector<std::pair<int, int> > Table::availableMovesDestinationsNonKnight(con
 }
 
 bool Table::noPieceBetween(int x1, int y1, int x2, int y2) const {
-    if(x1 > x2)
-        std::swap(x1, x2);
+    int scaleX = (x2 - x1) / abs(x2 - x1);
+    int scaleY = (y2 - y1) / abs(y2 - y1);
 
-    if(y1 > y2)
-        std::swap(y1, y2);
-
-    for(int x = x1 ; x <= x2 ; x++)
-        for(int y = y1 ; y <= y2 ; y++) {
+    for(int x = x1 ; x <= x2 ; x += scaleX)
+        for(int y = y1 ; y <= y2 ; y += scaleY) {
             if(x == x1 && y == y1) continue;
             if(x == x2 && y == y2) continue;
             if (getPiece(x, y) != nullptr)
