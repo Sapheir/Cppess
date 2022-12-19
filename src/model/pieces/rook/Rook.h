@@ -13,7 +13,7 @@ class Rook: public Piece {
 private:
 
 public:
-    Rook(const int &positionX, const int &positionY):Piece{positionX, positionY}{};
+    Rook(const int &positionX, const int &positionY, const int &color):Piece{positionX, positionY, color}{};
 
     /*
      * Return a list of all possible positions inside the chess table where the bishop could be moved

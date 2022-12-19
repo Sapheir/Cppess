@@ -11,7 +11,8 @@ TEST(Knight, KnightInMiddle) {
     int knightX = 5;
     int knightY = 5;
     int tableSize = 10;
-    Knight knight{knightX,knightY};
+    int color = 0;
+    Knight knight{knightX,knightY, color};
 
     auto positions = knight.nextPositions(tableSize);
     // Check if there is the expected number of possible moves and check if all expected positions are in vector
@@ -34,7 +35,8 @@ TEST(Knight, KnightInLeft){
     int knightX = 1;
     int knightY = 5;
     int tableSize = 10;
-    Knight knight{knightX,knightY};
+    int color = 0;
+    Knight knight{knightX,knightY, color};
 
     auto positions = knight.nextPositions(tableSize);
     // Check if there is the expected number of possible moves and check if all expected positions are in vector
@@ -57,7 +59,8 @@ TEST(Knight, KnightInRight){
     int knightX = 10;
     int knightY = 5;
     int tableSize = 10;
-    Knight knight{knightX,knightY};
+    int color = 0;
+    Knight knight{knightX,knightY, color};
 
     auto positions = knight.nextPositions(tableSize);
     // Check if there is the expected number of possible moves and check if all expected positions are in vector
@@ -80,7 +83,8 @@ TEST(Knight, KnightUp){
     int knightX = 5;
     int knightY = 10;
     int tableSize = 10;
-    Knight knight{knightX,knightY};
+    int color = 0;
+    Knight knight{knightX,knightY, color};
 
     auto positions = knight.nextPositions(tableSize);
     // Check if there is the expected number of possible moves and check if all expected positions are in vector
@@ -103,7 +107,8 @@ TEST(Knight, KnightDown){
     int knightX = 5;
     int knightY = 1;
     int tableSize = 10;
-    Knight knight{knightX,knightY};
+    int color = 0;
+    Knight knight{knightX,knightY, color};
 
     auto positions = knight.nextPositions(tableSize);
     // Check if there is the expected number of possible moves and check if all expected positions are in vector
@@ -126,7 +131,8 @@ TEST(Knight, KnightLeftUpCorner){
     int knightX = 1;
     int knightY = 1;
     int tableSize = 10;
-    Knight knight{knightX,knightY};
+    int color = 0;
+    Knight knight{knightX,knightY, color};
 
     auto positions = knight.nextPositions(tableSize);
     // Check if there is the expected number of possible moves and check if all expected positions are in vector
@@ -149,7 +155,8 @@ TEST(Knight, KnightLeftDownCorner){
     int knightX = 1;
     int knightY = 10;
     int tableSize = 10;
-    Knight knight{knightX,knightY};
+    int color = 0;
+    Knight knight{knightX,knightY, color};
 
     auto positions = knight.nextPositions(tableSize);
     // Check if there is the expected number of possible moves and check if all expected positions are in vector
@@ -173,7 +180,8 @@ TEST(Knight, KnightRightUpCorner){
     int knightX = 10;
     int knightY = 1;
     int tableSize = 10;
-    Knight knight{knightX,knightY};
+    int color = 0;
+    Knight knight{knightX,knightY, color};
 
     auto positions = knight.nextPositions(tableSize);
     // Check if there is the expected number of possible moves and check if all expected positions are in vector
@@ -196,7 +204,8 @@ TEST(Knight, KnightRightDownCorner){
     int knightX = 10;
     int knightY = 10;
     int tableSize = 10;
-    Knight knight{knightX,knightY};
+    int color = 0;
+    Knight knight{knightX,knightY, color};
 
     auto positions = knight.nextPositions(tableSize);
     // Check if there is the expected number of possible moves and check if all expected positions are in vector

@@ -11,7 +11,8 @@ TEST(Pawn, MiddlePawn) {
     int pawnX = 5;
     int pawnY = 2;
     int tableSize = 10;
-    Pawn pawn{pawnX, pawnY};
+    int color = 0;
+    Pawn pawn{pawnX, pawnY, color};
 
     auto positions = pawn.nextPositions(tableSize);
     // Check if there is the expected number of possible moves and check if all expected positions are in vector
@@ -36,7 +37,8 @@ TEST(Pawn, LeftPawn){
     int pawnX = 1;
     int pawnY = 2;
     int tableSize = 10;
-    Pawn pawn{pawnX, pawnY};
+    int color = 0;
+    Pawn pawn{pawnX, pawnY, color};
 
     auto positions = pawn.nextPositions(tableSize);
     // Check if there is the expected number of possible moves and check if all expected positions are in vector
@@ -58,7 +60,8 @@ TEST(Pawn, RightPawn){
     int pawnX = 10;
     int pawnY = 2;
     int tableSize = 10;
-    Pawn pawn{pawnX, pawnY};
+    int color = 0;
+    Pawn pawn{pawnX, pawnY, color};
 
     auto positions = pawn.nextPositions(tableSize);
     // Check if there is the expected number of possible moves and check if all expected positions are in vector
@@ -80,7 +83,8 @@ TEST(Pawn, upPawn) {
     int pawnX = 5;
     int pawnY = 10;
     int tableSize = 10;
-    Pawn pawn{pawnX, pawnY};
+    int color = 0;
+    Pawn pawn{pawnX, pawnY, color};
 
     auto positions = pawn.nextPositions(tableSize);
     sort(positions.begin(), positions.end());

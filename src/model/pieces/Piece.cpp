@@ -2,6 +2,7 @@
 // Created by Turca Vasile on 28/09/2022.
 //
 
+#include <iostream>
 #include "Piece.h"
 
 int Piece::getX() const {
@@ -60,4 +61,18 @@ void Piece::setX(int posX) {
 
 void Piece::setY(int posY) {
     this->positionY = posY;
+}
+
+int Piece::getColor() const {
+    return this->color;
+}
+
+void Piece::getColor(const int &newColor) {
+    this->color = newColor;
+}
+
+bool Piece::sameColor(const std::shared_ptr<Piece> &other) const {
+    if(other == nullptr)
+        return false;
+    return other->color == this->color;
 }

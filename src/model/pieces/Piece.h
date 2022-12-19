@@ -3,6 +3,7 @@
 //
 
 #include <vector>
+#include <memory>
 
 #ifndef CPPESS_PIECE_H
 #define CPPESS_PIECE_H
@@ -11,8 +12,9 @@ class Piece {
 protected:
     int positionX;
     int positionY;
+    int color;
 
-    /*
+    /**
      * Check if a coordinate is in range [1, limit]
      *
      * @param position: the coordinate that will be checked
@@ -21,7 +23,7 @@ protected:
      */
     static bool inRange(const int  &position, const int &limit);
 
-    /*
+    /**
      * Check if possible new coordinates for a piece are inside the table
      *
      * @param newPositionX, newPositionY: possible new position of the piece on the chess table
@@ -31,7 +33,7 @@ protected:
      */
     static bool insideSquareTable(const int& newPositionX, const int& newPositionY, const int &tableSize);
 
-    /*
+    /**
     * Generate all possible movements from the initial position inside the chess table with chosen direction and sense
     *
     * @param initialX, initialY: initial position of the piece on the chess table
@@ -47,7 +49,7 @@ protected:
 public:
 
     /** Constructor for piece */
-    Piece(const int &positionX, const int &positionY): positionX{positionX}, positionY{positionY}{};
+    Piece(const int &positionX, const int &positionY, const int &color): positionX{positionX}, positionY{positionY}, color{color}{};
 
     /**
      * Return a list of all possible positions inside the chess table where the bishop could be moved
@@ -62,7 +64,7 @@ public:
      * Returns true or if the current piece is a knight
      * @return bool
      */
-    virtual bool isKnight() const = 0;
+    [[nodiscard]] virtual bool isKnight() const = 0;
 
     /**
      * Get the offset on X of the piece as an int
@@ -99,6 +101,23 @@ public:
      * @return bool
      */
     [[nodiscard]] bool sameCoordinates(const int &posX, const int &posY) const;
+
+    /**
+     * Returns the color of the current piece
+     * @return int
+     */
+    [[nodiscard]] int getColor() const;
+
+    /**
+     * Sets the newColor of the current piece
+     * @param newColor - int
+     */
+    void getColor(const int &newColor);
+
+    /**
+     * Check if current piece and another piece have same color
+     */
+     bool sameColor(const std::shared_ptr<Piece> &other) const;
 };
 
 

@@ -3,6 +3,7 @@
 //
 
 #include <algorithm>
+#include <iostream>
 #include "Table.h"
 
 Table::Table(int tableSize) {
@@ -53,21 +54,26 @@ std::vector<std::pair<int, int> > Table::availableMovesDestinations(const int &p
 }
 
 std::vector<std::pair<int, int> > Table::availableMovesDestinationsKnight(const std::shared_ptr<Piece> &piece) const {
-    auto allNextMoves = piece->nextPositions(this->tableSize);
+    auto destinations = piece->nextPositions(this->tableSize);
     std::vector < std::pair < int, int > > availableNextMoves;
-    for(auto nextMove: allNextMoves)
-        if(tableContent.find(nextMove) == tableContent.end())
-            availableNextMoves.push_back(nextMove);
-
+    for(auto destination: destinations) {
+        if (getPiece(destination.first, destination.second)->sameColor(piece))
+            continue;
+        if (tableContent.find(destination) == tableContent.end())
+            availableNextMoves.push_back(destination);
+    }
     return availableNextMoves;
 }
 
 std::vector<std::pair<int, int> > Table::availableMovesDestinationsNonKnight(const std::shared_ptr<Piece> &piece) const {
     auto destinations = piece->nextPositions(this->tableSize);
     std::vector < std::pair < int, int > > availableDestinations;
-    for(auto destination: destinations)
-        if(noPieceBetween(piece->getX(), piece->getY(), destination.first, destination.second))
+    for(auto destination: destinations) {
+        if(piece->sameColor(getPiece(destination.first, destination.second)))
+            continue;
+        if (noPieceBetween(piece->getX(), piece->getY(), destination.first, destination.second))
             availableDestinations.push_back(destination);
+    }
 
     return availableDestinations;
 }

@@ -11,7 +11,7 @@ class Pawn: public Piece {
 private:
     bool doubleMoveAvailable;
 public:
-    Pawn(const int &positionX, const int &positionY): Piece{positionX, positionY}{
+    Pawn(const int &positionX, const int &positionY, const int &color):Piece{positionX, positionY, color}{
         doubleMoveAvailable = true;
     };
 

@@ -21,9 +21,10 @@ TEST(tableRemove, removeBishopFromTable) {
     int posX = 5;
     int posY = 5;
     int tableSize = 10;
-    auto* table = new Table(tableSize);
+    int color = 0;
+    std::unique_ptr<Table> table = std::make_unique<Table>(tableSize);
 
-    table->addPiece(std::make_unique<Bishop>(Bishop(posX, posY)));
+    table->addPiece(std::make_unique<Bishop>(Bishop(posX, posY, color)));
 
     ASSERT_TRUE(table->getPiece(posX, posY) != nullptr);
 

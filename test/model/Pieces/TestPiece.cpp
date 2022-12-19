@@ -13,8 +13,8 @@
 #include "model/pieces/rook/Rook.h"
 
 TEST(Piece, bishop) {
-    std::unique_ptr<Piece> piece = std::make_unique<Bishop>(5,5);
-    Bishop bishop{5,5};
+    std::unique_ptr<Piece> piece = std::make_unique<Bishop>(5,5, 0);
+    Bishop bishop{5,5, 0};
 
     auto pieceMoves = piece->nextPositions(10);
     auto bishopMoves = bishop.nextPositions(10);
@@ -25,8 +25,8 @@ TEST(Piece, bishop) {
 }
 
 TEST(Piece, king) {
-    std::unique_ptr<Piece> piece = std::make_unique<King>(5,5);
-    King king{5,5};
+    std::unique_ptr<Piece> piece = std::make_unique<King>(5,5,0);
+    King king{5,5,0};
 
     auto pieceMoves = piece->nextPositions(10);
     auto kingMoves = king.nextPositions(10);
@@ -37,8 +37,8 @@ TEST(Piece, king) {
 }
 
 TEST(Piece, knight) {
-    std::unique_ptr<Piece> piece = std::make_unique<Knight>(5,5);
-    Knight knight{5,5};
+    std::unique_ptr<Piece> piece = std::make_unique<Knight>(5,5,0);
+    Knight knight{5,5,0};
 
     auto pieceMoves = piece->nextPositions(10);
     auto knightMoves = knight.nextPositions(10);
@@ -49,8 +49,8 @@ TEST(Piece, knight) {
 }
 
 TEST(Piece, pawn) {
-    std::unique_ptr<Piece> piece = std::make_unique<Pawn>(5,5);
-    Pawn pawn{5,5};
+    std::unique_ptr<Piece> piece = std::make_unique<Pawn>(5,5,0);
+    Pawn pawn{5,5,0};
 
     auto pieceMoves = piece->nextPositions(10);
     auto pawnMoves = pawn.nextPositions(10);
@@ -61,8 +61,8 @@ TEST(Piece, pawn) {
 }
 
 TEST(Piece, queen) {
-    std::unique_ptr<Piece> piece = std::make_unique<Queen>(5,5);
-    Queen queen{5,5};
+    std::unique_ptr<Piece> piece = std::make_unique<Queen>(5,5,0);
+    Queen queen{5,5,0};
 
     auto pieceMoves = piece->nextPositions(10);
     auto queenMoves = queen.nextPositions(10);
@@ -73,8 +73,8 @@ TEST(Piece, queen) {
 }
 
 TEST(Piece, rook) {
-    std::unique_ptr<Piece> piece = std::make_unique<Rook>(5,5);
-    Rook rook{5,5};
+    std::unique_ptr<Piece> piece = std::make_unique<Rook>(5,5,0);
+    Rook rook{5,5,0};
 
     auto pieceMoves = piece->nextPositions(10);
     auto rookMoves = rook.nextPositions(10);

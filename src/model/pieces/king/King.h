@@ -12,7 +12,7 @@ class King: public Piece {
 private:
 
 public:
-    King(const int &positionX, const int &positionY): Piece{positionX, positionY}{};
+    King(const int &positionX, const int &positionY, const int &color):Piece{positionX, positionY, color}{};;
 
     /*
      * Return a list of all possible positions inside the chess table where the bishop could be moved

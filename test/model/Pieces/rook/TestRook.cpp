@@ -11,7 +11,8 @@ TEST(Rook, RookInMiddle) {
     int rookX = 5;
     int rookY = 5;
     int tableSize = 10;
-    Rook rook{rookX, rookY};
+    int color = 0;
+    Rook rook{rookX, rookY, color};
 
     auto positions = rook.nextPositions(tableSize);
     // Check if there is the expected number of possible moves and check if all expected positions are in vector
@@ -39,7 +40,8 @@ TEST(Rook, RookInLeft){
     int rookX = 1;
     int rookY = 5;
     int tableSize = 10;
-    Rook rook{rookX, rookY};
+    int color = 0;
+    Rook rook{rookX, rookY, color};
 
     auto positions = rook.nextPositions(tableSize);
     // Check if there is the expected number of possible moves and check if all expected positions are in vector
@@ -63,7 +65,8 @@ TEST(Rook, RookInRight){
     int rookX = 10;
     int rookY = 5;
     int tableSize = 10;
-    Rook rook{rookX, rookY};
+    int color = 0;
+    Rook rook{rookX, rookY, color};
 
     auto positions = rook.nextPositions(tableSize);
     // Check if there is the expected number of possible moves and check if all expected positions are in vector
@@ -87,7 +90,8 @@ TEST(Rook, RookUp){
     int rookX = 5;
     int rookY = 10;
     int tableSize = 10;
-    Rook rook{rookX, rookY};
+    int color = 0;
+    Rook rook{rookX, rookY, color};
 
     auto positions = rook.nextPositions(tableSize);
     // Check if there is the expected number of possible moves and check if all expected positions are in vector
@@ -111,7 +115,8 @@ TEST(Rook, RookDown){
     int rookX = 5;
     int rookY = 1;
     int tableSize = 10;
-    Rook rook{rookX, rookY};
+    int color = 0;
+    Rook rook{rookX, rookY, color};
 
     auto positions = rook.nextPositions(tableSize);
     // Check if there is the expected number of possible moves and check if all expected positions are in vector
@@ -135,7 +140,8 @@ TEST(Rook, RookLeftUp){
     int rookX = 1;
     int rookY = 10;
     int tableSize = 10;
-    Rook rook{rookX, rookY};
+    int color = 0;
+    Rook rook{rookX, rookY, color};
 
     auto positions = rook.nextPositions(tableSize);
     // Check if there is the expected number of possible moves and check if all expected positions are in vector
@@ -155,7 +161,8 @@ TEST(Rook, RookRightUp){
     int rookX = 10;
     int rookY = 10;
     int tableSize = 10;
-    Rook rook{rookX, rookY};
+    int color = 0;
+    Rook rook{rookX, rookY, color};
 
     auto positions = rook.nextPositions(tableSize);
     // Check if there is the expected number of possible moves and check if all expected positions are in vector
@@ -175,7 +182,8 @@ TEST(Rook, RookLeftDown){
     int rookX = 1;
     int rookY = 1;
     int tableSize = 10;
-    Rook rook{rookX, rookY};
+    int color = 0;
+    Rook rook{rookX, rookY, color};
 
     auto positions = rook.nextPositions(tableSize);
     // Check if there is the expected number of possible moves and check if all expected positions are in vector
@@ -195,7 +203,8 @@ TEST(Rook, RookRightDown){
     int rookX = 10;
     int rookY = 1;
     int tableSize = 10;
-    Rook rook{rookX, rookY};
+    int color = 0;
+    Rook rook{rookX, rookY, color};
 
     auto positions = rook.nextPositions(tableSize);
     // Check if there is the expected number of possible moves and check if all expected positions are in vector
