@@ -32,13 +32,10 @@ add_executable(unit_tests
         ../src/model/pieces/Piece.cpp
         ../src/model/table/Table.h
         ../src/model/table/Table.cpp
-        ../src/model/services/ServiceTable.h
-        ../src/model/services/ServiceTable.cpp
         model/table/TestTableAddPieceGetPiece.cpp
-        model/table/TestTableRemovePiece.cpp
-        model/table/TestTableAvailableNextPositions.cpp
-        model/table/TestServiceMovePiece.cpp
-
+        model/table/TestRemovePiece.cpp
+        model/table/TestAvailableNextPositions.cpp
+        model/table/TestMovePiece.cpp
 )
 
 target_link_libraries(unit_tests
