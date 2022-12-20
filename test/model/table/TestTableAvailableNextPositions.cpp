@@ -21,7 +21,7 @@ TEST(tableNextPositions, availableDestionations) {
     int posX = 5;
     int posY = 5;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     std::shared_ptr<Table> table = std::make_unique<Table>(tableSize);
 
     table->addPiece(std::make_unique<Bishop>(Bishop(posX, posY, color)));
@@ -53,11 +53,11 @@ TEST(tableNextPositions, availableDestionationsPieceBetween) {
     int posX = 5;
     int posY = 5;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     std::shared_ptr<Table> table = std::make_unique<Table>(tableSize);
 
     table->addPiece(std::make_unique<Bishop>(Bishop(posX, posY, color)));
-    table->addPiece(std::make_unique<Bishop>(posX + 1, posY + 1, color + 1));
+    table->addPiece(std::make_unique<Bishop>(posX + 1, posY + 1, white));
 
     auto positions = table->availableMovesDestinations(posX, posY);
 

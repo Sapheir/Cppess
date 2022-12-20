@@ -11,7 +11,7 @@ TEST(Rook, RookInMiddle) {
     int rookX = 5;
     int rookY = 5;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     Rook rook{rookX, rookY, color};
 
     auto positions = rook.nextPositions(tableSize);
@@ -40,7 +40,7 @@ TEST(Rook, RookInLeft){
     int rookX = 1;
     int rookY = 5;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     Rook rook{rookX, rookY, color};
 
     auto positions = rook.nextPositions(tableSize);
@@ -65,7 +65,7 @@ TEST(Rook, RookInRight){
     int rookX = 10;
     int rookY = 5;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     Rook rook{rookX, rookY, color};
 
     auto positions = rook.nextPositions(tableSize);
@@ -90,7 +90,7 @@ TEST(Rook, RookUp){
     int rookX = 5;
     int rookY = 10;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     Rook rook{rookX, rookY, color};
 
     auto positions = rook.nextPositions(tableSize);
@@ -115,7 +115,7 @@ TEST(Rook, RookDown){
     int rookX = 5;
     int rookY = 1;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     Rook rook{rookX, rookY, color};
 
     auto positions = rook.nextPositions(tableSize);
@@ -140,7 +140,7 @@ TEST(Rook, RookLeftUp){
     int rookX = 1;
     int rookY = 10;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     Rook rook{rookX, rookY, color};
 
     auto positions = rook.nextPositions(tableSize);
@@ -161,7 +161,7 @@ TEST(Rook, RookRightUp){
     int rookX = 10;
     int rookY = 10;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     Rook rook{rookX, rookY, color};
 
     auto positions = rook.nextPositions(tableSize);
@@ -182,7 +182,7 @@ TEST(Rook, RookLeftDown){
     int rookX = 1;
     int rookY = 1;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     Rook rook{rookX, rookY, color};
 
     auto positions = rook.nextPositions(tableSize);
@@ -203,7 +203,7 @@ TEST(Rook, RookRightDown){
     int rookX = 10;
     int rookY = 1;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     Rook rook{rookX, rookY, color};
 
     auto positions = rook.nextPositions(tableSize);

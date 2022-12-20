@@ -21,7 +21,7 @@ TEST(tableRemove, removeBishopFromTable) {
     int posX = 5;
     int posY = 5;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     std::unique_ptr<Table> table = std::make_unique<Table>(tableSize);
 
     table->addPiece(std::make_unique<Bishop>(Bishop(posX, posY, color)));

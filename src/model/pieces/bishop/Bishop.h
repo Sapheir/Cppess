@@ -12,7 +12,7 @@ class Bishop: public Piece {
 private:
 
 public:
-    Bishop(const int &positionX, const int &positionY, const int &color):Piece{positionX, positionY, color}{};;
+    Bishop(const int &positionX, const int &positionY, const colors &color):Piece{positionX, positionY, color}{};;
 
     /*
      * Return a list of all possible positions inside the chess table where the bishop could be moved

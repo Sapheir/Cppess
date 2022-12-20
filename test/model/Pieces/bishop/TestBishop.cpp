@@ -10,7 +10,7 @@ TEST(Bishop, nextPositions_test1) {
     int posX = 5;
     int posY = 5;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     Bishop bishop{posX, posY, color};
 
     auto positions = bishop.nextPositions(tableSize);
@@ -36,7 +36,7 @@ TEST(Bishop, nextPositions_test2) {
     int posX = 1;
     int posY = 1;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     Bishop bishop{posX, posY, color};
 
     auto positions = bishop.nextPositions(tableSize);
@@ -53,7 +53,7 @@ TEST(Bishop, nextPositions_test3) {
     int posX = 10;
     int posY = 10;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     Bishop bishop{posX, posY, color};
 
     auto positions = bishop.nextPositions(tableSize);
@@ -70,7 +70,7 @@ TEST(Bishop, nextPositions_test4) {
     int posX = 1;
     int posY = 10;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     Bishop bishop{posX, posY, color};
 
     auto positions = bishop.nextPositions(tableSize);
@@ -87,7 +87,7 @@ TEST(Bishop, nextPositions_test5) {
     int posX = 10;
     int posY = 1;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     Bishop bishop{posX, posY, color};
 
     auto positions = bishop.nextPositions(tableSize);

@@ -11,7 +11,7 @@ TEST(King, KingInMiddle) {
     int posX = 5;
     int posY = 5;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     King king{posX, posY, color};
 
     auto positions = king.nextPositions(tableSize);
@@ -39,7 +39,7 @@ TEST(King, KingInLeft){
     int posX = 1;
     int posY = 5;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     King king{posX, posY, color};
 
     auto positions = king.nextPositions(tableSize);
@@ -63,7 +63,7 @@ TEST(King, KingInRight){
     int posX = 10;
     int posY = 5;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     King king{posX, posY, color};
 
     auto positions = king.nextPositions(tableSize);
@@ -87,7 +87,7 @@ TEST(King, KingOnTop){
     int posX = 5;
     int posY = 10;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     King king{posX, posY, color};
 
     auto positions = king.nextPositions(tableSize);
@@ -112,7 +112,7 @@ TEST(King, KingOnDown){
     int posX = 5;
     int posY = 1;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     King king{posX, posY, color};
 
     auto positions = king.nextPositions(tableSize);

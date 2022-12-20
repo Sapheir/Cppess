@@ -11,7 +11,7 @@ TEST(Pawn, MiddlePawn) {
     int pawnX = 5;
     int pawnY = 2;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     Pawn pawn{pawnX, pawnY, color};
 
     auto positions = pawn.nextPositions(tableSize);
@@ -37,7 +37,7 @@ TEST(Pawn, LeftPawn){
     int pawnX = 1;
     int pawnY = 2;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     Pawn pawn{pawnX, pawnY, color};
 
     auto positions = pawn.nextPositions(tableSize);
@@ -60,7 +60,7 @@ TEST(Pawn, RightPawn){
     int pawnX = 10;
     int pawnY = 2;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     Pawn pawn{pawnX, pawnY, color};
 
     auto positions = pawn.nextPositions(tableSize);
@@ -83,7 +83,7 @@ TEST(Pawn, upPawn) {
     int pawnX = 5;
     int pawnY = 10;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     Pawn pawn{pawnX, pawnY, color};
 
     auto positions = pawn.nextPositions(tableSize);

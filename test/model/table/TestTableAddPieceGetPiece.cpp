@@ -79,7 +79,7 @@ TEST(tableAddGet, addBishopOnTable) {
     int posX = 5;
     int posY = 5;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     checkPieceOnTable(std::make_unique<Bishop>(posX, posY, color), tableSize);
 }
 
@@ -87,7 +87,7 @@ TEST(tableAddGet, addKingOnTable) {
     int posX = 5;
     int posY = 5;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     checkPieceOnTable(std::make_unique<King>(posX, posY, color), tableSize);
 }
 
@@ -95,7 +95,7 @@ TEST(tableAddGet, addKnightOnTable) {
     int posX = 5;
     int posY = 5;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     checkPieceOnTable(std::make_unique<Knight>(posX, posY, color), tableSize);
 }
 
@@ -103,7 +103,7 @@ TEST(tableAddGet, addPawnOnTable) {
     int posX = 5;
     int posY = 5;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     checkPieceOnTable(std::make_unique<Pawn>(posX, posY, color), tableSize);
 }
 
@@ -111,7 +111,7 @@ TEST(tableAddGet, addQueenOnTable) {
     int posX = 5;
     int posY = 5;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     checkPieceOnTable(std::make_unique<Queen>(posX, posY, color), tableSize);
 }
 
@@ -119,6 +119,6 @@ TEST(tableAddGet, addRookOnTable) {
     int posX = 5;
     int posY = 5;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     checkPieceOnTable(std::make_unique<Rook>(posX, posY, color), tableSize);
 }

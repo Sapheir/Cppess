@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <memory>
+#include "colors.h"
 
 #ifndef CPPESS_PIECE_H
 #define CPPESS_PIECE_H
@@ -12,7 +13,7 @@ class Piece {
 protected:
     int positionX;
     int positionY;
-    int color;
+    colors color;
 
     /**
      * Check if a coordinate is in range [1, limit]
@@ -49,7 +50,7 @@ protected:
 public:
 
     /** Constructor for piece */
-    Piece(const int &positionX, const int &positionY, const int &color): positionX{positionX}, positionY{positionY}, color{color}{};
+    Piece(const int &positionX, const int &positionY, const colors &color): positionX{positionX}, positionY{positionY}, color{color}{};
 
     /**
      * Return a list of all possible positions inside the chess table where the bishop could be moved
@@ -106,13 +107,13 @@ public:
      * Returns the color of the current piece
      * @return int
      */
-    [[nodiscard]] int getColor() const;
+    [[nodiscard]] colors getColor() const;
 
     /**
      * Sets the newColor of the current piece
      * @param newColor - int
      */
-    void getColor(const int &newColor);
+    void setColor(const colors &newColor);
 
     /**
      * Check if current piece and another piece have same color

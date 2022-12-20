@@ -24,7 +24,7 @@ TEST(tableMovePiece, moveBishop) {
     int newX = 9;
     int newY = 9;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     std::unique_ptr<Table> table = std::make_unique<Table>(tableSize);
     ServiceTable serviceTable{table};
 

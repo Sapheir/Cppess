@@ -11,7 +11,7 @@ TEST(Knight, KnightInMiddle) {
     int knightX = 5;
     int knightY = 5;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     Knight knight{knightX,knightY, color};
 
     auto positions = knight.nextPositions(tableSize);
@@ -35,7 +35,7 @@ TEST(Knight, KnightInLeft){
     int knightX = 1;
     int knightY = 5;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     Knight knight{knightX,knightY, color};
 
     auto positions = knight.nextPositions(tableSize);
@@ -59,7 +59,7 @@ TEST(Knight, KnightInRight){
     int knightX = 10;
     int knightY = 5;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     Knight knight{knightX,knightY, color};
 
     auto positions = knight.nextPositions(tableSize);
@@ -83,7 +83,7 @@ TEST(Knight, KnightUp){
     int knightX = 5;
     int knightY = 10;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     Knight knight{knightX,knightY, color};
 
     auto positions = knight.nextPositions(tableSize);
@@ -107,7 +107,7 @@ TEST(Knight, KnightDown){
     int knightX = 5;
     int knightY = 1;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     Knight knight{knightX,knightY, color};
 
     auto positions = knight.nextPositions(tableSize);
@@ -131,7 +131,7 @@ TEST(Knight, KnightLeftUpCorner){
     int knightX = 1;
     int knightY = 1;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     Knight knight{knightX,knightY, color};
 
     auto positions = knight.nextPositions(tableSize);
@@ -155,7 +155,7 @@ TEST(Knight, KnightLeftDownCorner){
     int knightX = 1;
     int knightY = 10;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     Knight knight{knightX,knightY, color};
 
     auto positions = knight.nextPositions(tableSize);
@@ -180,7 +180,7 @@ TEST(Knight, KnightRightUpCorner){
     int knightX = 10;
     int knightY = 1;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     Knight knight{knightX,knightY, color};
 
     auto positions = knight.nextPositions(tableSize);
@@ -204,7 +204,7 @@ TEST(Knight, KnightRightDownCorner){
     int knightX = 10;
     int knightY = 10;
     int tableSize = 10;
-    int color = 0;
+    colors color = black;
     Knight knight{knightX,knightY, color};
 
     auto positions = knight.nextPositions(tableSize);

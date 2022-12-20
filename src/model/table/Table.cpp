@@ -3,7 +3,6 @@
 //
 
 #include <algorithm>
-#include <iostream>
 #include "Table.h"
 
 Table::Table(int tableSize) {
