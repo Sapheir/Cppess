@@ -35,22 +35,6 @@ std::shared_ptr<Piece> Table::removePiece(const int &posX, const int &posY) {
     return {nullptr};
 }
 
-void Table::movePiece(int x, int y, int newX, int newY){
-    std::shared_ptr<Piece> piece = this->getPiece(x, y);
-    if (piece == nullptr) {
-        std::string errorMessage = "There is no piece on chosen position! ";
-        throw errorMessage;
-    }
-
-    auto destinations = this->availableMovesDestinations(piece);
-
-    if(std::find(destinations.begin(), destinations.end(), std::make_pair(newX, newY))== destinations.end()) {
-        std::string errorMessage = "The move is not available! ";
-        throw errorMessage;
-    }
-
-    movePieceOnValidDestination(piece, newX, newY);
-}
 
 std::vector<std::pair<int, int> > Table::availableMovesDestinations(const std::shared_ptr<Piece> &piece) const {
     if(piece == nullptr)

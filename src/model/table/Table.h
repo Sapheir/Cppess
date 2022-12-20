@@ -25,13 +25,6 @@ private:
      */
     [[nodiscard]] bool noPieceBetween(int x1, int y1, int x2, int y2) const;
 
-    /**
-     * Move the piece on a valid destination
-     * @param piece - Piece
-     * @param (newX, newY) - (int, int) - new destination
-     */
-    void movePieceOnValidDestination(std::shared_ptr<Piece> piece, int newX, int newY);
-
 public:
 
     Table() = delete;
@@ -40,6 +33,13 @@ public:
      * Create a table with size tableSize x tableSize
      */
     explicit Table(int tableSize);
+
+    /**
+     * Move the piece on a valid destination
+     * @param piece - Piece
+     * @param (newX, newY) - (int, int) - new destination
+     */
+    void movePieceOnValidDestination(std::shared_ptr<Piece> piece, int newX, int newY);
 
     /**
      * Return the size of the table
@@ -102,17 +102,6 @@ public:
      */
     [[nodiscard]] std::vector < std::pair < int, int > > availableMovesDestinations(const std::shared_ptr<Piece> &piece) const;
 
-    /**
-     * Move the piece from coordinates (x, y) to (newX, newY)
-     * @param x - int
-     * @param Y - int
-     * @param posX - int
-     * @param posY - int
-     * @throw std::string errorMessage = "There is no piece on chosen position! " if there is no piece on (x, y)
-     * @throw std::string errorMessage = "The move is not available! " if the player connot move the (x,y) piece
-     * or (newX, newY) is not a valid destination
-     */
-    void movePiece(int x, int y, int newX, int newY);
 
     ~Table() = default;
 
