@@ -35,22 +35,35 @@ std::shared_ptr<Piece> Table::removePiece(const int &posX, const int &posY) {
     return {nullptr};
 }
 
-void Table::movePiece(int x, int y, int newX, int newY) {
+void Table::movePiece(int x, int y, int newX, int newY){
     std::shared_ptr<Piece> piece = this->getPiece(x, y);
+    if (piece == nullptr) {
+        std::string errorMessage = "There is no piece on chosen position! ";
+        throw errorMessage;
+    }
 
+    auto destinations = this->availableMovesDestinations(piece);
 
+    if(std::find(destinations.begin(), destinations.end(), std::make_pair(newX, newY))== destinations.end()) {
+        std::string errorMessage = "The move is not available! ";
+        throw errorMessage;
+    }
 
-
+    movePieceOnValidDestination(piece, newX, newY);
 }
 
-std::vector<std::pair<int, int> > Table::availableMovesDestinations(const int &posX, const int &posY) const {
-    std::shared_ptr < Piece > piece = this->getPiece(posX, posY);
+std::vector<std::pair<int, int> > Table::availableMovesDestinations(const std::shared_ptr<Piece> &piece) const {
     if(piece == nullptr)
         return {};
 
     if(piece->isKnight())
         return availableMovesDestinationsKnight(piece);
     return availableMovesDestinationsNonKnight(piece);
+}
+
+std::vector<std::pair<int, int> > Table::availableMovesDestinations(const int &posX, const int &posY) const {
+    std::shared_ptr < Piece > piece = this->getPiece(posX, posY);
+    return this->availableMovesDestinations(piece);
 }
 
 std::vector<std::pair<int, int> > Table::availableMovesDestinationsKnight(const std::shared_ptr<Piece> &piece) const {
@@ -90,4 +103,11 @@ bool Table::noPieceBetween(int x1, int y1, int x2, int y2) const {
                 return false;
         }
     return true;
+}
+
+void Table::movePieceOnValidDestination(std::shared_ptr<Piece> piece, int newX, int newY) {
+    this->tableContent.erase({piece->getX(), piece->getY()});
+    this->tableContent[{newX, newY}] = piece;
+    piece->setX(newX);
+    piece->setY(newY);
 }

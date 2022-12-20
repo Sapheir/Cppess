@@ -35,6 +35,7 @@ add_executable(unit_tests
         model/table/TestTableAddPieceGetPiece.cpp
         model/table/TestRemovePiece.cpp
         model/table/TestAvailableNextPositions.cpp
+        model/table/TestMovePiece.cpp
 )
 
 target_link_libraries(unit_tests
