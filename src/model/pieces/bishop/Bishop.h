@@ -1,7 +1,6 @@
 //
 // Created by Turca Vasile
 //
-
 #include <vector>
 #include "../Piece.h"
 
@@ -14,7 +13,7 @@ private:
 public:
     Bishop(const int &positionX, const int &positionY, const colors &color):Piece{positionX, positionY, color}{};;
 
-    /*
+    /**
      * Return a list of all possible positions inside the chess table where the bishop could be moved
      *
      * @param tableSize: the size of the table
@@ -28,6 +27,12 @@ public:
      * @return bool
      */
     [[nodiscard]] bool isKnight() const override;
+
+    /**
+     * Returns false because current piece is not a pawn
+     * @return bool
+     */
+    [[nodiscard]] bool isPawn() const override;
 
 };
 

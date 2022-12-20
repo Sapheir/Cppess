@@ -45,3 +45,7 @@ std::vector<std::pair<int, int> > King::nextPositions(const int &tableSize) cons
 bool King::isKnight() const {
     return false;
 }
+
+bool King::isPawn() const {
+    return false;
+}

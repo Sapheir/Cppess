@@ -26,4 +26,8 @@ bool Queen::isKnight() const {
     return false;
 }
 
+bool Queen::isPawn() const {
+    return false;
+}
+
 

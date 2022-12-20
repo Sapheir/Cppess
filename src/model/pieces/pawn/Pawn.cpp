@@ -22,3 +22,7 @@ bool Pawn::isKnight() const {
     return false;
 }
 
+bool Pawn::isPawn() const {
+    return true;
+}
+

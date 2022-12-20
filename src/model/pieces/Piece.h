@@ -118,7 +118,9 @@ public:
     /**
      * Check if current piece and another piece have same color
      */
-     bool sameColor(const std::shared_ptr<Piece> &other) const;
+     [[nodiscard]] bool sameColor(const std::shared_ptr<Piece> &other) const;
+
+     [[nodiscard]] virtual bool isPawn() const = 0;
 };
 
 
