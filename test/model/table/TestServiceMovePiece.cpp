@@ -13,6 +13,7 @@
 #include "model/pieces/pawn/Pawn.h"
 #include "model/pieces/queen/Queen.h"
 #include "model/pieces/rook/Rook.h"
+#include "model/services/ServiceTable.h"
 
 /**
  * TO DO move other types
@@ -24,11 +25,12 @@ TEST(tableMovePiece, moveBishop) {
     int newY = 9;
     int tableSize = 10;
     int color = 0;
-    std::shared_ptr<Table> table = std::make_unique<Table>(tableSize);
+    std::unique_ptr<Table> table = std::make_unique<Table>(tableSize);
+    ServiceTable serviceTable{table};
 
-    table->addPiece(std::make_unique<Bishop>(Bishop(posX, posY, color)));
+    serviceTable.addPiece(std::make_unique<Bishop>(Bishop(posX, posY, color)));
 
-    auto positions = table->availableMovesDestinations(posX, posY);
+    auto positions = serviceTable.availableMovesDestinations(posX, posY);
 
     sort(positions.begin(), positions.end());
     // Check if there is the expected number of possible moves and check if all expected positions are in vector
@@ -47,10 +49,10 @@ TEST(tableMovePiece, moveBishop) {
     }
     ASSERT_TRUE(positions[16].first == 10 && positions[16].second == 10);
 
-    table->movePiece(posX, posY, newX, newY);
+    serviceTable.movePiece(posX, posY, newX, newY);
 
-    ASSERT_TRUE(table->getPiece(posX, posY) == nullptr);
-    ASSERT_TRUE(table->getPiece(newX, newY) != nullptr);
-    ASSERT_TRUE(table->getPiece(newX, newY)->getX() == newX);
-    ASSERT_TRUE(table->getPiece(newX, newY)->getY() == newY);
+    ASSERT_TRUE(serviceTable.getPiece(posX, posY) == nullptr);
+    ASSERT_TRUE(serviceTable.getPiece(newX, newY) != nullptr);
+    ASSERT_TRUE(serviceTable.getPiece(newX, newY)->getX() == newX);
+    ASSERT_TRUE(serviceTable.getPiece(newX, newY)->getY() == newY);
 }
