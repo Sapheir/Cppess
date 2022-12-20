@@ -12,9 +12,14 @@ std::vector<std::pair<int, int> > Rook::nextPositions(const int &tableSize) cons
 
     /* add all possible positions straight on horizontally or vertically*/
     for(int index = 0 ; index < 4 ; index++){
-        std::vector < std::pair < int, int >> generatedPositions = ModelUtils::addPositions(scalesOnX[index], scalesOnY[index], positionX, positionY, tableSize);
+        std::vector < std::pair < int, int >> generatedPositions;
+        generatedPositions = addPositions(scalesOnX[index], scalesOnY[index], positionX, positionY, tableSize);
         allPositions.insert(allPositions.end(), generatedPositions.begin(), generatedPositions.end());
     }
 
     return allPositions;
+}
+
+bool Rook::isKnight() const {
+    return false;
 }

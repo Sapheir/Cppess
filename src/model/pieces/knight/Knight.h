@@ -3,7 +3,6 @@
 //
 
 #include <vector>
-#include "../utils/ModelUtils.h"
 #include "../Piece.h"
 
 #ifndef CPPESS_KNIGHT_H
@@ -13,7 +12,7 @@ class Knight: public Piece {
 private:
 
 public:
-    Knight(const int &positionX, const int &positionY): Piece{positionX, positionY}{};
+    Knight(const int &positionX, const int &positionY, const colors &color):Piece{positionX, positionY, color}{};
 
     /*
      * Return a list of all possible positions inside the chess table where the bishop could be moved
@@ -23,6 +22,12 @@ public:
      * @return vector < pair < int, int > > - all possible positions
      */
     [[nodiscard]] std::vector < std::pair < int, int > > nextPositions(const int &tableSize) const override;
+
+    /**
+     * Returns true because current piece is a knight
+     * @return bool
+     */
+    [[nodiscard]] bool isKnight() const override;
 
 };
 

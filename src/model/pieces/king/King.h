@@ -12,7 +12,7 @@ class King: public Piece {
 private:
 
 public:
-    King(const int &positionX, const int &positionY): Piece{positionX, positionY}{};
+    King(const int &positionX, const int &positionY, const colors &color):Piece{positionX, positionY, color}{};;
 
     /*
      * Return a list of all possible positions inside the chess table where the bishop could be moved
@@ -22,6 +22,12 @@ public:
      * @return vector < pair < int, int > > - all possible positions
      */
     [[nodiscard]] std::vector < std::pair < int, int > > nextPositions(const int &tableSize) const override;
+
+    /**
+     * Returns false because current piece is not a knight
+     * @return bool
+     */
+    [[nodiscard]] bool isKnight() const override;
 
 };
 

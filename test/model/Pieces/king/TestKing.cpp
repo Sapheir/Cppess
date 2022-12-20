@@ -11,7 +11,8 @@ TEST(King, KingInMiddle) {
     int posX = 5;
     int posY = 5;
     int tableSize = 10;
-    King king{posX, posY};
+    colors color = black;
+    King king{posX, posY, color};
 
     auto positions = king.nextPositions(tableSize);
     // Check if there is the expected number of possible moves and check if all expected positions are in vector
@@ -38,7 +39,8 @@ TEST(King, KingInLeft){
     int posX = 1;
     int posY = 5;
     int tableSize = 10;
-    King king{posX, posY};
+    colors color = black;
+    King king{posX, posY, color};
 
     auto positions = king.nextPositions(tableSize);
     // Check if there is the expected number of possible moves and check if all expected positions are in vector
@@ -61,7 +63,8 @@ TEST(King, KingInRight){
     int posX = 10;
     int posY = 5;
     int tableSize = 10;
-    King king{posX, posY};
+    colors color = black;
+    King king{posX, posY, color};
 
     auto positions = king.nextPositions(tableSize);
     // Check if there is the expected number of possible moves and check if all expected positions are in vector
@@ -84,7 +87,8 @@ TEST(King, KingOnTop){
     int posX = 5;
     int posY = 10;
     int tableSize = 10;
-    King king{posX, posY};
+    colors color = black;
+    King king{posX, posY, color};
 
     auto positions = king.nextPositions(tableSize);
     // Check if there is the expected number of possible moves and check if all expected positions are in vector
@@ -108,7 +112,8 @@ TEST(King, KingOnDown){
     int posX = 5;
     int posY = 1;
     int tableSize = 10;
-    King king{posX, posY};
+    colors color = black;
+    King king{posX, posY, color};
 
     auto positions = king.nextPositions(tableSize);
 

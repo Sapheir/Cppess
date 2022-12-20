@@ -11,7 +11,7 @@ class Pawn: public Piece {
 private:
     bool doubleMoveAvailable;
 public:
-    Pawn(const int &positionX, const int &positionY): Piece{positionX, positionY}{
+    Pawn(const int &positionX, const int &positionY, const colors &color):Piece{positionX, positionY, color}{
         doubleMoveAvailable = true;
     };
 
@@ -23,6 +23,12 @@ public:
      * @return vector < pair < int, int > > - all possible positions
      */
     [[nodiscard]] std::vector < std::pair < int, int > > nextPositions(const int &tableSize) const override;
+
+    /**
+     * Returns false because current piece is not a knight
+     * @return bool
+     */
+    [[nodiscard]] bool isKnight() const override;
 
 };
 

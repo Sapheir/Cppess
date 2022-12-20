@@ -57,10 +57,10 @@ void sortAll3Vectors(vpint &x, vpint &y, vpint &z){
 
 }
 
-void testRookPlusBishopEqualQueen(const int &posX, const int &posY, const int &tableSize){
-    Rook rook{posX, posY};
-    Bishop bishop{posX, posY};
-    Queen queen{posX, posY};
+void testRookPlusBishopEqualQueen(const int &posX, const int &posY, const colors &color, const int &tableSize){
+    Rook rook{posX, posY, color};
+    Bishop bishop{posX, posY, color};
+    Queen queen{posX, posY, color};
 
     auto rookPositions = rook.nextPositions(tableSize);
     auto bishopPositions = bishop.nextPositions(tableSize);
@@ -80,61 +80,70 @@ TEST(Queen, QueenInMiddle){
     int posX = 5;
     int posY = 5;
     int tableSize = 10;
-    testRookPlusBishopEqualQueen(posX, posY, tableSize);
+    colors color = black;
+    testRookPlusBishopEqualQueen(posX, posY, color, tableSize);
 }
 
 TEST(Queen, QueenInLeft){
     int posX = 1;
     int posY = 5;
     int tableSize = 10;
-    testRookPlusBishopEqualQueen(posX, posY, tableSize);
+    colors color = black;
+    testRookPlusBishopEqualQueen(posX, posY, color, tableSize);
 }
 
 TEST(Queen, QueenInRight){
     int posX = 10;
     int posY = 5;
     int tableSize = 10;
-    testRookPlusBishopEqualQueen(posX, posY, tableSize);
+    colors color = black;
+    testRookPlusBishopEqualQueen(posX, posY, color, tableSize);
 }
 
 TEST(Queen, QueenUp){
     int posX = 5;
     int posY = 10;
     int tableSize = 10;
-    testRookPlusBishopEqualQueen(posX, posY, tableSize);
+    colors color = black;
+    testRookPlusBishopEqualQueen(posX, posY, color, tableSize);
 }
 
 TEST(Queen, QueenDown){
     int posX = 5;
     int posY = 1;
     int tableSize = 10;
-    testRookPlusBishopEqualQueen(posX, posY, tableSize);
+    colors color = black;
+    testRookPlusBishopEqualQueen(posX, posY, color, tableSize);
 }
 
 TEST(Queen, QueenUpLeft){
     int posX = 1;
     int posY = 10;
     int tableSize = 10;
-    testRookPlusBishopEqualQueen(posX, posY, tableSize);
+    colors color = black;
+    testRookPlusBishopEqualQueen(posX, posY, color, tableSize);
 }
 
 TEST(Queen, QueenUpRight){
     int posX = 10;
     int posY = 10;
     int tableSize = 10;
-    testRookPlusBishopEqualQueen(posX, posY, tableSize);
+    colors color = black;
+    testRookPlusBishopEqualQueen(posX, posY, color, tableSize);
 }
 
 TEST(Queen, QueenDownLeft){
     int posX = 1;
     int posY = 1;
     int tableSize = 10;
-    testRookPlusBishopEqualQueen(posX, posY, tableSize);
+    colors color = black;
+    testRookPlusBishopEqualQueen(posX, posY, color, tableSize);
 }
 
 TEST(Queen, QueenDownRight){
     int posX = 10;
     int posY = 1;
     int tableSize = 10;
-    testRookPlusBishopEqualQueen(posX, posY, tableSize);
+    colors color = black;
+    testRookPlusBishopEqualQueen(posX, posY, color, tableSize);
 }

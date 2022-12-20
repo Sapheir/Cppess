@@ -15,11 +15,15 @@ std::vector<std::pair<int, int> > Knight::nextPositions(const int &tableSize) co
         int newPositionX = positionX + variationX[iterator];
         int newPositionY = positionY + variationY[iterator];
 
-        if(ModelUtils::insideTable(newPositionX, newPositionY, tableSize))
+        if(insideSquareTable(newPositionX, newPositionY, tableSize))
             allPositions.emplace_back(newPositionX, newPositionY);
     }
 
     return allPositions;
 
+}
+
+bool Knight::isKnight() const {
+    return true;
 }
 

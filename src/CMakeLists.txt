@@ -24,16 +24,16 @@ FetchContent_MakeAvailable(asiocmake)
 
 # model
 add_executable(Cppess
-        model/pieces/utils/ModelUtils.cpp model/pieces/utils/ModelUtils.h
         model/pieces/bishop/Bishop.cpp model/pieces/bishop/Bishop.h
         model/pieces/king/King.cpp model/pieces/king/King.h
         model/pieces/knight/Knight.cpp model/pieces/knight/Knight.h
         model/pieces/pawn/Pawn.cpp model/pieces/pawn/Pawn.h
         model/pieces/queen/Queen.cpp model/pieces/queen/Queen.h
         model/pieces/rook/Rook.cpp model/pieces/rook/Rook.h
-        model/pieces/Piece.h
-
-        model/table/Table.h
+        model/pieces/Piece.cpp model/pieces/Piece.h
+        model/pieces/colors.h
+        model/table/Table.cpp model/table/Table.h
+        model/services/ServiceTable.cpp model/services/ServiceTable.h
         main.cpp
         )
 
@@ -57,9 +57,9 @@ add_library(cppess_test)
 
 target_sources(cppess_test
   PRIVATE
-        model/pieces/utils/ModelUtils.cpp
+        model/pieces/Piece.cpp
   PUBLIC
-        model/pieces/utils/ModelUtils.h
+        model/pieces/Piece.h
         model
   )
 

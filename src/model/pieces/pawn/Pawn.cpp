@@ -18,3 +18,7 @@ std::vector<std::pair<int, int> > Pawn::nextPositions(const int &tableSize) cons
     return allPositions;
 }
 
+bool Pawn::isKnight() const {
+    return false;
+}
+
