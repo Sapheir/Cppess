@@ -9,7 +9,7 @@ int main()
     // Start the game loop
     while (window.isOpen())
     {
-        // Process events
+        // Process Events
         sf::Event event{};
         while (window.pollEvent(event))
         {

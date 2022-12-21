@@ -1,5 +1,5 @@
 //
-// Created by User on 21/12/2022.
+// Created by TurcaVasile on 21/12/2022.
 //
 
 #include <utility>
@@ -9,7 +9,7 @@
 #ifndef CPPESS_EVENTS_H
 #define CPPESS_EVENTS_H
 
-enum events{
+enum Events{
     capture,
     pawn_promotion,
     en_passant_promotion,
@@ -18,8 +18,8 @@ enum events{
 
 struct BaseEvent{
 public:
-    events eventType;
-    explicit BaseEvent(const events &eventType):eventType{eventType}{};
+    Events eventType;
+    explicit BaseEvent(const Events &eventType): eventType{eventType}{};
 
     [[nodiscard]] virtual std::shared_ptr < Piece > getPiece() const = 0;
 };

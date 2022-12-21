@@ -106,7 +106,7 @@ public:
      * Returns true if the current piece has crossed the table
      * @param - Piece reference
      */
-     [[nodiscard]] static bool pieceIsOnOppositeEdge(const std::shared_ptr<Piece> &piece);
+     [[nodiscard]]  bool pieceWillBeOnOppositeEdge(const int &newX, const int &newY) const;
 
 
     ~Table() = default;
