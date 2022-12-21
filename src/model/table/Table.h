@@ -102,6 +102,12 @@ public:
      */
     [[nodiscard]] std::vector < std::pair < int, int > > availableMovesDestinations(const std::shared_ptr<Piece> &piece) const;
 
+    /**
+     * Returns true if the current piece has crossed the table
+     * @param - Piece reference
+     */
+     [[nodiscard]] static bool pieceIsOnOppositeEdge(const std::shared_ptr<Piece> &piece);
+
 
     ~Table() = default;
 

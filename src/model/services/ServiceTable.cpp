@@ -4,24 +4,6 @@
 
 #include "ServiceTable.h"
 
-void ServiceTable::movePiece(int x, int y, int newX, int newY){
-    std::shared_ptr<Piece> piece = table->getPiece(x, y);
-    if (piece == nullptr) {
-        std::string errorMessage = "There is no piece on chosen position! ";
-        throw errorMessage;
-    }
-
-    auto destinations = table->availableMovesDestinations(piece);
-
-    if(std::find(destinations.begin(), destinations.end(), std::make_pair(newX, newY))== destinations.end()) {
-        std::string errorMessage = "The move is not available! ";
-        throw errorMessage;
-    }
-
-    table->movePieceOnValidDestination(piece, newX, newY);
-}
-
-
 std::shared_ptr<Piece> ServiceTable::getPiece(const int &posX, const int &posY) const {
     return table->getPiece(posX, posY);
 }
@@ -36,4 +18,50 @@ void ServiceTable::addPiece(const std::shared_ptr<Piece> &newPiece) {
 
 std::vector<std::pair<int, int>> ServiceTable::availableMovesDestinations(const int &posX, const int &posY) const {
     return table->availableMovesDestinations(posX, posY);
+}
+
+std::vector < std::shared_ptr < BaseEvent > > ServiceTable::movePiece(int x, int y, int newX, int newY){
+    std::shared_ptr<Piece> piece = table->getPiece(x, y);
+
+    if (piece == nullptr) {
+        std::string errorMessage = "There is no piece on the chosen position! ";
+        throw errorMessage;
+    }
+
+    if(piece->getColor() != ownColor){
+        std:: string errorMessage = "You cannot move the pieces of the opponent! ";
+        throw errorMessage;
+    }
+
+    auto destinations = table->availableMovesDestinations(piece);
+
+    if(std::find(destinations.begin(), destinations.end(), std::make_pair(newX, newY))== destinations.end()) {
+        std::string errorMessage = "The move is not available! ";
+        throw errorMessage;
+    }
+
+    auto events = getSpecialEvents(piece, newX, newY);
+    table->movePieceOnValidDestination(piece, newX, newY);
+
+    return events;
+}
+
+std::vector < std::shared_ptr < BaseEvent > > ServiceTable::getSpecialEvents(std::shared_ptr < Piece > &piece, int newX, int newY){
+    std::vector < std::shared_ptr < BaseEvent > > events;
+
+    if(checkPawnPromotion(piece))
+        events.push_back(std::make_unique<PawnPromotion>(piece));
+
+    /* check if there is a piece of the opponent captured during the move of the current piece */
+    std::shared_ptr < Piece > removedPiece = table->removePiece(newX, newY);
+    if(removedPiece != nullptr)
+        events.push_back(std::make_unique<CapturedPiece>(removedPiece));
+
+    return events;
+}
+
+bool ServiceTable::checkPawnPromotion(std::shared_ptr<Piece> &piece) const{
+    if(!piece->isPawn()) return false;
+    if(!table->pieceIsOnOppositeEdge(piece)) return false;
+    return true;
 }

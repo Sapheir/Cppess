@@ -32,6 +32,7 @@ add_executable(Cppess
         model/pieces/rook/Rook.cpp model/pieces/rook/Rook.h
         model/pieces/Piece.cpp model/pieces/Piece.h
         model/pieces/colors.h
+        model/services/events.h
         model/table/Table.cpp model/table/Table.h
         model/services/ServiceTable.cpp model/services/ServiceTable.h
         main.cpp
