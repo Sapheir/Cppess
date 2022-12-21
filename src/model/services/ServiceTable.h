@@ -14,14 +14,24 @@
 class ServiceTable {
 private:
     std::unique_ptr<Table> table;
-    colors ownColor;
+    colors firstPlayerColor;
+    colors secondPlayerColor;
+    colors currentPlayer;
+
+    /**
+     * Change the player whose turn is now
+     */
+    void changeTurn();
+
 public:
 
     ServiceTable() = delete;
 
-    explicit ServiceTable(std::unique_ptr<Table> &table, colors ownColor){
+    explicit ServiceTable(std::unique_ptr<Table> &table, colors firstPlayerColor, colors secondPlayerColor){
         this->table = std::move(table);
-        this->ownColor = ownColor;
+        this->firstPlayerColor = firstPlayerColor;
+        this->secondPlayerColor = secondPlayerColor;
+        currentPlayer = firstPlayerColor;
     };
 
     /**
@@ -86,6 +96,14 @@ public:
      * @return bool
      */
     bool checkPawnPromotion(std::shared_ptr<Piece> &piece, const int &newX, const int &newY) const;
+
+    /**
+     * Returns true if the current move represents en_passant
+     * @param (newX, newY) - (int, int) - the position where will be the piece moved
+     * @param piece - Piece
+     * @return bool
+     */
+     bool checkEnPassant(std::shared_ptr<Piece> &piece, const int &newX, const int &newY) const;
 
 };
 

@@ -25,8 +25,9 @@ TEST(tableMovePiece, moveBishopBasic) {
     int newY = 9;
     int tableSize = 10;
     colors color = black;
+    colors anotherColor = white;
     std::unique_ptr<Table> table = std::make_unique<Table>(tableSize);
-    ServiceTable serviceTable{table, black};
+    ServiceTable serviceTable{table, color, anotherColor};
 
     serviceTable.addPiece(std::make_unique<Bishop>(Bishop(posX, posY, color)));
 
@@ -56,7 +57,9 @@ TEST(tableMovePiece, moveBishopBasic) {
     ASSERT_TRUE(serviceTable.getPiece(newX, newY)->getX() == newX);
     ASSERT_TRUE(serviceTable.getPiece(newX, newY)->getY() == newY);
 
-    serviceTable.addPiece(std::make_unique<Bishop>(posX, posY, white));
+    serviceTable.addPiece(std::make_unique<Bishop>(posX + 1, posY + 1, white));
+    serviceTable.movePiece(posX + 1, posY + 1, posX, posY);
+
     serviceTable.movePiece(newX, newY, posX, posY);
 
     ASSERT_TRUE(serviceTable.getPiece(newX, newY) == nullptr);
@@ -74,7 +77,7 @@ TEST(tableMovePiece, moveBishopCapturedPiece) {
     colors color = black;
     colors anotherColor = white;
     std::unique_ptr<Table> table = std::make_unique<Table>(tableSize);
-    ServiceTable serviceTable{table, color};
+    ServiceTable serviceTable{table, color, anotherColor};
 
     serviceTable.addPiece(std::make_unique<Bishop>(Bishop(posX, posY, color)));
 
@@ -110,7 +113,8 @@ TEST(tableMovePiece, moveBishopCapturedPiece) {
     ASSERT_TRUE(serviceTable.getPiece(newX, newY)->getX() == newX);
     ASSERT_TRUE(serviceTable.getPiece(newX, newY)->getY() == newY);
 
-    serviceTable.addPiece(std::make_unique<Bishop>(posX, posY, white));
+    serviceTable.addPiece(std::make_unique<Bishop>(posX + 1, posY + 1, white));
+    serviceTable.movePiece(posX + 1, posY + 1, posX, posY);
     serviceTable.movePiece(newX, newY, posX, posY);
 
     ASSERT_TRUE(serviceTable.getPiece(newX, newY) == nullptr);
@@ -129,7 +133,7 @@ TEST(tableMovePiece, pawnPromotion) {
     colors color = black;
     colors anotherColor = white;
     std::unique_ptr<Table> table = std::make_unique<Table>(tableSize);
-    ServiceTable serviceTable{table, color};
+    ServiceTable serviceTable{table, color, anotherColor};
 
     std::shared_ptr < Pawn > pawn = std::make_unique<Pawn>(Pawn(posX, posY, color));
     serviceTable.addPiece(pawn);

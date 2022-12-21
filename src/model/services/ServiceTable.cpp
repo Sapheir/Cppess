@@ -29,7 +29,7 @@ std::vector < std::shared_ptr < BaseEvent > > ServiceTable::movePiece(const int 
         throw errorMessage;
     }
 
-    if(piece->getColor() != ownColor){
+    if(piece->getColor() != currentPlayer){
         std:: string errorMessage = "You cannot move the pieces of the opponent! ";
         throw errorMessage;
     }
@@ -44,6 +44,7 @@ std::vector < std::shared_ptr < BaseEvent > > ServiceTable::movePiece(const int 
     auto events = getSpecialEvents(piece, newX, newY);
 
     table->movePieceOnValidDestination(piece, newX, newY);
+    this->changeTurn();
 
     return events;
 }
@@ -60,6 +61,8 @@ std::vector < std::shared_ptr < BaseEvent > > ServiceTable::getSpecialEvents(std
     if(removedPiece != nullptr)
         events.push_back(std::make_unique<CapturedPiece>(removedPiece));
 
+
+
     return events;
 }
 
@@ -67,4 +70,15 @@ bool ServiceTable::checkPawnPromotion(std::shared_ptr<Piece> &piece, const int &
     if(!piece->isPawn()) return false;
     if(!table->pieceWillBeOnOppositeEdge(newX, newY)) return false;
     return true;
+}
+
+bool ServiceTable::checkEnPassant(std::shared_ptr<Piece> &piece, const int &newX, const int &newY) const {
+
+}
+
+void ServiceTable::changeTurn() {
+    if(currentPlayer == firstPlayerColor)
+        currentPlayer = secondPlayerColor;
+    else
+        currentPlayer = firstPlayerColor;
 }
