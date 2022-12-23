@@ -3,7 +3,3 @@
 //
 
 #include "HistoryMove.h"
-
-std::vector<std::shared_ptr<BaseEvent> > HistoryMove::getAllGeneratedEvents() {
-    return generatedEvents;
-}
