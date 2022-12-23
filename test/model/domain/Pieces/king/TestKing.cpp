@@ -5,7 +5,7 @@
 #include <gtest/gtest.h>
 #include <algorithm>
 
-#include "model/pieces/king/King.h"
+#include "model/domain/pieces/king/King.h"
 
 TEST(King, KingInMiddle) {
     int posX = 5;

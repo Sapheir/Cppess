@@ -8,7 +8,7 @@
 #include <vector>
 #include <memory>
 #include <map>
-#include "../pieces/Piece.h"
+#include "../domain/pieces/Piece.h"
 
 class Table {
 private:

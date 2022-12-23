@@ -7,12 +7,12 @@
 #include <algorithm>
 
 #include "../src/model/table/Table.h"
-#include "model/pieces/bishop/Bishop.h"
-#include "model/pieces/king/King.h"
-#include "model/pieces/knight/Knight.h"
-#include "model/pieces/pawn/Pawn.h"
-#include "model/pieces/queen/Queen.h"
-#include "model/pieces/rook/Rook.h"
+#include "model/domain/pieces/bishop/Bishop.h"
+#include "model/domain/pieces/king/King.h"
+#include "model/domain/pieces/knight/Knight.h"
+#include "model/domain/pieces/pawn/Pawn.h"
+#include "model/domain/pieces/queen/Queen.h"
+#include "model/domain/pieces/rook/Rook.h"
 #include "model/services/ServiceTable.h"
 
 /**
@@ -105,7 +105,7 @@ TEST(tableMovePiece, moveBishopCapturedPiece) {
     auto generatedEvents = serviceTable.movePiece(posX, posY, newX, newY);
 
     ASSERT_TRUE(generatedEvents.size() == 1);
-    ASSERT_TRUE(generatedEvents.begin()->get()->eventType == capture);
+    ASSERT_TRUE(generatedEvents.begin()->get()->getEventType() == capture);
     ASSERT_TRUE(generatedEvents.begin()->get()->getPiece() == pawn);
 
     ASSERT_TRUE(serviceTable.getPiece(posX, posY) == nullptr);
@@ -140,7 +140,7 @@ TEST(tableMovePiece, pawnPromotion) {
 
     auto generatedEvents = serviceTable.movePiece(posX, posY, newX, newY);
     ASSERT_TRUE(generatedEvents.size() == 1);
-    ASSERT_TRUE(generatedEvents.begin()->get()->eventType == pawn_promotion);
+    ASSERT_TRUE(generatedEvents.begin()->get()->getEventType() == pawn_promotion);
     ASSERT_TRUE(generatedEvents.begin()->get()->getPiece() == pawn);
 
 }

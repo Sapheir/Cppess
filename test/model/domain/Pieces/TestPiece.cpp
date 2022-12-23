@@ -5,12 +5,12 @@
 #include <gtest/gtest.h>
 #include <memory>
 
-#include "model/pieces/bishop/Bishop.h"
-#include "model/pieces/king/King.h"
-#include "model/pieces/knight/Knight.h"
-#include "model/pieces/pawn/Pawn.h"
-#include "model/pieces/queen/Queen.h"
-#include "model/pieces/rook/Rook.h"
+#include "model/domain/pieces/bishop/Bishop.h"
+#include "model/domain/pieces/king/King.h"
+#include "model/domain/pieces/knight/Knight.h"
+#include "model/domain/pieces/pawn/Pawn.h"
+#include "model/domain/pieces/queen/Queen.h"
+#include "model/domain/pieces/rook/Rook.h"
 
 TEST(Piece, bishop){
     std::unique_ptr<Piece> piece = std::make_unique<Bishop>(5,5, black);

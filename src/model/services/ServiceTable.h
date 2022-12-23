@@ -8,8 +8,8 @@
 #include <algorithm>
 #include <string>
 #include "../table/Table.h"
-#include "../pieces/Piece.h"
-#include "Events.h"
+#include "../domain/pieces/Piece.h"
+#include "../domain/Events.h"
 
 class ServiceTable {
 private:

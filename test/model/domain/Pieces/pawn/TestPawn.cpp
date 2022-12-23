@@ -5,7 +5,7 @@
 #include <gtest/gtest.h>
 #include <algorithm>
 
-#include "model/pieces/pawn/Pawn.h"
+#include "model/domain/pieces/pawn/Pawn.h"
 
 TEST(Pawn, MiddlePawn) {
     int pawnX = 5;

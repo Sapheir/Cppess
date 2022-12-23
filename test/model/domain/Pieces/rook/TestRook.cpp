@@ -5,7 +5,7 @@
 #include <gtest/gtest.h>
 #include <algorithm>
 
-#include "model/pieces/rook/Rook.h"
+#include "model/domain/pieces/rook/Rook.h"
 
 TEST(Rook, RookInMiddle) {
     int rookX = 5;

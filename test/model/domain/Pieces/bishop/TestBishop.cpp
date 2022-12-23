@@ -4,7 +4,7 @@
 #include <gtest/gtest.h>
 #include <vector>
 #include <algorithm>
-#include "model/pieces/bishop/Bishop.h"
+#include "model/domain/pieces/bishop/Bishop.h"
 
 TEST(Bishop, nextPositions_test1) {
     int posX = 5;

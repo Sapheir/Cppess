@@ -4,7 +4,7 @@
 
 #include <utility>
 
-#include "../pieces/Piece.h"
+#include "pieces/Piece.h"
 
 #ifndef CPPESS_EVENTS_H
 #define CPPESS_EVENTS_H
@@ -16,15 +16,33 @@ enum Events{
     castling
 };
 
-struct BaseEvent{
-public:
+class BaseEvent{
     Events eventType;
+public:
     explicit BaseEvent(const Events &eventType): eventType{eventType}{};
 
+    BaseEvent(){
+        eventType = capture;
+    }
+
+    BaseEvent(const BaseEvent &other){
+        this->eventType = other.eventType;
+    };
+
+    BaseEvent(BaseEvent &&other) noexcept {
+        this->eventType = other.eventType;
+    };
+
+    [[nodiscard]] Events getEventType() const{
+        return eventType;
+    };
+
     [[nodiscard]] virtual std::shared_ptr < Piece > getPiece() const = 0;
+
+
 };
 
-struct PawnPromotion: public BaseEvent{
+class PawnPromotion: public BaseEvent{
 public:
     std::shared_ptr < Piece > piece;
 
@@ -40,12 +58,20 @@ public:
     }
 };
 
-struct CapturedPiece: public BaseEvent{
+class CapturedPiece: public BaseEvent{
 public:
     std::shared_ptr < Piece > piece;
 
 public:
     explicit CapturedPiece(std::shared_ptr < Piece > piece): BaseEvent(capture), piece{std::move(piece)}{};
+
+    CapturedPiece(const CapturedPiece &other) : BaseEvent(other.getEventType()) {
+        piece = other.getPiece();
+    };
+
+    CapturedPiece(CapturedPiece &&other)  noexcept : BaseEvent(other.getEventType()) {
+        piece = other.getPiece();
+    };
 
     /**
      * Returns the piece of the current event
@@ -54,6 +80,8 @@ public:
     [[nodiscard]] std::shared_ptr<Piece> getPiece() const override{
         return piece;
     }
+
+
 };
 
 

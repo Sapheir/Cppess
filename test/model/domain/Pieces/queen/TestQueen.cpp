@@ -5,9 +5,9 @@
 #include <gtest/gtest.h>
 #include <algorithm>
 
-#include "model/pieces/queen/Queen.h"
-#include "model/pieces/rook/Rook.h"
-#include "model/pieces/bishop/Bishop.h"
+#include "model/domain/pieces/queen/Queen.h"
+#include "model/domain/pieces/rook/Rook.h"
+#include "model/domain/pieces/bishop/Bishop.h"
 
 #define pint std::pair < int, int >
 #define vpint std::vector < pint>
