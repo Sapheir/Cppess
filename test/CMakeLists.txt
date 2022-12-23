@@ -39,6 +39,7 @@ add_executable(unit_tests
         model/table/TestTableAvailableNextPositions.cpp
         model/table/TestServiceMovePiece.cpp
         model/domain/TestHistoryMove.cpp
+        model/table/TestHistory.cpp
 
 )
 

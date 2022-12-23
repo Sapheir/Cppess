@@ -15,7 +15,7 @@
 #include "model/domain/pieces/queen/Queen.h"
 #include "model/domain/pieces/rook/Rook.h"
 #include "model/services/ServiceTable.h"
-#include "model/domain/history/MoveHistory.h"
+#include "model/domain/history/HistoryMove.h"
 
 TEST(testHistoryMove, moveWithoutGeneratedEvents) {
     int posX = 5;
@@ -78,17 +78,16 @@ TEST(testHistoryMove, moveWithCapture) {
     serviceTable.addPiece(pawn);
     std::vector < std::shared_ptr < BaseEvent > > generatedEvents = serviceTable.movePiece(posX, posY, newX, newY);
 
-    HistoryMove moveHistory{posX, posY, newX, newY, bishop};
-    std::shared_ptr < BaseEvent >  event = generatedEvents[0];
-    moveHistory.addGeneratedEvent(event);
-    ASSERT_TRUE(moveHistory.getPiece() == bishop);
-    ASSERT_TRUE(moveHistory.getOldX() == posX);
-    ASSERT_TRUE(moveHistory.getOldY() == posY);
-    ASSERT_TRUE(moveHistory.getNewY() == newX);
-    ASSERT_TRUE(moveHistory.getNewY() == newY);
-    ASSERT_TRUE(moveHistory.getGeneratedEvents().size() == 1);
-    ASSERT_TRUE(moveHistory.getGeneratedEvents().begin()->get()->getPiece() == pawn);
-    ASSERT_TRUE(moveHistory.getGeneratedEvents().begin()->get()->getEventType() == capture);
+    std::shared_ptr < HistoryMove > moveHistory = serviceTable.getLastMoveFromHistory();
+
+    ASSERT_TRUE(moveHistory->getPiece() == bishop);
+    ASSERT_TRUE(moveHistory->getOldX() == posX);
+    ASSERT_TRUE(moveHistory->getOldY() == posY);
+    ASSERT_TRUE(moveHistory->getNewY() == newX);
+    ASSERT_TRUE(moveHistory->getNewY() == newY);
+    ASSERT_TRUE(moveHistory->getGeneratedEvents().size() == 1);
+    ASSERT_TRUE(moveHistory->getGeneratedEvents().begin()->get()->getPiece() == pawn);
+    ASSERT_TRUE(moveHistory->getGeneratedEvents().begin()->get()->getEventType() == capture);
 
 
 }

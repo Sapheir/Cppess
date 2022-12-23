@@ -20,6 +20,14 @@ std::vector<std::pair<int, int>> ServiceTable::availableMovesDestinations(const 
     return table->availableMovesDestinations(posX, posY);
 }
 
+void ServiceTable::addInHistory(const int &x, const int &y, const int &newX, const int &newY, const std::shared_ptr < Piece > &piece){
+    auto events = this->getSpecialEvents(piece, newX, newY);
+    std::shared_ptr < HistoryMove > historyMove = std::make_unique<HistoryMove>(x, y, newX, newY, piece);
+    for(const auto& event: events)
+        historyMove->addGeneratedEvent(event);
+    this->history.push_back(historyMove);
+}
+
 std::vector < std::shared_ptr < BaseEvent > > ServiceTable::movePiece(const int &x, const int &y,
                                                                       const int &newX, const int &newY){
     std::shared_ptr<Piece> piece = table->getPiece(x, y);
@@ -41,15 +49,14 @@ std::vector < std::shared_ptr < BaseEvent > > ServiceTable::movePiece(const int 
         throw errorMessage;
     }
 
-    auto events = getSpecialEvents(piece, newX, newY);
-
+    addInHistory(x, y, newX, newY, piece);
     table->movePieceOnValidDestination(piece, newX, newY);
     this->changeTurn();
 
-    return events;
+    return this->history[history.size() - 1]->getGeneratedEvents();
 }
 
-std::vector < std::shared_ptr < BaseEvent > > ServiceTable::getSpecialEvents(std::shared_ptr < Piece > &piece,
+std::vector < std::shared_ptr < BaseEvent > > ServiceTable::getSpecialEvents(const std::shared_ptr < Piece > &piece,
                                                                              const int &newX, const int &newY){
     std::vector < std::shared_ptr < BaseEvent > > events;
 
@@ -66,7 +73,7 @@ std::vector < std::shared_ptr < BaseEvent > > ServiceTable::getSpecialEvents(std
     return events;
 }
 
-bool ServiceTable::checkPawnPromotion(std::shared_ptr<Piece> &piece, const int &newX, const int &newY) const{
+bool ServiceTable::checkPawnPromotion(const std::shared_ptr<Piece> &piece, const int &newX, const int &newY) const{
     if(!piece->isPawn()) return false;
     if(!table->pieceWillBeOnOppositeEdge(newX, newY)) return false;
     return true;
@@ -81,4 +88,8 @@ void ServiceTable::changeTurn() {
         currentPlayer = secondPlayerColor;
     else
         currentPlayer = firstPlayerColor;
+}
+
+std::shared_ptr < HistoryMove > ServiceTable::getLastMoveFromHistory() {
+    return this->history.back();
 }

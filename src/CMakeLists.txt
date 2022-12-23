@@ -35,6 +35,10 @@ add_executable(Cppess
         model/domain/Events.h
         model/table/Table.cpp model/table/Table.h
         model/services/ServiceTable.cpp model/services/ServiceTable.h
+        model/table/History.h
+        model/table/History.cpp
+        model/domain/history/HistoryMove.h
+        model/domain/history/HistoryMove.cpp
         main.cpp
         )
 
