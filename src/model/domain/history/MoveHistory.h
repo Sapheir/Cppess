@@ -5,6 +5,8 @@
 #ifndef CPPESS_MOVEHISTORY_H
 #define CPPESS_MOVEHISTORY_H
 
+#include <utility>
+
 #include "../pieces/Piece.h"
 #include "../Events.h"
 
@@ -22,13 +24,13 @@ public:
      * @param piece - std::shared_ptr < Piece >
      */
     HistoryMove(const int &oldX, const int &oldY, const int &newX, const int &newY,
-                 const std::shared_ptr < Piece > &piece):oldX{oldX}, oldY{oldY}, newX{newX}, newY{newY}, piece{piece}{};
+                 std::shared_ptr < Piece > piece):oldX{oldX}, oldY{oldY}, newX{newX}, newY{newY}, piece{std::move(piece)}{};
 
     /**
      * Add an event that was caused by the current move
      * @param generatedEvent - std::shared_ptr < BaseEvent >
      */
-    void addGeneratedEvent(std::shared_ptr < BaseEvent > generatedEvent){
+    void addGeneratedEvent(const std::shared_ptr < BaseEvent >& generatedEvent){
         this->generatedEvents.push_back(generatedEvent);
     }
 
