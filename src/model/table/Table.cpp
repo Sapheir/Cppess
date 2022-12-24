@@ -3,6 +3,7 @@
 //
 
 #include <algorithm>
+#include <iostream>
 #include "Table.h"
 
 Table::Table(int tableSize) {
@@ -41,12 +42,39 @@ std::vector<std::pair<int, int> > Table::availableMovesDestinations(const std::s
 
     if(piece->isKnight())
         return availableMovesDestinationsKnight(piece);
-    return availableMovesDestinationsNonKnight(piece);
+    if(piece->isPawn())
+        return availableMovesDestinationsPawn(piece);
+    return availableMovesDestinationsNonKnightOrPawn(piece);
 }
 
 std::vector<std::pair<int, int> > Table::availableMovesDestinations(const int &posX, const int &posY) const {
     std::shared_ptr < Piece > piece = this->getPiece(posX, posY);
     return this->availableMovesDestinations(piece);
+}
+
+std::vector<std::pair<int, int> > Table::availableMovesDestinationsPawn(const std::shared_ptr<Piece> &piece) const {
+    auto destinations = piece->nextPositions(this->tableSize);
+    std::vector < std::pair < int, int > > availableNextMoves;
+    for(auto destination: destinations){
+        std::shared_ptr < Piece > destinationPiece = getPiece(destination.first, destination.second);
+        if(destinationPiece != nullptr)
+            if(destinationPiece->sameColor(piece))
+                continue;
+        if (tableContent.find(destination) == tableContent.end() ) {
+            if (abs(piece->getX() - destination.first) == 0)
+                availableNextMoves.push_back(destination);
+            else{
+                std::shared_ptr < Piece > enPassantPiece = getPiece(piece->getX(), destination.second);
+                if(enPassantPiece != nullptr)
+                    if(enPassantPiece->isPawn())
+                        availableNextMoves.push_back(destination);
+            }
+        }else {
+            if (abs(piece->getX() - destination.first) == 1)
+                availableNextMoves.push_back(destination);
+        }
+    }
+    return availableNextMoves;
 }
 
 std::vector<std::pair<int, int> > Table::availableMovesDestinationsKnight(const std::shared_ptr<Piece> &piece) const {
@@ -61,7 +89,7 @@ std::vector<std::pair<int, int> > Table::availableMovesDestinationsKnight(const 
     return availableNextMoves;
 }
 
-std::vector<std::pair<int, int> > Table::availableMovesDestinationsNonKnight(const std::shared_ptr<Piece> &piece) const {
+std::vector<std::pair<int, int> > Table::availableMovesDestinationsNonKnightOrPawn(const std::shared_ptr<Piece> &piece) const {
     auto destinations = piece->nextPositions(this->tableSize);
     std::vector < std::pair < int, int > > availableDestinations;
     for(auto destination: destinations) {

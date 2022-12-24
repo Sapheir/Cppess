@@ -113,13 +113,13 @@ public:
      * @param piece - Piece
      * @return bool
      */
-     bool checkEnPassant(std::shared_ptr<Piece> &piece, const int &newX, const int &newY) const;
+     [[nodiscard]] bool checkEnPassant(const std::shared_ptr<Piece> &piece, const int &newX, const int &newY) const;
 
      /**
       * Returns the last move from history
       * @return HistoryMove
       */
-     std::shared_ptr < HistoryMove > getLastMoveFromHistory();
+     [[nodiscard]] std::shared_ptr < HistoryMove > getLastMoveFromHistory() const;
 
 };
 

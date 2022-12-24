@@ -142,5 +142,26 @@ TEST(tableMovePiece, pawnPromotion) {
     ASSERT_TRUE(generatedEvents.size() == 1);
     ASSERT_TRUE(generatedEvents.begin()->get()->getEventType() == pawn_promotion);
     ASSERT_TRUE(generatedEvents.begin()->get()->getPiece() == pawn);
+}
 
+TEST(tableMovePiece, enPassant) {
+    int tableSize = 10;
+    int posX = 3;
+    int posY = 3;
+    int newX = 3;
+    int newY = 4;
+
+    colors color = black;
+    colors anotherColor = white;
+    std::unique_ptr<Table> table = std::make_unique<Table>(tableSize);
+    ServiceTable serviceTable{table, color, anotherColor};
+
+    std::shared_ptr < Pawn > pawn = std::make_unique<Pawn>(Pawn(posX, posY, color));
+    serviceTable.addPiece(pawn);
+    serviceTable.movePiece(posX, posY, newX, newY);
+
+    std::shared_ptr < Pawn > pawn2 = std::make_unique<Pawn>(Pawn(newX, newY + 1, anotherColor));
+    serviceTable.addPiece(pawn2);
+    serviceTable.movePiece(3, 5, 4, 4);
+    ASSERT_TRUE(serviceTable.getLastMoveFromHistory()->getGeneratedEvents().begin()->get()->getEventType() == en_passant);
 }

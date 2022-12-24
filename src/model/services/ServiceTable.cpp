@@ -30,6 +30,7 @@ void ServiceTable::addInHistory(const int &x, const int &y, const int &newX, con
 
 std::vector < std::shared_ptr < BaseEvent > > ServiceTable::movePiece(const int &x, const int &y,
                                                                       const int &newX, const int &newY){
+
     std::shared_ptr<Piece> piece = table->getPiece(x, y);
 
     if (piece == nullptr) {
@@ -53,7 +54,7 @@ std::vector < std::shared_ptr < BaseEvent > > ServiceTable::movePiece(const int 
     table->movePieceOnValidDestination(piece, newX, newY);
     this->changeTurn();
 
-    return this->history[history.size() - 1]->getGeneratedEvents();
+    return this->getLastMoveFromHistory()->getGeneratedEvents();
 }
 
 std::vector < std::shared_ptr < BaseEvent > > ServiceTable::getSpecialEvents(const std::shared_ptr < Piece > &piece,
@@ -68,7 +69,12 @@ std::vector < std::shared_ptr < BaseEvent > > ServiceTable::getSpecialEvents(con
     if(removedPiece != nullptr)
         events.push_back(std::make_unique<CapturedPiece>(removedPiece));
 
-
+    /* check if there is enPassant move */
+    if(checkEnPassant(piece, newX, newY)) {
+        std::shared_ptr<Piece> removedPieceNear = table->removePiece(piece->getX(), newY);
+        if (removedPieceNear != nullptr)
+            events.push_back(std::make_unique<EnPassant>(removedPieceNear));
+    }
 
     return events;
 }
@@ -79,8 +85,13 @@ bool ServiceTable::checkPawnPromotion(const std::shared_ptr<Piece> &piece, const
     return true;
 }
 
-bool ServiceTable::checkEnPassant(std::shared_ptr<Piece> &piece, const int &newX, const int &newY) const {
-
+bool ServiceTable::checkEnPassant(const std::shared_ptr<Piece> &piece, const int &newX, const int &newY) const {
+    if(!piece->isPawn()) return false;
+    if(this->history.empty()) return false;
+    if(!this->getLastMoveFromHistory()->getPiece()->isPawn()) return false;
+    if(this->getLastMoveFromHistory()->getPiece()->getY() != newY) return false;
+    if(this->getLastMoveFromHistory()->getPiece()->getX() != piece->getX()) return false;
+    return true;
 }
 
 void ServiceTable::changeTurn() {
@@ -90,6 +101,6 @@ void ServiceTable::changeTurn() {
         currentPlayer = firstPlayerColor;
 }
 
-std::shared_ptr < HistoryMove > ServiceTable::getLastMoveFromHistory() {
-    return this->history.back();
+std::shared_ptr < HistoryMove > ServiceTable::getLastMoveFromHistory() const{
+    return this->history[history.size() - 1];
 }

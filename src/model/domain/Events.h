@@ -12,7 +12,7 @@
 enum Events{
     capture,
     pawn_promotion,
-    en_passant_promotion,
+    en_passant,
     castling
 };
 
@@ -80,9 +80,32 @@ public:
     [[nodiscard]] std::shared_ptr<Piece> getPiece() const override{
         return piece;
     }
-
-
 };
+
+class EnPassant: public BaseEvent{
+public:
+    std::shared_ptr < Piece > piece;
+
+public:
+    explicit EnPassant(std::shared_ptr < Piece > piece): BaseEvent(en_passant), piece{std::move(piece)}{};
+
+    EnPassant(const EnPassant &other) : BaseEvent(other.getEventType()) {
+        piece = other.getPiece();
+    };
+
+    EnPassant(EnPassant &&other)  noexcept : BaseEvent(other.getEventType()) {
+        piece = other.getPiece();
+    };
+
+    /**
+     * Returns the piece of the current event
+     * @return std::shared_ptr < Piece >
+     */
+    [[nodiscard]] std::shared_ptr<Piece> getPiece() const override{
+        return piece;
+    }
+};
+
 
 
 #endif //CPPESS_EVENTS_H

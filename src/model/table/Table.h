@@ -74,6 +74,13 @@ public:
     std::shared_ptr < Piece > removePiece(const int &posX, const int &posY);
 
     /**
+     * Returns all available moves for a pawn
+     * @param piece - the pawn we want next moves
+     * @return vector < pair < int, int > >
+     */
+    [[nodiscard]] std::vector < std::pair < int, int > > availableMovesDestinationsPawn(const std::shared_ptr<Piece> &piece) const;
+
+    /**
      * Returns all available moves for a knight
      * @param piece - the knight we want next moves
      * @return vector < pair < int, int > >
@@ -85,7 +92,7 @@ public:
      * @param piece - the knight we want next moves
      * @return vector < pair < int, int > >
      */
-    [[nodiscard]] std::vector < std::pair < int, int > > availableMovesDestinationsNonKnight(const std::shared_ptr<Piece> &piece) const;
+    [[nodiscard]] std::vector < std::pair < int, int > > availableMovesDestinationsNonKnightOrPawn(const std::shared_ptr<Piece> &piece) const;
 
     /**
      * Returns the list with all positions where the the piece from (posX, posY) can be moved
