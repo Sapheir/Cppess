@@ -84,6 +84,22 @@ public:
     [[nodiscard]] std::vector < std::pair < int, int > > availableMovesDestinations(const int &posX, const int &posY) const;
 
     /**
+     * Check if the piece can be moved from coordinates (x, y) to (newX, newY)
+     * @param x - int
+     * @param Y - int
+     * @param posX - int
+     * @param posY - int
+     * @throw std::string errorMessage = "There is no piece on chosen position! " if there is no piece on (x, y)
+     * @throw std::string errorMessage = "The move is not available! " if the player connot move the (x,y) piece
+     * or (newX, newY) is not a valid destination
+     * @throw std::string errorMessage = "The move is not available because you left the king without guard! " if the king
+     * get into opponent next possible moves
+     * @throw std:: string errorMessage = "You cannot move the pieces of the opponent! " - if you want to move a piece
+     * of the opponent
+     */
+     void checkMoveAvailable(const int &x, const int &y, const int &newX, const int &newY) const;
+
+    /**
      * Move the piece from coordinates (x, y) to (newX, newY)
      * @param x - int
      * @param Y - int

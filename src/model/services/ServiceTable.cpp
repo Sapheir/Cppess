@@ -28,15 +28,13 @@ void ServiceTable::addInHistory(const int &x, const int &y, const int &newX, con
     this->history.push_back(historyMove);
 }
 
-std::vector < std::shared_ptr < BaseEvent > > ServiceTable::movePiece(const int &x, const int &y,
-                                                                      const int &newX, const int &newY){
 
+void ServiceTable::checkMoveAvailable(const int &x, const int &y, const int &newX, const int &newY) const {
+    std::shared_ptr<Piece> piece = table->getPiece(x, y);
     if(x == newX && y == newY){
         std::string errorMessage = "The move is not available! ";
         throw errorMessage;
     }
-
-    std::shared_ptr<Piece> piece = table->getPiece(x, y);
 
     if (piece == nullptr) {
         std::string errorMessage = "There is no piece on the chosen position! ";
@@ -54,7 +52,12 @@ std::vector < std::shared_ptr < BaseEvent > > ServiceTable::movePiece(const int 
         std::string errorMessage = "The move is not available! ";
         throw errorMessage;
     }
+}
 
+std::vector < std::shared_ptr < BaseEvent > > ServiceTable::movePiece(const int &x, const int &y,
+                                                                      const int &newX, const int &newY){
+    checkMoveAvailable(x, y, newX, newY);
+    std::shared_ptr<Piece> piece = table->getPiece(x, y);
     addInHistory(x, y, newX, newY, piece);
     table->movePieceOnValidDestination(piece, newX, newY);
     this->changeTurn();
