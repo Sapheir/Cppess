@@ -115,6 +115,19 @@ public:
      */
      [[nodiscard]]  bool pieceWillBeOnOppositeEdge(const int &newX, const int &newY) const;
 
+     /**
+     * Returns the king with the current color
+     * @param color - colors - the color we want
+     * @return - std::shared_ptr < Piece >
+     */
+     [[nodiscard]] std::shared_ptr < Piece > getKing(colors color) const;
+
+     /**
+      * Returns if a king is under attack
+      * @param color -colors - color of the king we want to check
+      * @return bool
+      */
+     [[nodiscard]] bool kingUnderAttack(colors color);
 
     ~Table() = default;
 

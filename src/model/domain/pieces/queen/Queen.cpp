@@ -30,4 +30,8 @@ bool Queen::isPawn() const {
     return false;
 }
 
+bool Queen::isKing() const {
+    return false;
+}
+
 

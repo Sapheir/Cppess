@@ -33,6 +33,12 @@ private:
      */
     void addInHistory(const int &x, const int &y, const int &newX, const int &newY, const std::shared_ptr < Piece > &piece);
 
+    /**
+     * Returns the reference to the king of current color
+     * @return
+     */
+    [[nodiscard]] std::shared_ptr < Piece > getKing() const;
+
 public:
 
     ServiceTable() = delete;
@@ -87,6 +93,10 @@ public:
      * @throw std::string errorMessage = "There is no piece on chosen position! " if there is no piece on (x, y)
      * @throw std::string errorMessage = "The move is not available! " if the player connot move the (x,y) piece
      * or (newX, newY) is not a valid destination
+     * @throw std::string errorMessage = "The move is not available because you left the king without guard! " if the king
+     * get into opponent next possible moves
+     * @throw std:: string errorMessage = "You cannot move the pieces of the opponent! " - if you want to move a piece
+     * of the opponent
      */
     std::vector < std::shared_ptr < BaseEvent > > movePiece(const int &x, const int &y, const int &newX, const int &newY);
 
@@ -120,6 +130,12 @@ public:
       * @return HistoryMove
       */
      [[nodiscard]] std::shared_ptr < HistoryMove > getLastMoveFromHistory() const;
+
+     /**
+      * Returns true if the king is unprotected ( can be under attack of some enemy piece)
+      * @return bool
+      */
+      [[nodiscard]] bool kingUnprotected();
 
 };
 

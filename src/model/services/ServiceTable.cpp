@@ -31,6 +31,11 @@ void ServiceTable::addInHistory(const int &x, const int &y, const int &newX, con
 std::vector < std::shared_ptr < BaseEvent > > ServiceTable::movePiece(const int &x, const int &y,
                                                                       const int &newX, const int &newY){
 
+    if(x == newX && y == newY){
+        std::string errorMessage = "The move is not available! ";
+        throw errorMessage;
+    }
+
     std::shared_ptr<Piece> piece = table->getPiece(x, y);
 
     if (piece == nullptr) {
@@ -54,6 +59,12 @@ std::vector < std::shared_ptr < BaseEvent > > ServiceTable::movePiece(const int 
     table->movePieceOnValidDestination(piece, newX, newY);
     this->changeTurn();
 
+    if(piece->isKing()) {
+        if (this->kingUnprotected()) {
+            std::string errorMessage = "The move is not available because you left the king without guard! ";
+            throw errorMessage;
+        }
+    }
     return this->getLastMoveFromHistory()->getGeneratedEvents();
 }
 
@@ -103,4 +114,12 @@ void ServiceTable::changeTurn() {
 
 std::shared_ptr < HistoryMove > ServiceTable::getLastMoveFromHistory() const{
     return this->history[history.size() - 1];
+}
+
+std::shared_ptr < Piece > ServiceTable::getKing() const{
+    return table->getKing(this->currentPlayer);
+}
+
+bool ServiceTable::kingUnprotected() {
+    return table->kingUnderAttack(this->currentPlayer);
 }

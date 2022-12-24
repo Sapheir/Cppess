@@ -49,3 +49,7 @@ bool King::isKnight() const {
 bool King::isPawn() const {
     return false;
 }
+
+bool King::isKing() const {
+    return true;
+}

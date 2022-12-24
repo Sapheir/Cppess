@@ -40,3 +40,7 @@ bool Pawn::isPawn() const {
     return true;
 }
 
+bool Pawn::isKing() const {
+    return false;
+}
+

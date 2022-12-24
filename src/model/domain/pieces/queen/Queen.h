@@ -36,6 +36,12 @@ public:
      */
     [[nodiscard]] bool isPawn() const override;
 
+    /**
+     * Returns false because current piece is not a pawn
+     * @return bool
+     */
+    [[nodiscard]] bool isKing() const override;
+
 };
 
 #endif //CPPESS_QUEEN_H

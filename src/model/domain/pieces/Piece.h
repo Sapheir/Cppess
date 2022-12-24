@@ -62,12 +62,6 @@ public:
     [[nodiscard]] virtual std::vector < std::pair < int, int > > nextPositions(const int &tableSize) const = 0;
 
     /**
-     * Returns true or if the current piece is a knight
-     * @return bool
-     */
-    [[nodiscard]] virtual bool isKnight() const = 0;
-
-    /**
      * Get the offset on X of the piece as an int
      */
     [[nodiscard]] int getX() const;
@@ -120,7 +114,23 @@ public:
      */
      [[nodiscard]] bool sameColor(const std::shared_ptr<Piece> &other) const;
 
+    /**
+    * Returns true or if the current piece is a pawn
+    * @return bool
+    */
      [[nodiscard]] virtual bool isPawn() const = 0;
+
+     /**
+     * Returns true or if the current piece is a knight
+     * @return bool
+     */
+     [[nodiscard]] virtual bool isKnight() const = 0;
+
+     /**
+     * Returns true or if the current piece is a king
+     * @return bool
+     */
+     [[nodiscard]] virtual bool isKing() const = 0;
 };
 
 

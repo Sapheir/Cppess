@@ -126,3 +126,25 @@ void Table::movePieceOnValidDestination(std::shared_ptr<Piece> piece, int newX, 
 bool Table::pieceWillBeOnOppositeEdge(const int &newX, const int &newY) const {
     return (newY == tableSize);
 }
+
+std::shared_ptr<Piece> Table::getKing(colors color) const {
+    for(const auto& piece: tableContent) {
+        if (piece.second->getColor() != color) continue;
+        if (piece.second->isKing())
+            return piece.second;
+    }
+    return nullptr;
+}
+
+bool Table::kingUnderAttack(colors color) {
+    std::shared_ptr < Piece > king = this->getKing(color);
+    for(const auto &piece: tableContent) {
+        if (piece.second->getColor() == color) continue;
+        auto pieceDestination = piece.second->nextPositions(tableSize);
+        auto possiblePositionWhereAreKingCoordinates = std::find(pieceDestination.begin(), pieceDestination.end(),
+                                                                std::make_pair(king->getX(), king->getY()));
+        if(possiblePositionWhereAreKingCoordinates != pieceDestination.end())
+            return true;
+    }
+    return false;
+}

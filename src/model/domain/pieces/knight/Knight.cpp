@@ -31,3 +31,7 @@ bool Knight::isPawn() const {
     return false;
 }
 
+bool Knight::isKing() const {
+    return false;
+}
+

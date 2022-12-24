@@ -165,3 +165,28 @@ TEST(tableMovePiece, enPassant) {
     serviceTable.movePiece(3, 5, 4, 4);
     ASSERT_TRUE(serviceTable.getLastMoveFromHistory()->getGeneratedEvents().begin()->get()->getEventType() == en_passant);
 }
+
+TEST(testMovePiece, kingUnprotected){
+    int kingX = 3;
+    int kingY = 3;
+    int bishopX = 3;
+    int bishopY = 4;
+    int queenX = 3;
+    int queenY = 5;
+    int tableSize = 10;
+
+    colors color = black;
+    colors anotherColor = white;
+    std::unique_ptr<Table> table = std::make_unique<Table>(tableSize);
+    ServiceTable serviceTable{table, color, anotherColor};
+
+    serviceTable.addPiece(std::make_unique < King > (kingX, kingY, color));
+    serviceTable.addPiece(std::make_unique<Bishop>(bishopX, bishopY, color));
+    serviceTable.addPiece(std::make_unique<Queen>(queenX, queenY, anotherColor));
+
+    try{
+        serviceTable.movePiece(bishopX, bishopY, bishopX + 1, bishopY + 1);
+    }catch(std::string &error){
+        ASSERT_TRUE(error.find("The move is not available because you left the king without guard"));
+    }
+}

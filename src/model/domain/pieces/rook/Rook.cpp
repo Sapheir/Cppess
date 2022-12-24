@@ -27,3 +27,7 @@ bool Rook::isKnight() const {
 bool Rook::isPawn() const {
     return false;
 }
+
+bool Rook::isKing() const {
+    return false;
+}

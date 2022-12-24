@@ -28,3 +28,7 @@ bool Bishop::isPawn() const {
     return false;
 }
 
+bool Bishop::isKing() const {
+    return false;
+}
+
