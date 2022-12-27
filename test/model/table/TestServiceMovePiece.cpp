@@ -190,3 +190,34 @@ TEST(testMovePiece, kingUnprotected){
         ASSERT_TRUE(error.find("The move is not available because you left the king without guard"));
     }
 }
+
+TEST(testMovePiece, king_under_attack){
+    int kingX = 3;
+    int kingY = 3;
+    int bishopX = 3;
+    int bishopY = 4;
+    int queenX = 3;
+    int queenY = 5;
+    int tableSize = 10;
+
+    colors color = black;
+    colors anotherColor = white;
+    std::unique_ptr<Table> table = std::make_unique<Table>(tableSize);
+    ServiceTable serviceTable{table, color, anotherColor};
+
+    serviceTable.addPiece(std::make_unique < King > (kingX, kingY, color));
+    serviceTable.addPiece(std::make_unique<Bishop>(bishopX, bishopY, anotherColor));
+    serviceTable.addPiece(std::make_unique<Queen>(queenX, queenY, anotherColor));
+
+
+    try {
+        serviceTable.movePiece(kingX, kingY, kingX, kingY - 1);
+        auto it = serviceTable.movePiece(bishopX, bishopY, bishopX + 1, bishopY + 1);
+
+        auto historyRegister = serviceTable.getLastMoveFromHistory();
+        ASSERT_TRUE(historyRegister.get()->getGeneratedEvents().begin()->get()->getEventType() == king_under_attack);
+    }catch (std::string error){
+        std::cout << error;
+    }
+
+}

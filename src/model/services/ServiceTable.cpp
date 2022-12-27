@@ -47,7 +47,6 @@ void ServiceTable::checkMoveAvailable(const int &x, const int &y, const int &new
     }
 
     auto destinations = table->availableMovesDestinations(piece);
-
     if(std::find(destinations.begin(), destinations.end(), std::make_pair(newX, newY))== destinations.end()) {
         std::string errorMessage = "The move is not available! ";
         throw errorMessage;
@@ -60,7 +59,7 @@ std::vector < std::shared_ptr < BaseEvent > > ServiceTable::movePiece(const int 
     std::shared_ptr<Piece> piece = table->getPiece(x, y);
     addInHistory(x, y, newX, newY, piece);
     table->movePieceOnValidDestination(piece, newX, newY);
-    this->changeTurn();
+    addOpponentKingUnderAttackInHistory();
 
     if(piece->isKing()) {
         if (this->kingUnprotected()) {
@@ -68,6 +67,7 @@ std::vector < std::shared_ptr < BaseEvent > > ServiceTable::movePiece(const int 
             throw errorMessage;
         }
     }
+    this->changeTurn();
     return this->getLastMoveFromHistory()->getGeneratedEvents();
 }
 
@@ -76,18 +76,18 @@ std::vector < std::shared_ptr < BaseEvent > > ServiceTable::getSpecialEvents(con
     std::vector < std::shared_ptr < BaseEvent > > events;
 
     if(checkPawnPromotion(piece, newX, newY))
-        events.push_back(std::make_unique<PawnPromotion>(piece));
+        events.push_back(std::make_unique<PawnPromotionEvent>(piece));
 
     /* check if there is a piece of the opponent captured during the move of the current piece */
     std::shared_ptr < Piece > removedPiece = table->removePiece(newX, newY);
     if(removedPiece != nullptr)
-        events.push_back(std::make_unique<CapturedPiece>(removedPiece));
+        events.push_back(std::make_unique<CapturedPieceEvent>(removedPiece));
 
     /* check if there is enPassant move */
     if(checkEnPassant(piece, newX, newY)) {
         std::shared_ptr<Piece> removedPieceNear = table->removePiece(piece->getX(), newY);
         if (removedPieceNear != nullptr)
-            events.push_back(std::make_unique<EnPassant>(removedPieceNear));
+            events.push_back(std::make_unique<EnPassantEvent>(removedPieceNear));
     }
 
     return events;
@@ -125,4 +125,33 @@ std::shared_ptr < Piece > ServiceTable::getKing() const{
 
 bool ServiceTable::kingUnprotected() {
     return table->kingUnderAttack(this->currentPlayer);
+}
+
+std::vector < std::shared_ptr < BaseEvent > > ServiceTable::checkIfTheOpponentKingIsUnderAttack() const{
+    std::vector < std::shared_ptr < BaseEvent > > events;
+    if(currentPlayer == firstPlayerColor && table->getKing(secondPlayerColor) != nullptr) {
+        std::shared_ptr < Piece > piece = table->getKing(secondPlayerColor);
+        std::cout << "A";
+        auto attackers = this->table->underAttack(piece->getX(), piece->getY());
+        if (!attackers.empty()) {
+            events.push_back(std::make_unique<KingUnderAttackEvent>(piece, attackers));
+        }
+    }
+
+    if(currentPlayer == secondPlayerColor && table->getKing(firstPlayerColor) != nullptr) {
+        std::shared_ptr < Piece > piece = table->getKing(firstPlayerColor);
+        std::cout << "B";
+        auto attackers = this->table->underAttack(piece->getX(), piece->getY());
+        if (!attackers.empty()) {
+            events.push_back(std::make_unique<KingUnderAttackEvent>(piece, attackers));
+        }
+    }
+    return events;
+}
+
+void ServiceTable::addOpponentKingUnderAttackInHistory() {
+    auto lastHistoryRecord = this->getLastMoveFromHistory();
+    auto opponentKingUnderAttack = this->checkIfTheOpponentKingIsUnderAttack();
+    for(const auto& event: opponentKingUnderAttack)
+        lastHistoryRecord->addGeneratedEvent(event);
 }

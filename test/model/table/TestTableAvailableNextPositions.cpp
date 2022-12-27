@@ -29,8 +29,6 @@ TEST(tableNextPositions, availableDestionations) {
 
     auto positions = table->availableMovesDestinations(posX, posY);
 
-    for(auto it : positions)
-        std::cout << it.first << " " << it.second << "\n";
     sort(positions.begin(), positions.end());
     // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(17 == positions.size());
@@ -63,6 +61,9 @@ TEST(tableNextPositions, availableDestionationsPieceBetween) {
     auto positions = table->availableMovesDestinations(posX, posY);
 
     sort(positions.begin(), positions.end());
+
+    for(auto it : positions)
+        std::cout << it.first << " " << it.second << "\n";
 
     // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(13 == positions.size());

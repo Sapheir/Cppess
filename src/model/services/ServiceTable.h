@@ -153,6 +153,17 @@ public:
       */
       [[nodiscard]] bool kingUnprotected();
 
+      /**
+       * Check if the opponent king is under attack from some piece
+       * @return std::vector < std::shared_ptr < BaseEvent > > - vector with attack events
+       */
+      [[nodiscard]] std::vector < std::shared_ptr < BaseEvent > > checkIfTheOpponentKingIsUnderAttack() const;
+
+      /**
+       * Add in last history records if the opponent king gets under attack after current move
+       */
+       void addOpponentKingUnderAttackInHistory();
+
 };
 
 

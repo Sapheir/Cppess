@@ -127,7 +127,14 @@ public:
       * @param color -colors - color of the king we want to check
       * @return bool
       */
-     [[nodiscard]] bool kingUnderAttack(colors color);
+     [[nodiscard]] bool kingUnderAttack(colors color) const;
+
+     /**
+      * Returns if a piece is under attack
+      * @param (x, y) - (int, int)
+      * @return std::vector < std::pair < int, int > > - all attackers
+      */
+      [[nodiscard]] std::vector < std::pair < int, int > > underAttack(const int &x, const int &y) const;
 
     ~Table() = default;
 
