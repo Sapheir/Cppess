@@ -19,6 +19,8 @@ if(NOT GCOV_PATH)
   message(FATAL_ERROR "Code coverage analysis requires gcov!")
 endif()
 
+file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
+
 add_subdirectory(src)
 
 enable_testing()

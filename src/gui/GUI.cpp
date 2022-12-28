@@ -1,0 +1,42 @@
+// Created by Catalin
+#include "GUI.h"
+
+GUI::GUI() {
+    loadFont();
+    loadIcon();
+    loadMainMenu();
+}
+
+void GUI::loadFont() {
+    if (!textFont.loadFromFile("../assets/arial.ttf")) {
+        throw std::runtime_error("Arial font was not found!");
+    }
+}
+
+void GUI::loadIcon() {
+    sf::Image icon;
+    if (!icon.loadFromFile("../assets/icon.png")) {
+        throw std::runtime_error("Icon was not found!");
+    }
+    window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+}
+
+void GUI::loadMainMenu() {
+
+}
+
+void GUI::run() {
+    while (window.isOpen()) {
+        sf::Event event{};
+        while (window.pollEvent(event)) {
+            switch (event.type) {
+                case sf::Event::Closed:
+                    window.close();
+                    break;
+                default:
+                    break;
+            }
+        }
+        window.display();
+    }
+}

@@ -34,8 +34,8 @@ add_executable(Cppess
         model/pieces/colors.h
         model/table/Table.cpp model/table/Table.h
         model/services/ServiceTable.cpp model/services/ServiceTable.h
-        main.cpp
-        )
+        gui/GUI.cpp gui/GUI.h
+        main.cpp)
 
 target_link_libraries(Cppess PRIVATE
         sfml-audio
