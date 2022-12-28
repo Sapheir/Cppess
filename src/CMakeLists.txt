@@ -35,6 +35,8 @@ add_executable(Cppess
         model/table/Table.cpp model/table/Table.h
         model/services/ServiceTable.cpp model/services/ServiceTable.h
         gui/GUI.cpp gui/GUI.h
+        gui/screens/Screen.cpp gui/screens/Screen.h
+        gui/screens/main_menu/MainMenu.cpp gui/screens/main_menu/MainMenu.h gui/screens/main_menu/main_menu_options.h
         main.cpp)
 
 target_link_libraries(Cppess PRIVATE

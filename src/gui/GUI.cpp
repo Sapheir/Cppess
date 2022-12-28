@@ -4,7 +4,7 @@
 GUI::GUI() {
     loadFont();
     loadIcon();
-    loadMainMenu();
+    currentScreen = std::make_unique<MainMenu>(window, textFont, 24);
 }
 
 void GUI::loadFont() {
@@ -21,10 +21,6 @@ void GUI::loadIcon() {
     window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 }
 
-void GUI::loadMainMenu() {
-
-}
-
 void GUI::run() {
     while (window.isOpen()) {
         sf::Event event{};
@@ -33,10 +29,16 @@ void GUI::run() {
                 case sf::Event::Closed:
                     window.close();
                     break;
+                case sf::Event::Resized:
+                    currentScreen->resize(event.size.width, event.size.height);
+                    break;
                 default:
+                    currentScreen->handleEvent(event);
                     break;
             }
         }
+        window.clear();
+        currentScreen->draw();
         window.display();
     }
 }
