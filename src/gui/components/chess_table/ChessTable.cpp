@@ -1,3 +1,4 @@
+// Created by Catalin
 #include "ChessTable.h"
 
 ChessTable::ChessTable(const float &boardTopLeft, const float &boardTopRight) {

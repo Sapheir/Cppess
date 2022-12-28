@@ -13,7 +13,7 @@ private:
     void setCursorSelectPosition(const unsigned int &mouseMoveX, const unsigned int &mouseMoveY);
 
 public:
-    MainMenu(sf::RenderWindow& window, sf::Font& font, const unsigned int &fontSize);
+    MainMenu(sf::RenderWindow& window, sf::Font& font, const unsigned int &fontSize, screens &nextScreen);
     void draw() override;
     void resize(const unsigned int &width, const unsigned int &height) override;
     void handleEvent(sf::Event &event) override;

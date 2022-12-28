@@ -4,7 +4,7 @@
 GUI::GUI() {
     loadFont();
     loadIcon();
-    currentScreen = std::make_unique<MainMenu>(window, textFont, 24);
+    currentScreen = std::make_unique<MainMenu>(window, textFont, FONT_SIZE, currentScreenType);
 }
 
 void GUI::loadFont() {
@@ -24,6 +24,7 @@ void GUI::loadIcon() {
 void GUI::run() {
     while (window.isOpen()) {
         sf::Event event{};
+        screens initialType = currentScreenType;
         while (window.pollEvent(event)) {
             switch (event.type) {
                 case sf::Event::Closed:
@@ -38,7 +39,24 @@ void GUI::run() {
             }
         }
         window.clear();
+        if (currentScreenType != initialType) {
+            chooseScreen();
+        }
         currentScreen->draw();
         window.display();
+    }
+}
+
+void GUI::chooseScreen() {
+    switch (currentScreenType) {
+        case main_menu:
+            currentScreen = std::make_unique<MainMenu>(window, textFont, FONT_SIZE, currentScreenType);
+            break;
+        case single_player_options:
+            currentScreen = std::make_unique<SinglePlayerOptions>(window, textFont, FONT_SIZE, currentScreenType);
+            break;
+        default:
+            currentScreen = std::make_unique<MainMenu>(window, textFont, FONT_SIZE, currentScreenType);
+            break;
     }
 }

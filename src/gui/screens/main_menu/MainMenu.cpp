@@ -1,9 +1,8 @@
 // Created by Catalin
-#include <iostream>
 #include "MainMenu.h"
 
-MainMenu::MainMenu(sf::RenderWindow& window, sf::Font& font, const unsigned int &fontSize)
-        : Screen{window, font, fontSize} {
+MainMenu::MainMenu(sf::RenderWindow& window, sf::Font& font, const unsigned int &fontSize, screens &nextScreen)
+        : Screen{window, font, fontSize, nextScreen}, hoveredOption{single_player} {
     loadOptions();
     loadCursorSelect();
 }
@@ -65,10 +64,8 @@ void MainMenu::handleEvent(sf::Event &event) {
     } else if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
         switch (hoveredOption) {
             case single_player:
-                std::cout << "Single player\n";
-                break;
+                nextScreen = single_player_options;
             case multiplayer:
-                std::cout << "Multiplayer\n";
                 break;
             case quit:
                 window.close();
