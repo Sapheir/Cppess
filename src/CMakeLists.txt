@@ -37,6 +37,7 @@ add_executable(Cppess
         gui/GUI.cpp gui/GUI.h
         gui/screens/Screen.cpp gui/screens/Screen.h
         gui/screens/main_menu/MainMenu.cpp gui/screens/main_menu/MainMenu.h gui/screens/main_menu/main_menu_options.h
+        gui/components/chess_table/ChessTable.cpp gui/components/chess_table/ChessTable.h
         main.cpp)
 
 target_link_libraries(Cppess PRIVATE
