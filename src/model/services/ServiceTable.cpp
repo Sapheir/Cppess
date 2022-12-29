@@ -143,7 +143,7 @@ std::vector < std::shared_ptr < BaseEvent > > ServiceTable::checkIfTheOpponentKi
     return events;
 }
 
-void ServiceTable::addOpponentKingUnderAttackInHistory() {
+void ServiceTable::addOpponentKingUnderAttackInHistory() const {
     auto lastHistoryRecord = this->getLastMoveFromHistory();
     auto opponentKingUnderAttack = this->checkIfTheOpponentKingIsUnderAttack();
     for(const auto& event: opponentKingUnderAttack)

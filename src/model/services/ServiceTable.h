@@ -162,7 +162,7 @@ public:
       /**
        * Add in last history records if the opponent king gets under attack after current move
        */
-       void addOpponentKingUnderAttackInHistory();
+       void addOpponentKingUnderAttackInHistory() const;
 
 };
 
