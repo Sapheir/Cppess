@@ -168,3 +168,7 @@ void ServiceTable::checkGameEnded() const {
             }
         }
 }
+
+colors ServiceTable::getCurrentPlayer() const {
+    return currentPlayer;
+}

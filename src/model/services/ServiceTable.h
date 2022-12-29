@@ -169,6 +169,11 @@ public:
         */
        void checkGameEnded() const;
 
+       /**
+        * Get current player
+        */
+        [[nodiscard]] colors getCurrentPlayer() const;
+
 };
 
 
