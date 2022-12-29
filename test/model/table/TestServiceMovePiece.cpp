@@ -244,7 +244,6 @@ TEST(testMovePiece, win){
     try {
         auto it = serviceTable.movePiece(rook2X, rook2Y, kingX, rook2Y);
         auto historyRegister = serviceTable.getLastMoveFromHistory();
-        //std::cout << historyRegister.get()->getGeneratedEvents().size();
         ASSERT_TRUE( (historyRegister.get()->getGeneratedEvents().begin() + 1)->get()->getEventType() == win);
     }catch (std::string error){
         std::cout << error;
