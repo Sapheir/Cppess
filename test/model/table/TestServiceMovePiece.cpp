@@ -1,5 +1,5 @@
 //
-// Created by User on 18/12/2022.
+// Created by Turca Vasile on 18/12/2022.
 //
 
 #include <gtest/gtest.h>
@@ -220,4 +220,33 @@ TEST(testMovePiece, king_under_attack){
         std::cout << error;
     }
 
+}
+
+TEST(testMovePiece, win){
+    int kingX = 1;
+    int kingY = 1;
+    int rook1X = 2;
+    int rook1Y = 2;
+    int rook2X = 10;
+    int rook2Y = 10;
+    int tableSize = 10;
+
+    colors color = black;
+    colors anotherColor = white;
+    std::unique_ptr<Table> table = std::make_unique<Table>(tableSize);
+    ServiceTable serviceTable{table, color, anotherColor};
+
+    serviceTable.addPiece(std::make_unique < King > (kingX, kingY, anotherColor));
+    serviceTable.addPiece(std::make_unique<Rook>(rook1X, rook1Y, color));
+    serviceTable.addPiece(std::make_unique<Rook>(rook2X, rook2Y, color));
+
+
+    try {
+        auto it = serviceTable.movePiece(rook2X, rook2Y, kingX, rook2Y);
+        auto historyRegister = serviceTable.getLastMoveFromHistory();
+        //std::cout << historyRegister.get()->getGeneratedEvents().size();
+        ASSERT_TRUE( (historyRegister.get()->getGeneratedEvents().begin() + 1)->get()->getEventType() == win);
+    }catch (std::string error){
+        std::cout << error;
+    }
 }

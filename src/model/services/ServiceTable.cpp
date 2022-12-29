@@ -9,7 +9,7 @@ std::shared_ptr<Piece> ServiceTable::getPiece(const int &posX, const int &posY) 
 }
 
 std::shared_ptr<Piece> ServiceTable::removePiece(const int &posX, const int &posY) {
-    table->removePiece(posX, posY);
+    return table->removePiece(posX, posY);
 }
 
 void ServiceTable::addPiece(const std::shared_ptr<Piece> &newPiece) {
@@ -49,8 +49,10 @@ void ServiceTable::checkMoveAvailable(const int &x, const int &y, const int &new
     }
 }
 
+
+
 std::vector < std::shared_ptr < BaseEvent > > ServiceTable::movePiece(const int &x, const int &y,
-                                                                      const int &newX, const int &newY){
+                                                                           const int &newX, const int &newY){
     checkMoveAvailable(x, y, newX, newY);
     std::shared_ptr<Piece> piece = table->getPiece(x, y);
     addInHistory(x, y, newX, newY, piece);
@@ -62,13 +64,14 @@ std::vector < std::shared_ptr < BaseEvent > > ServiceTable::movePiece(const int 
             throw std::runtime_error("The move is not available because you left the king without guard! ");
         }
     }
+    checkGameEnded();
     this->changeTurn();
     return this->getLastMoveFromHistory()->getGeneratedEvents();
 }
 
-std::vector < std::shared_ptr < BaseEvent > > ServiceTable::getSpecialEvents(const std::shared_ptr < Piece > &piece,
-                                                                             const int &newX, const int &newY){
-    std::vector < std::shared_ptr < BaseEvent > > events;
+std::vector < std::shared_ptr < BasePieceEvent > > ServiceTable::getSpecialEvents(const std::shared_ptr < Piece > &piece,
+                                                                                  const int &newX, const int &newY){
+    std::vector < std::shared_ptr < BasePieceEvent > > events;
 
     if(checkPawnPromotion(piece, newX, newY))
         events.push_back(std::make_unique<PawnPromotionEvent>(piece));
@@ -122,18 +125,17 @@ bool ServiceTable::kingUnprotected() {
     return table->kingUnderAttack(this->currentPlayer);
 }
 
-std::vector < std::shared_ptr < BaseEvent > > ServiceTable::checkIfTheOpponentKingIsUnderAttack() const{
-    std::vector < std::shared_ptr < BaseEvent > > events;
-    if(currentPlayer == firstPlayerColor && table->getKing(secondPlayerColor) != nullptr) {
+std::vector < std::shared_ptr < BasePieceEvent > > ServiceTable::checkIfTheOpponentKingIsUnderAttack() const{
+    std::vector < std::shared_ptr < BasePieceEvent > > events;
+    if(currentPlayer == firstPlayerColor && table->getKing(secondPlayerColor)) {
         std::shared_ptr < Piece > piece = table->getKing(secondPlayerColor);
-        std::cout << "A";
         auto attackers = this->table->underAttack(piece->getX(), piece->getY());
         if (!attackers.empty()) {
             events.push_back(std::make_unique<KingUnderAttackEvent>(piece, attackers));
         }
     }
 
-    if(currentPlayer == secondPlayerColor && table->getKing(firstPlayerColor) != nullptr) {
+    if(currentPlayer == secondPlayerColor && table->getKing(firstPlayerColor)) {
         std::shared_ptr < Piece > piece = table->getKing(firstPlayerColor);
         auto attackers = this->table->underAttack(piece->getX(), piece->getY());
         if (!attackers.empty()) {
@@ -148,4 +150,21 @@ void ServiceTable::addOpponentKingUnderAttackInHistory() const {
     auto opponentKingUnderAttack = this->checkIfTheOpponentKingIsUnderAttack();
     for(const auto& event: opponentKingUnderAttack)
         lastHistoryRecord->addGeneratedEvent(event);
+}
+
+void ServiceTable::checkGameEnded() const {
+    for(auto event: getLastMoveFromHistory()->getGeneratedEvents())
+        if(event->getEventType() == king_under_attack){
+            auto kingPossiblePositions = this->availableMovesDestinations(event->getPiece()->getX(), event->getPiece()->getY());
+            bool allUnderAttack = true;
+            for(auto kingPossiblePosition: kingPossiblePositions)
+                if(this->table->underAttack(kingPossiblePosition.first, kingPossiblePosition.second).empty()){
+                    allUnderAttack = false;
+                    break;
+                }
+
+            if(allUnderAttack){
+                history.back()->addGeneratedEvent(std::make_unique<GameEnded>(currentPlayer));
+            }
+        }
 }

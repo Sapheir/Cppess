@@ -29,7 +29,7 @@ public:
 
     /**
      * Add an event that was caused by the current move
-     * @param generatedEvent - std::shared_ptr < BaseEvent >
+     * @param generatedEvent - std::shared_ptr < BasePieceEvent >
      */
     void addGeneratedEvent(const std::shared_ptr < BaseEvent >& generatedEvent){
         this->generatedEvents.push_back(generatedEvent);
