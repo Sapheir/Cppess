@@ -3,6 +3,7 @@
 #include "screens/Screen.h"
 #include "screens/main_menu/MainMenu.h"
 #include "screens/single_player/SinglePlayerOptions.h"
+#include "screens/multiplayer/MultiplayerOptions.h"
 #include "screens/screens.h"
 
 #define FONT_SIZE 24

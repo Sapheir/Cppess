@@ -3,7 +3,7 @@
 #include "SinglePlayerOptions.h"
 
 SinglePlayerOptions::SinglePlayerOptions(sf::RenderWindow& window, sf::Font& font, const unsigned int &fontSize, screens &nextScreen)
-        : Screen{window, font, fontSize, nextScreen}, selectedColor{white} {
+        : Screen{window, font, fontSize, nextScreen}, selectedColor{white}, hoveredColor{white} {
     loadOptions();
     loadCursorSelections();
 }
@@ -73,12 +73,17 @@ void SinglePlayerOptions::resize(const unsigned int &width, const unsigned int &
     playLabel.setPosition(sf::Vector2f{(float)width / 2, (float)height / 2});
 
     hoveredOption.setSize(sf::Vector2f{(float)width / 4, (float)height / 12});
-    hoveredOption.setPosition(sf::Vector2f{(float)width / 2 - (float)hoveredOption.getSize().x / 2,
-                                          chooseWhite.getPosition().y - hoveredOption.getSize().y / 2});
+    hoveredOption.setPosition(sf::Vector2f{chooseWhite.getPosition().x - hoveredOption.getSize().x / 2,
+                                           chooseWhite.getPosition().y - hoveredOption.getSize().y / 2});
 
     selectedOption.setSize(sf::Vector2f{(float)width / 4, (float)height / 12});
-    selectedOption.setPosition(sf::Vector2f{(float)width / 2 - (float)selectedOption.getSize().x / 2,
-                                           chooseWhite.getPosition().y - selectedOption.getSize().y / 2});
+    if (hoveredColor == white) {
+        selectedOption.setPosition(sf::Vector2f{chooseWhite.getPosition().x - selectedOption.getSize().x / 2,
+                                                chooseWhite.getPosition().y - selectedOption.getSize().y / 2});
+    } else {
+        selectedOption.setPosition(sf::Vector2f{chooseBlack.getPosition().x - selectedOption.getSize().x / 2,
+                                                chooseBlack.getPosition().y - selectedOption.getSize().y / 2});
+    }
 }
 
 void SinglePlayerOptions::handleEvent(sf::Event &event) {

@@ -39,6 +39,7 @@ add_executable(Cppess
         gui/screens/Screen.cpp gui/screens/Screen.h gui/screens/screens.h
         gui/screens/main_menu/MainMenu.cpp gui/screens/main_menu/MainMenu.h gui/screens/main_menu/main_menu_options.h
         gui/screens/single_player/SinglePlayerOptions.cpp gui/screens/single_player/SinglePlayerOptions.h
+        gui/screens/multiplayer/MultiplayerOptions.cpp gui/screens/multiplayer/MultiplayerOptions.h
         main.cpp)
 
 target_link_libraries(Cppess PRIVATE

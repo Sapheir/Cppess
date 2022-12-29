@@ -65,7 +65,9 @@ void MainMenu::handleEvent(sf::Event &event) {
         switch (hoveredOption) {
             case single_player:
                 nextScreen = single_player_options;
+                break;
             case multiplayer:
+                nextScreen = multiplayer_options;
                 break;
             case quit:
                 window.close();
