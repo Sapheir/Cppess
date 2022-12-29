@@ -7,12 +7,13 @@
 #include <algorithm>
 
 #include "../src/model/table/Table.h"
-#include "model/pieces/bishop/Bishop.h"
-#include "model/pieces/king/King.h"
-#include "model/pieces/knight/Knight.h"
-#include "model/pieces/pawn/Pawn.h"
-#include "model/pieces/queen/Queen.h"
-#include "model/pieces/rook/Rook.h"
+#include "model/domain/pieces/bishop/Bishop.h"
+#include "model/domain/pieces/king/King.h"
+#include "model/domain/pieces/knight/Knight.h"
+#include "model/domain/pieces/pawn/Pawn.h"
+#include "model/domain/pieces/queen/Queen.h"
+#include "model/domain/pieces/rook/Rook.h"
+#include "model/services/ServiceTable.h"
 
 /**
  * TO DO remove other types
@@ -28,8 +29,6 @@ TEST(tableNextPositions, availableDestionations) {
 
     auto positions = table->availableMovesDestinations(posX, posY);
 
-    for(auto it : positions)
-        std::cout << it.first << " " << it.second << "\n";
     sort(positions.begin(), positions.end());
     // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(17 == positions.size());
@@ -62,6 +61,9 @@ TEST(tableNextPositions, availableDestionationsPieceBetween) {
     auto positions = table->availableMovesDestinations(posX, posY);
 
     sort(positions.begin(), positions.end());
+
+    for(auto it : positions)
+        std::cout << it.first << " " << it.second << "\n";
 
     // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(13 == positions.size());

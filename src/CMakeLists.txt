@@ -24,16 +24,21 @@ FetchContent_MakeAvailable(asiocmake)
 
 # model
 add_executable(Cppess
-        model/pieces/bishop/Bishop.cpp model/pieces/bishop/Bishop.h
-        model/pieces/king/King.cpp model/pieces/king/King.h
-        model/pieces/knight/Knight.cpp model/pieces/knight/Knight.h
-        model/pieces/pawn/Pawn.cpp model/pieces/pawn/Pawn.h
-        model/pieces/queen/Queen.cpp model/pieces/queen/Queen.h
-        model/pieces/rook/Rook.cpp model/pieces/rook/Rook.h
-        model/pieces/Piece.cpp model/pieces/Piece.h
-        model/pieces/colors.h
+        model/domain/pieces/bishop/Bishop.cpp model/domain/pieces/bishop/Bishop.h
+        model/domain/pieces/king/King.cpp model/domain/pieces/king/King.h
+        model/domain/pieces/knight/Knight.cpp model/domain/pieces/knight/Knight.h
+        model/domain/pieces/pawn/Pawn.cpp model/domain/pieces/pawn/Pawn.h
+        model/domain/pieces/queen/Queen.cpp model/domain/pieces/queen/Queen.h
+        model/domain/pieces/rook/Rook.cpp model/domain/pieces/rook/Rook.h
+        model/domain/pieces/Piece.cpp model/domain/pieces/Piece.h
+        model/domain/pieces/colors.h
+        model/domain/Events.h
         model/table/Table.cpp model/table/Table.h
         model/services/ServiceTable.cpp model/services/ServiceTable.h
+        model/table/History.h
+        model/table/History.cpp
+        model/domain/history/HistoryMove.h
+        model/domain/history/HistoryMove.cpp
         main.cpp
         )
 
@@ -57,16 +62,16 @@ add_library(cppess_test)
 
 target_sources(cppess_test
   PRIVATE
-        model/pieces/Piece.cpp
+        model/domain/pieces/Piece.cpp
   PUBLIC
-        model/pieces/Piece.h
+        model/domain/pieces/Piece.h
         model
   )
 
 target_include_directories(cppess_test
   PUBLIC
     ${CMAKE_CURRENT_LIST_DIR}
-        model/pieces/utils/ModelUtils.cpp model/pieces/utils/ModelUtils.h
+        model/domain/pieces/utils/ModelUtils.cpp model/domain/pieces/utils/ModelUtils.h
   )
 
 # we use this to get code coverage
