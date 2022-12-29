@@ -17,6 +17,11 @@ void ServiceTable::addPiece(const std::shared_ptr<Piece> &newPiece) {
 }
 
 std::vector<std::pair<int, int>> ServiceTable::availableMovesDestinations(const int &posX, const int &posY) const {
+    auto piece = this->table->getPiece(posX, posY);
+    if(piece == nullptr)
+        return {};
+    if(piece->getColor() != currentPlayer)
+        return {};
     return table->availableMovesDestinations(posX, posY);
 }
 
