@@ -32,24 +32,20 @@ void ServiceTable::addInHistory(const int &x, const int &y, const int &newX, con
 void ServiceTable::checkMoveAvailable(const int &x, const int &y, const int &newX, const int &newY) const {
     std::shared_ptr<Piece> piece = table->getPiece(x, y);
     if(x == newX && y == newY){
-        std::string errorMessage = "The move is not available! ";
-        throw errorMessage;
+        throw std::runtime_error("The move is not available! ");
     }
 
     if (piece == nullptr) {
-        std::string errorMessage = "There is no piece on the chosen position! ";
-        throw errorMessage;
+        throw std::runtime_error("There is no piece on the chosen position! ");
     }
 
     if(piece->getColor() != currentPlayer){
-        std:: string errorMessage = "You cannot move the pieces of the opponent! ";
-        throw errorMessage;
+        throw std::runtime_error("You cannot move the pieces of the opponent! ");
     }
 
     auto destinations = table->availableMovesDestinations(piece);
     if(std::find(destinations.begin(), destinations.end(), std::make_pair(newX, newY))== destinations.end()) {
-        std::string errorMessage = "The move is not available! ";
-        throw errorMessage;
+        throw std::runtime_error("The move is not available! ");
     }
 }
 
@@ -63,8 +59,7 @@ std::vector < std::shared_ptr < BaseEvent > > ServiceTable::movePiece(const int 
 
     if(piece->isKing()) {
         if (this->kingUnprotected()) {
-            std::string errorMessage = "The move is not available because you left the king without guard! ";
-            throw errorMessage;
+            throw std::runtime_error("The move is not available because you left the king without guard! ");
         }
     }
     this->changeTurn();
@@ -140,7 +135,6 @@ std::vector < std::shared_ptr < BaseEvent > > ServiceTable::checkIfTheOpponentKi
 
     if(currentPlayer == secondPlayerColor && table->getKing(firstPlayerColor) != nullptr) {
         std::shared_ptr < Piece > piece = table->getKing(firstPlayerColor);
-        std::cout << "B";
         auto attackers = this->table->underAttack(piece->getX(), piece->getY());
         if (!attackers.empty()) {
             events.push_back(std::make_unique<KingUnderAttackEvent>(piece, attackers));

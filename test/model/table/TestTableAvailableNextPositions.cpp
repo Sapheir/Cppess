@@ -62,9 +62,6 @@ TEST(tableNextPositions, availableDestionationsPieceBetween) {
 
     sort(positions.begin(), positions.end());
 
-    for(auto it : positions)
-        std::cout << it.first << " " << it.second << "\n";
-
     // Check if there is the expected number of possible moves and check if all expected positions are in vector
     ASSERT_TRUE(13 == positions.size());
     for (int i = 0; i < 8; i += 2) {
