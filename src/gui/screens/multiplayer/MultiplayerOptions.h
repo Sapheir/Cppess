@@ -1,7 +1,7 @@
 // Created by Catalin
 #pragma once
 #include "../Screen.h"
-#include "../../../model/pieces/colors.h"
+#include "../../../model/domain/pieces/colors.h"
 
 class MultiplayerOptions: public Screen {
 private:

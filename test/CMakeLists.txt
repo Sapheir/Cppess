@@ -9,27 +9,27 @@ set(BUILD_GMOCK OFF CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(gtest)
 
 add_executable(unit_tests
-        model/pieces/bishop/TestBishop.cpp
-        ../src/model/pieces/bishop/Bishop.h
-        ../src/model/pieces/bishop/Bishop.cpp
-        model/pieces/king/TestKing.cpp
-        ../src/model/pieces/king/King.h
-        ../src/model/pieces/king/King.cpp
-        model/pieces/knight/TestKnight.cpp
-        ../src/model/pieces/knight/Knight.h
-        ../src/model/pieces/knight/Knight.cpp
-        model/pieces/pawn/TestPawn.cpp
-        ../src/model/pieces/pawn/Pawn.h
-        ../src/model/pieces/pawn/Pawn.cpp
-        model/pieces/queen/TestQueen.cpp
-        ../src/model/pieces/queen/Queen.h
-        ../src/model/pieces/queen/Queen.cpp
-        model/pieces/rook/TestRook.cpp
-        ../src/model/pieces/rook/Rook.h
-        ../src/model/pieces/rook/Rook.cpp
-        model/pieces/TestPiece.cpp
-        ../src/model/pieces/Piece.h
-        ../src/model/pieces/Piece.cpp
+        model/domain/Pieces/bishop/TestBishop.cpp
+        ../src/model/domain/pieces/bishop/Bishop.h
+        ../src/model/domain/pieces/bishop/Bishop.cpp
+        model/domain/Pieces/king/TestKing.cpp
+        ../src/model/domain/pieces/king/King.h
+        ../src/model/domain/pieces/king/King.cpp
+        model/domain/Pieces/knight/TestKnight.cpp
+        ../src/model/domain/pieces/knight/Knight.h
+        ../src/model/domain/pieces/knight/Knight.cpp
+        model/domain/Pieces/pawn/TestPawn.cpp
+        ../src/model/domain/pieces/pawn/Pawn.h
+        ../src/model/domain/pieces/pawn/Pawn.cpp
+        model/domain/Pieces/queen/TestQueen.cpp
+        ../src/model/domain/pieces/queen/Queen.h
+        ../src/model/domain/pieces/queen/Queen.cpp
+        model/domain/Pieces/rook/TestRook.cpp
+        ../src/model/domain/pieces/rook/Rook.h
+        ../src/model/domain/pieces/rook/Rook.cpp
+        model/domain/Pieces/TestPiece.cpp
+        ../src/model/domain/pieces/Piece.h
+        ../src/model/domain/pieces/Piece.cpp
         ../src/model/table/Table.h
         ../src/model/table/Table.cpp
         ../src/model/services/ServiceTable.h
@@ -38,6 +38,8 @@ add_executable(unit_tests
         model/table/TestTableRemovePiece.cpp
         model/table/TestTableAvailableNextPositions.cpp
         model/table/TestServiceMovePiece.cpp
+        model/domain/TestHistoryMove.cpp
+        model/table/TestHistory.cpp
 
 )
 

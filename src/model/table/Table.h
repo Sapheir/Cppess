@@ -8,7 +8,7 @@
 #include <vector>
 #include <memory>
 #include <map>
-#include "../pieces/Piece.h"
+#include "../domain/pieces/Piece.h"
 
 class Table {
 private:
@@ -74,6 +74,13 @@ public:
     std::shared_ptr < Piece > removePiece(const int &posX, const int &posY);
 
     /**
+     * Returns all available moves for a pawn
+     * @param piece - the pawn we want next moves
+     * @return vector < pair < int, int > >
+     */
+    [[nodiscard]] std::vector < std::pair < int, int > > availableMovesDestinationsPawn(const std::shared_ptr<Piece> &piece) const;
+
+    /**
      * Returns all available moves for a knight
      * @param piece - the knight we want next moves
      * @return vector < pair < int, int > >
@@ -85,7 +92,7 @@ public:
      * @param piece - the knight we want next moves
      * @return vector < pair < int, int > >
      */
-    [[nodiscard]] std::vector < std::pair < int, int > > availableMovesDestinationsNonKnight(const std::shared_ptr<Piece> &piece) const;
+    [[nodiscard]] std::vector < std::pair < int, int > > availableMovesDestinationsNonKnightOrPawn(const std::shared_ptr<Piece> &piece) const;
 
     /**
      * Returns the list with all positions where the the piece from (posX, posY) can be moved
@@ -102,6 +109,32 @@ public:
      */
     [[nodiscard]] std::vector < std::pair < int, int > > availableMovesDestinations(const std::shared_ptr<Piece> &piece) const;
 
+    /**
+     * Returns true if the current piece has crossed the table
+     * @param - Piece reference
+     */
+     [[nodiscard]]  bool pieceWillBeOnOppositeEdge(const int &newX, const int &newY) const;
+
+     /**
+     * Returns the king with the current color
+     * @param color - colors - the color we want
+     * @return - std::shared_ptr < Piece >
+     */
+     [[nodiscard]] std::shared_ptr < Piece > getKing(colors color) const;
+
+     /**
+      * Returns if a king is under attack
+      * @param color -colors - color of the king we want to check
+      * @return bool
+      */
+     [[nodiscard]] bool kingUnderAttack(colors color) const;
+
+     /**
+      * Returns if a piece is under attack
+      * @param (x, y) - (int, int)
+      * @return std::vector < std::pair < int, int > > - all attackers
+      */
+      [[nodiscard]] std::vector < std::pair < int, int > > underAttack(const int &x, const int &y) const;
 
     ~Table() = default;
 

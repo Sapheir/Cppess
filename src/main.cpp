@@ -1,8 +1,7 @@
 #include "gui/GUI.h"
 #include <iostream>
 
-int main()
-{
+int main() {
     try {
         GUI gui;
         gui.run();
