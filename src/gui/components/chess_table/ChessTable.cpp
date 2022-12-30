@@ -1,10 +1,11 @@
 // Created by Catalin
+#include <iostream>
 #include "ChessTable.h"
 
-ChessTable::ChessTable(const float &boardTopLeft, const float &boardTopRight) {
+ChessTable::ChessTable(const unsigned int &windowWidth, const unsigned int &windowHeight,  const bool &isRotated)
+          : pieceSizeX{PIECE_SIZE}, pieceSizeY{PIECE_SIZE}, isRotated{isRotated} {
     loadTextures();
-    board.setPosition(boardTopLeft, boardTopRight);
-    setPieces();
+    resize(windowWidth, windowHeight);
 }
 
 void ChessTable::loadTextures() {
@@ -61,12 +62,59 @@ void ChessTable::draw(sf::RenderTarget &target, sf::RenderStates states) const {
     }
 }
 
-void ChessTable::resize(const float &scaleX, const float &scaleY) {
+void ChessTable::resize(const unsigned int &newWidth, const unsigned int &newHeight) {
+    float scaleX = (float)newWidth / BOARD_SIZE, scaleY = (float)newHeight / BOARD_SIZE;
+    pieceSizeX = (float) scaleX * PIECE_SIZE;
+    pieceSizeY = (float) scaleY * PIECE_SIZE;
     board.setScale(scaleX, scaleY);
-    for (auto &piece: pieces) {
-        piece.setScale(scaleX, scaleY);
+}
+
+void ChessTable::setPieces(const std::vector<piece_info> &piecesInfo) {
+    pieces.clear();
+    for (const auto &pieceInfo: piecesInfo) {
+        auto [posX, posY] = getBoardPosition(pieceInfo.posX, pieceInfo.posY);
+        bool isWhite = pieceInfo.color == white;
+        switch (pieceInfo.piece_type) {
+            case rook:
+                pieces.push_back(makePiece(isWhite ? whiteRookSprite : blackRookSprite, posX, posY));
+                break;
+            case knight:
+                pieces.push_back(makePiece(isWhite ? whiteKnightSprite : blackKnightSprite, posX, posY));
+                break;
+            case bishop:
+                pieces.push_back(makePiece(isWhite ? whiteBishopSprite : blackBishopSprite, posX, posY));
+                break;
+            case queen:
+                pieces.push_back(makePiece(isWhite ? whiteQueenSprite : blackQueenSprite, posX, posY));
+                break;
+            case king:
+                pieces.push_back(makePiece(isWhite ? whiteKingSprite : blackKingSprite, posX, posY));
+                break;
+            case pawn:
+                pieces.push_back(makePiece(isWhite ? whitePawnSprite : blackPawnSprite, posX, posY));
+                break;
+            default:
+                break;
+        }
     }
 }
 
-void ChessTable::setPieces() {
+sf::Sprite ChessTable::makePiece(const sf::Sprite &pieceSprite, float posX, float posY) const {
+    sf::Sprite piece{pieceSprite};
+    piece.setPosition(posX, posY);
+    float scaleX = (float) pieceSizeX / PIECE_SIZE, scaleY = (float) pieceSizeY / PIECE_SIZE;
+    piece.setScale(scaleX, scaleY);
+    return piece;
+}
+
+std::pair<float, float> ChessTable::getBoardPosition(int posX, int posY) const {
+    float boardX, boardY;
+    if (!isRotated) {
+        boardX = (float) posX * pieceSizeX;
+        boardY = (float) posY * pieceSizeY;
+    } else {
+        boardX = (float) posX * pieceSizeX;
+        boardY = (float) (7 - posY) * pieceSizeY;
+    }
+    return {boardX, boardY};
 }

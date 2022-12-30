@@ -3,6 +3,7 @@
 #include "screens/Screen.h"
 #include "screens/main_menu/MainMenu.h"
 #include "screens/single_player/SinglePlayerOptions.h"
+#include "screens/single_player/SinglePlayer.h"
 #include "screens/multiplayer/MultiplayerOptions.h"
 #include "screens/screens.h"
 
@@ -14,7 +15,8 @@ private:
                             sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize};
     sf::Font textFont;
     std::unique_ptr<Screen> currentScreen;
-    screens currentScreenType;
+    screens currentScreenType{};
+    colors playerColor;
 
     void loadFont();
     void loadIcon();

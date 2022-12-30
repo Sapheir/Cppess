@@ -53,7 +53,10 @@ void GUI::chooseScreen() {
             currentScreen = std::make_unique<MainMenu>(window, textFont, FONT_SIZE, currentScreenType);
             break;
         case single_player_options:
-            currentScreen = std::make_unique<SinglePlayerOptions>(window, textFont, FONT_SIZE, currentScreenType);
+            currentScreen = std::make_unique<SinglePlayerOptions>(window, textFont, FONT_SIZE, currentScreenType, playerColor);
+            break;
+        case single_player_game:
+            currentScreen = std::make_unique<SinglePlayer>(window, textFont, FONT_SIZE, currentScreenType, playerColor);
             break;
         case multiplayer_options:
             currentScreen = std::make_unique<MultiplayerOptions>(window, textFont, FONT_SIZE, currentScreenType);

@@ -61,6 +61,8 @@ void MainMenu::resize(const unsigned int &width, const unsigned int &height) {
 void MainMenu::handleEvent(sf::Event &event) {
     if (event.type == sf::Event::MouseMoved) {
         setCursorSelectPosition(event.mouseMove.x, event.mouseMove.y);
+    } else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
+        window.close();
     } else if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
         switch (hoveredOption) {
             case single_player:

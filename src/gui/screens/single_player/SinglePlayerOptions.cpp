@@ -1,9 +1,8 @@
 // Created by Catalin
-#include <iostream>
 #include "SinglePlayerOptions.h"
 
-SinglePlayerOptions::SinglePlayerOptions(sf::RenderWindow& window, sf::Font& font, const unsigned int &fontSize, screens &nextScreen)
-        : Screen{window, font, fontSize, nextScreen}, selectedColor{white}, hoveredColor{white} {
+SinglePlayerOptions::SinglePlayerOptions(sf::RenderWindow& window, sf::Font& font, const unsigned int &fontSize, screens &nextScreen, colors &playerColor)
+        : Screen{window, font, fontSize, nextScreen}, selectedColor{white}, hoveredColor{white}, playerColor{playerColor} {
     loadOptions();
     loadCursorSelections();
 }
@@ -114,13 +113,15 @@ void SinglePlayerOptions::setCursorHoverPosition(const unsigned int &mouseMoveX,
 
 void SinglePlayerOptions::handleClick(const unsigned int &mouseButtonX, const unsigned int &mouseButtonY) {
     if (playLabel.getGlobalBounds().contains(mouseButtonX, mouseButtonY)) {
-        std::cout << "Play\n";
+        nextScreen = single_player_game;
     } else if (hoveredColor == white) {
         selectedOption.setPosition(sf::Vector2f{chooseWhite.getPosition().x - selectedOption.getSize().x / 2,
                                                 chooseWhite.getPosition().y - selectedOption.getSize().y / 2});
+        playerColor = white;
     } else {
         selectedOption.setPosition(sf::Vector2f{chooseBlack.getPosition().x - selectedOption.getSize().x / 2,
                                                 chooseBlack.getPosition().y - selectedOption.getSize().y / 2});
+        playerColor = black;
     }
 }
 

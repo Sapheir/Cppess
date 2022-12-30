@@ -32,6 +32,7 @@ add_executable(Cppess
         model/domain/pieces/rook/Rook.cpp model/domain/pieces/rook/Rook.h
         model/domain/pieces/Piece.cpp model/domain/pieces/Piece.h
         model/domain/pieces/colors.h
+        model/domain/pieces/pieces.h
         model/domain/Events.h
         model/table/Table.cpp model/table/Table.h
         model/services/ServiceTable.cpp model/services/ServiceTable.h
@@ -44,8 +45,10 @@ add_executable(Cppess
         gui/screens/Screen.cpp gui/screens/Screen.h gui/screens/screens.h
         gui/screens/main_menu/MainMenu.cpp gui/screens/main_menu/MainMenu.h gui/screens/main_menu/main_menu_options.h
         gui/screens/single_player/SinglePlayerOptions.cpp gui/screens/single_player/SinglePlayerOptions.h
+        gui/screens/single_player/SinglePlayer.cpp gui/screens/single_player/SinglePlayer.h
         gui/screens/multiplayer/MultiplayerOptions.cpp gui/screens/multiplayer/MultiplayerOptions.h
-        main.cpp)
+        game/Game.cpp game/Game.h
+        main.cpp game/single_player/SinglePlayerGame.cpp game/single_player/SinglePlayerGame.h)
 
 target_link_libraries(Cppess PRIVATE
         sfml-audio

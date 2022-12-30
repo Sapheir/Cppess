@@ -8,13 +8,14 @@ private:
     sf::Text colorLabel, chooseBlack, chooseWhite, playLabel;
     sf::RectangleShape hoveredOption, selectedOption;
     colors selectedColor, hoveredColor;
+    colors& playerColor;
     void loadOptions();
     void loadCursorSelections();
     void setCursorHoverPosition(const unsigned int &mouseMoveX, const unsigned int &mouseMoveY);
     void handleClick(const unsigned int &mouseButtonX, const unsigned int &mouseButtonY);
 
 public:
-    SinglePlayerOptions(sf::RenderWindow& window, sf::Font& font, const unsigned int &fontSize, screens &nextScreen);
+    SinglePlayerOptions(sf::RenderWindow& window, sf::Font& font, const unsigned int &fontSize, screens &nextScreen, colors &playerColor);
     void draw() override;
     void resize(const unsigned int &width, const unsigned int &height) override;
     void handleEvent(sf::Event &event) override;

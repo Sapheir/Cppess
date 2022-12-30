@@ -15,9 +15,9 @@
 class ServiceTable {
 private:
     std::unique_ptr<Table> table;
-    colors firstPlayerColor;
-    colors secondPlayerColor;
-    colors currentPlayer;
+    colors firstPlayerColor{};
+    colors secondPlayerColor{};
+    colors currentPlayer{};
     std::vector < std::shared_ptr < HistoryMove > > history;
 
     /**
@@ -41,9 +41,9 @@ private:
 
 public:
 
-    ServiceTable() = delete;
+    ServiceTable() = default;
 
-    explicit ServiceTable(std::unique_ptr<Table> &table, colors firstPlayerColor, colors secondPlayerColor){
+    explicit ServiceTable(std::unique_ptr<Table> &table, colors firstPlayerColor, colors secondPlayerColor) {
         this->table = std::move(table);
         this->firstPlayerColor = firstPlayerColor;
         this->secondPlayerColor = secondPlayerColor;
