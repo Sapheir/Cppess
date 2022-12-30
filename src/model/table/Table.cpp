@@ -97,8 +97,6 @@ std::vector<std::pair<int, int> > Table::availableMovesDestinationsNonKnightOrPa
             continue;
         if (noPieceBetween(piece->getX(), piece->getY(), destination.first, destination.second))
             availableDestinations.push_back(destination);
-        else
-            std::cout << piece->getX() << " " << piece->getY() << " " << destination.first << " " << destination.second << "\n";
     }
 
     return availableDestinations;
@@ -164,7 +162,6 @@ bool Table::kingUnderAttack(colors color) const{
                                                                std::make_pair(king->getX(), king->getY()));
 
         if(possiblePositionWhereAreKingCoordinates != pieceDestination.end()) {
-            std::cout << piece.second->getX() << " " << piece.second->getY() << "\n";
             return true;
         }
     }

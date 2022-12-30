@@ -14,79 +14,108 @@ enum Events{
     pawn_promotion,
     en_passant,
     castling,
-    king_under_attack
+    king_under_attack,
+    win
 };
 
 class BaseEvent{
     Events eventType;
-    std::shared_ptr < Piece > piece;
 public:
-    explicit BaseEvent(const Events &eventType, std::shared_ptr < Piece > piece): eventType{eventType}, piece{std::move(piece)}{};
+    BaseEvent()= default;
+    explicit BaseEvent(Events eventType): eventType{eventType}{};
 
-    BaseEvent(){
-        eventType = capture;
-    }
-
-    BaseEvent(const BaseEvent &other){
-        this->eventType = other.eventType;
-    };
-
-    BaseEvent(BaseEvent &&other) noexcept {
-        this->eventType = other.eventType;
-    };
+    [[nodiscard]] virtual std::shared_ptr < Piece > getPiece() const = 0;
 
     [[nodiscard]] Events getEventType() const{
         return eventType;
+    };
+};
+
+class BasePieceEvent: public BaseEvent{
+private:
+    std::shared_ptr < Piece > piece;
+public:
+    explicit BasePieceEvent(const Events &eventType, std::shared_ptr < Piece > piece): BaseEvent(eventType){
+        this->piece = std::move(piece);
+    };
+
+    BasePieceEvent() : BaseEvent(){};
+
+    BasePieceEvent(const BasePieceEvent &other):BaseEvent(other.getEventType()){
+        this->piece = std::move(piece);
+    };
+
+    BasePieceEvent(BasePieceEvent &&other) noexcept :BaseEvent(other.getEventType())  {
+        this->piece = std::move(piece);
     };
 
     /**
      * Returns the piece of the current event
      * @return std::shared_ptr < Piece >
      */
-    [[nodiscard]] std::shared_ptr<Piece> getPiece() const{
+    [[nodiscard]] std::shared_ptr<Piece> getPiece() const override{
         return piece;
     }
-
-
 };
 
-class PawnPromotionEvent: public BaseEvent{
+class PawnPromotionEvent: public BasePieceEvent{
 public:
-    explicit PawnPromotionEvent(std::shared_ptr < Piece > piece): BaseEvent{pawn_promotion, piece}{};
+    explicit PawnPromotionEvent(std::shared_ptr < Piece > piece): BasePieceEvent{pawn_promotion, std::move(piece)}{};
 };
 
-class CapturedPieceEvent: public BaseEvent{
+class CapturedPieceEvent: public BasePieceEvent{
 public:
-    explicit CapturedPieceEvent(std::shared_ptr < Piece > piece): BaseEvent(capture, piece){};
+    explicit CapturedPieceEvent(std::shared_ptr < Piece > piece): BasePieceEvent(capture, std::move(piece)){};
 
-    CapturedPieceEvent(const CapturedPieceEvent &other) : BaseEvent(other.getEventType(), other.getPiece()) {
-    };
+    CapturedPieceEvent(const CapturedPieceEvent &other) : BasePieceEvent(other.getEventType(), other.getPiece()) {};
 
-    CapturedPieceEvent(CapturedPieceEvent &&other)  noexcept : BaseEvent(other.getEventType(), other.getPiece()) {
-    };
+    CapturedPieceEvent(CapturedPieceEvent &&other)  noexcept : BasePieceEvent(other.getEventType(), other.getPiece()) {};
 };
 
-class EnPassantEvent: public BaseEvent{
+class EnPassantEvent: public BasePieceEvent{
 public:
-    explicit EnPassantEvent(std::shared_ptr < Piece > piece): BaseEvent(en_passant, piece){};
+    explicit EnPassantEvent(std::shared_ptr < Piece > piece): BasePieceEvent(en_passant, std::move(piece)){};
 
-    EnPassantEvent(const EnPassantEvent &other) : BaseEvent(other.getEventType(), other.getPiece()) {};
+    EnPassantEvent(const EnPassantEvent &other) : BasePieceEvent(other.getEventType(), other.getPiece()) {};
 
-    EnPassantEvent(EnPassantEvent &&other)  noexcept : BaseEvent(other.getEventType(), other.getPiece()) {};
+    EnPassantEvent(EnPassantEvent &&other)  noexcept : BasePieceEvent(other.getEventType(), other.getPiece()) {};
+
 };
 
-class KingUnderAttackEvent: public BaseEvent{
+class KingUnderAttackEvent: public BasePieceEvent{
 private:
     std::vector < std::pair < int, int > > attackersPositions;
 public:
-    explicit KingUnderAttackEvent(std::shared_ptr < Piece > piece): BaseEvent(king_under_attack, piece){};
+    explicit KingUnderAttackEvent(std::shared_ptr < Piece > piece): BasePieceEvent(king_under_attack, piece){
+    };
 
     explicit KingUnderAttackEvent(std::shared_ptr < Piece > piece, std::vector < std::pair < int, int >> attackersPositions):
-                            BaseEvent(king_under_attack, piece), attackersPositions{std::move(attackersPositions)}{};
+            BasePieceEvent(king_under_attack, piece), attackersPositions{std::move(attackersPositions)}{};
 
     [[nodiscard]] auto getAttackersPositions() const{
         return attackersPositions;
     }
+};
+
+class GameEnded: public BaseEvent{
+private:
+    colors winner;
+public:
+    explicit GameEnded(colors winner):BaseEvent(win){
+        this->winner = winner;
+    };
+
+    /**
+     * Returns the winner of the game
+     */
+    colors getWinner(){
+        return this->winner;
+    }
+
+    [[nodiscard]] std::shared_ptr<Piece> getPiece() const{
+
+    };
+
 };
 
 #endif //CPPESS_EVENTS_H
