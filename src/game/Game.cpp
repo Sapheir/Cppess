@@ -63,11 +63,17 @@ std::vector<piece_info> Game::getCurrentPiecesInfo() {
     return currentPiecesInfo;
 }
 
-std::vector<std::pair<int, int> > Game::availableMovesDestinations(const int &posX, const int &posY) const {
+std::vector<std::pair<int, int> > Game::availableMovesDestinations(const int &posX, const int &posY) {
     return serviceTable.availableMovesDestinations(posX, posY);
 }
 
-void Game::checkMoveAvailable(const int &x, const int &y, const int &newX, const int &newY) const {
-    return serviceTable.checkMoveAvailable(x, y, newX, newY);
+std::vector<std::shared_ptr<BaseEvent> > Game::movePiece(const int &x, const int &y, const int &newX, const int &newY) {
+    return serviceTable.movePiece(x, y, newX, newY);
 }
 
+void Game::removePiece(const int &posX, const int &posY, const colors &pieceColor) {
+    currentPiecesInfo.erase(std::remove_if(currentPiecesInfo.begin(), currentPiecesInfo.end(),
+                                           [posX, posY, pieceColor](const piece_info &pieceInfo){
+                                                return pieceInfo.posX == posX && pieceInfo.posY == posY && pieceInfo.color == pieceColor;
+                                            }), currentPiecesInfo.end());
+}

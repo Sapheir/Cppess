@@ -10,6 +10,12 @@ private:
     std::string gameState;
     ChessTable chessTable;
     SinglePlayerGame game;
+    bool isSelectedPiece{};
+    std::pair<int, int> selectedPiecePos;
+    std::vector<sf::RectangleShape> availablePositions;
+
+    void colorAvailablePositions(int posX, int posY);
+    void tryMoveToPosition(int posX, int posY);
 
 public:
     SinglePlayer(sf::RenderWindow& window, sf::Font& font, const unsigned int &fontSize, screens &nextScreen, colors &playerColor);

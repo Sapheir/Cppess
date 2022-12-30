@@ -14,8 +14,8 @@ int Piece::getY() const {
 }
 
 bool Piece::inRange(const int  &position, const int &tableSize) {
-    if(position <= 0) return false;
-    if(position > tableSize) return false;
+    if(position < 0) return false;
+    if(position >= tableSize) return false;
     return true;
 }
 

@@ -1,7 +1,7 @@
 // Created by Catalin
 #include "GUI.h"
 
-GUI::GUI() {
+GUI::GUI(): playerColor{white} {
     loadFont();
     loadIcon();
     currentScreen = std::make_unique<MainMenu>(window, textFont, FONT_SIZE, currentScreenType);

@@ -81,7 +81,8 @@ std::vector<std::pair<int, int> > Table::availableMovesDestinationsKnight(const 
     auto destinations = piece->nextPositions(this->tableSize);
     std::vector < std::pair < int, int > > availableNextMoves;
     for(auto destination: destinations) {
-        if (getPiece(destination.first, destination.second)->sameColor(piece))
+        auto pieceAtDestination = getPiece(destination.first, destination.second);
+        if (pieceAtDestination && pieceAtDestination->sameColor(piece))
             continue;
         if (tableContent.find(destination) == tableContent.end())
             availableNextMoves.push_back(destination);

@@ -73,6 +73,8 @@ void ChessTable::setPieces(const std::vector<piece_info> &piecesInfo) {
     pieces.clear();
     for (const auto &pieceInfo: piecesInfo) {
         auto [posX, posY] = getBoardPosition(pieceInfo.posX, pieceInfo.posY);
+        posX--;
+        posY--;
         bool isWhite = pieceInfo.color == white;
         switch (pieceInfo.piece_type) {
             case rook:
@@ -117,4 +119,20 @@ std::pair<float, float> ChessTable::getBoardPosition(int posX, int posY) const {
         boardY = (float) (7 - posY) * pieceSizeY;
     }
     return {boardX, boardY};
+}
+
+std::pair<int, int> ChessTable::getClickedTile(int mouseX, int mouseY) const {
+    int posX, posY;
+    if (!isRotated) {
+        posX = mouseX / (int)pieceSizeX;
+        posY = mouseY / (int)pieceSizeY;
+    } else {
+        posX = mouseX / (int)pieceSizeX;
+        posY = 7 - mouseY / (int)pieceSizeY;
+    }
+    return {posX, posY};
+}
+
+std::pair<float, float> ChessTable::getPieceSize() {
+    return {pieceSizeX, pieceSizeY};
 }
