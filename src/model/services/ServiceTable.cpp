@@ -161,21 +161,24 @@ void ServiceTable::addOpponentKingUnderAttackInHistory() const {
 }
 
 void ServiceTable::checkGameEnded()  {
-    for(auto event: getLastMoveFromHistory()->getGeneratedEvents())
-        if(event->getEventType() == king_under_attack){
-            auto kingPossiblePositions = this->availableMovesDestinations(event->getPiece()->getX(), event->getPiece()->getY());
+    for(auto event: getLastMoveFromHistory()->getGeneratedEvents()) {
+        if (event->getEventType() == king_under_attack) {
+            auto kingPossiblePositions = this->availableMovesDestinations(event->getPiece()->getX(),
+                                                                          event->getPiece()->getY());
             bool allUnderAttack = true;
-            for(auto kingPossiblePosition: kingPossiblePositions)
-                if(this->table->underAttack(kingPossiblePosition.first, kingPossiblePosition.second).empty()){
+            for (auto kingPossiblePosition: kingPossiblePositions)
+                if (this->table->underAttack(kingPossiblePosition.first, kingPossiblePosition.second).empty()) {
                     allUnderAttack = false;
                     break;
                 }
 
-            if(allUnderAttack){
+            if (allUnderAttack) {
                 history.back()->addGeneratedEvent(std::make_unique<GameEnded>(currentPlayer));
                 this->changeTurn();
+                return;
             }
         }
+    }
 }
 
 colors ServiceTable::getCurrentPlayer() const {
