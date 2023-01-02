@@ -44,3 +44,7 @@ bool Pawn::isKing() const {
     return false;
 }
 
+void Pawn::doubleMoveDisable() {
+    this->doubleMoveAvailable = false;
+}
+

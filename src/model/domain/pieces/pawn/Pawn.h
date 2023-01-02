@@ -42,6 +42,11 @@ public:
      */
     [[nodiscard]] bool isKing() const override;
 
+    /**
+     * Disable the possibility of a pawn to double move
+     */
+    void doubleMoveDisable() override;
+
 };
 
 #endif //CPPESS_PAWN_H

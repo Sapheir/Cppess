@@ -3,6 +3,7 @@
 //
 
 #include "ServiceTable.h"
+#include "../domain/pieces/pawn/Pawn.h"
 
 std::shared_ptr<Piece> ServiceTable::getPiece(const int &posX, const int &posY) const {
     return table->getPiece(posX, posY);
@@ -69,6 +70,8 @@ std::vector < std::shared_ptr < BaseEvent > > ServiceTable::movePiece(const int 
             throw std::runtime_error("The move is not available because you left the king without guard! ");
         }
     }
+    if(piece->isPawn())
+        piece->doubleMoveDisable();
     checkGameEnded();
     this->changeTurn();
     return this->getLastMoveFromHistory()->getGeneratedEvents();

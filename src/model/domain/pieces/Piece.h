@@ -131,6 +131,11 @@ public:
      * @return bool
      */
      [[nodiscard]] virtual bool isKing() const = 0;
+
+     /**
+      * If the piece is able to doubleMove, it will disable that. Otherwise, nothing will happen
+      */
+      virtual void doubleMoveDisable();
 };
 
 
