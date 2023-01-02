@@ -160,7 +160,7 @@ void ServiceTable::addOpponentKingUnderAttackInHistory() const {
         lastHistoryRecord->addGeneratedEvent(event);
 }
 
-void ServiceTable::checkGameEnded() const {
+void ServiceTable::checkGameEnded()  {
     for(auto event: getLastMoveFromHistory()->getGeneratedEvents())
         if(event->getEventType() == king_under_attack){
             auto kingPossiblePositions = this->availableMovesDestinations(event->getPiece()->getX(), event->getPiece()->getY());
@@ -173,6 +173,7 @@ void ServiceTable::checkGameEnded() const {
 
             if(allUnderAttack){
                 history.back()->addGeneratedEvent(std::make_unique<GameEnded>(currentPlayer));
+                this->changeTurn();
             }
         }
 }

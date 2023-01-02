@@ -167,7 +167,7 @@ public:
        /**
         * Add a game ended event in the history if the opponent's king is under attack and there are no available moves
         */
-       void checkGameEnded() const;
+       void checkGameEnded() ;
 
        /**
         * Get current player
