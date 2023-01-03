@@ -8,9 +8,9 @@ std::vector<std::pair<int, int> > King::nextPositions(const int &tableSize) cons
     std::vector < std::pair < int, int > > allPositions;
 
     /* we can decrease on x */
-    if(positionX > 1){
+    if(positionX >= 1){
         /* decrease on y */
-        if(positionY > 1)
+        if(positionY >= 1)
             allPositions.emplace_back(positionX - 1, positionY - 1);
         /* same position in y */
         allPositions.emplace_back(positionX - 1, positionY);
@@ -22,7 +22,7 @@ std::vector<std::pair<int, int> > King::nextPositions(const int &tableSize) cons
     /* we can increase on x */
     if(positionX < tableSize){
         /* decrease on y */
-        if(positionY > 1)
+        if(positionY >= 1)
             allPositions.emplace_back(positionX + 1, positionY - 1);
         /* same position in y */
         allPositions.emplace_back(positionX + 1, positionY);

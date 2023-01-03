@@ -23,7 +23,37 @@ std::vector<std::pair<int, int>> ServiceTable::availableMovesDestinations(const 
         return {};
     if(piece->getColor() != currentPlayer)
         return {};
-    return table->availableMovesDestinations(posX, posY);
+    auto destinations =  table->availableMovesDestinations(posX, posY);
+
+    if(!history.empty())
+        if(!this->getLastMoveFromHistory()->getGeneratedEvents().empty()){
+            auto events = this->getLastMoveFromHistory()->getGeneratedEvents();
+            for(const auto &event: events)
+                if(event->getEventType() == king_under_attack){
+                    if(event->getPiece()->getX() != posX || event->getPiece()->getY() != posY)
+                        return {};
+                    auto attackers = event->getAttackers();
+                    std::vector < std::pair < int, int > > freeDestinations;
+                    if(attackers.size() == 1){
+                        for(auto it : destinations)
+                            if(it.first == attackers[0].first && it.second == attackers[0].second)
+                                freeDestinations.push_back(it);
+                    }
+                    for(const auto &destination: destinations) {
+                        auto positionAttackers = this->table->underAttack(destination.first, destination.second);
+                        bool allAttackerFromCurrentColor = true;
+                        for(const auto &attacker: positionAttackers) {
+                            if (getPiece(attacker.first, attacker.second)->getColor() != currentPlayer)
+                                allAttackerFromCurrentColor = false;
+                        }
+                        if(allAttackerFromCurrentColor)
+                            freeDestinations.push_back(destination);
+                    }
+                    return freeDestinations;
+                }
+        }
+
+    return destinations;
 }
 
 void ServiceTable::addInHistory(const int &x, const int &y, const int &newX, const int &newY, const std::shared_ptr < Piece > &piece){
@@ -163,15 +193,12 @@ void ServiceTable::addOpponentKingUnderAttackInHistory() const {
 void ServiceTable::checkGameEnded()  {
     for(auto event: getLastMoveFromHistory()->getGeneratedEvents()) {
         if (event->getEventType() == king_under_attack) {
+            this->changeTurn();
             auto kingPossiblePositions = this->availableMovesDestinations(event->getPiece()->getX(),
                                                                           event->getPiece()->getY());
-            bool allUnderAttack = true;
-            for (auto kingPossiblePosition: kingPossiblePositions)
-                if (this->table->underAttack(kingPossiblePosition.first, kingPossiblePosition.second).empty()) {
-                    allUnderAttack = false;
-                    break;
-                }
+            this->changeTurn();
 
+            bool allUnderAttack = kingPossiblePositions.empty();
             if (allUnderAttack) {
                 history.back()->addGeneratedEvent(std::make_unique<GameEnded>(currentPlayer));
                 this->changeTurn();
