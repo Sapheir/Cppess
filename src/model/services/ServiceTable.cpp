@@ -53,6 +53,21 @@ std::vector<std::pair<int, int>> ServiceTable::availableMovesDestinations(const 
                 }
         }
 
+    if(piece->isKing()){
+        std::vector < std::pair < int, int > >  freeDestinations;
+        for(const auto &destination: destinations) {
+            auto positionAttackers = this->table->underAttack(destination.first, destination.second);
+            bool allAttackerFromCurrentColor = true;
+            for(const auto &attacker: positionAttackers) {
+                if (getPiece(attacker.first, attacker.second)->getColor() != currentPlayer)
+                    allAttackerFromCurrentColor = false;
+            }
+            if(allAttackerFromCurrentColor)
+                freeDestinations.push_back(destination);
+        }
+        return freeDestinations;
+    }
+
     return destinations;
 }
 
