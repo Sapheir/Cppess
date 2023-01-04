@@ -47,8 +47,12 @@ add_executable(Cppess
         gui/screens/single_player/SinglePlayerOptions.cpp gui/screens/single_player/SinglePlayerOptions.h
         gui/screens/single_player/SinglePlayer.cpp gui/screens/single_player/SinglePlayer.h
         gui/screens/multiplayer/MultiplayerOptions.cpp gui/screens/multiplayer/MultiplayerOptions.h
+        game/single_player/SinglePlayerGame.cpp game/single_player/SinglePlayerGame.h
+        game/multiplayer/MultiplayerGameServer.cpp game/multiplayer/MultiplayerGameServer.h
+        game/multiplayer/MultiplayerGameClient.cpp game/multiplayer/MultiplayerGameClient.h
+        gui/screens/multiplayer/Multiplayer.cpp gui/screens/multiplayer/Multiplayer.h
         game/Game.cpp game/Game.h
-        main.cpp game/single_player/SinglePlayerGame.cpp game/single_player/SinglePlayerGame.h)
+        main.cpp)
 
 target_link_libraries(Cppess PRIVATE
         sfml-audio

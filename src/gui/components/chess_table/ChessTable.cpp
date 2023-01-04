@@ -115,7 +115,7 @@ std::pair<float, float> ChessTable::getBoardPosition(int posX, int posY) const {
         boardX = (float) posX * pieceSizeX;
         boardY = (float) posY * pieceSizeY;
     } else {
-        boardX = (float) posX * pieceSizeX;
+        boardX = (float) (7 - posX) * pieceSizeX;
         boardY = (float) (7 - posY) * pieceSizeY;
     }
     return {boardX, boardY};
@@ -127,7 +127,7 @@ std::pair<int, int> ChessTable::getClickedTile(int mouseX, int mouseY) const {
         posX = mouseX / (int)pieceSizeX;
         posY = mouseY / (int)pieceSizeY;
     } else {
-        posX = mouseX / (int)pieceSizeX;
+        posX = 7 - mouseX / (int)pieceSizeX;
         posY = 7 - mouseY / (int)pieceSizeY;
     }
     return {posX, posY};
