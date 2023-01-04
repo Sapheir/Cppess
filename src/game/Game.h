@@ -7,12 +7,42 @@ class Game {
 protected:
     ServiceTable serviceTable;
     std::vector<piece_info> currentPiecesInfo;
+    colors myColor;
+    bool isGameOver{};
 
+    /**
+     * Add the initial chess pieces on the table
+     */
     void addInitialPieces();
+
     std::vector < std::shared_ptr < BaseEvent > > movePiece(const int &x, const int &y, const int &newX, const int &newY);
 
+    /**
+     * @return Color of the player's pieces
+     */
+    colors getMyColor();
+
+    /**
+     * @return Color of the opponent's pieces
+     */
+    colors getOpponentColor();
+
+    /**
+     * Handles the events of a piece being moved
+     * @param moveEvents Events to handle
+     * @param destinationX Destination X coordinate of the move
+     * @param destinationY Destination Y coordinate of the move
+     * @param isPlayer whether the player or the AI made the move
+     */
+    void handleMovePieceEvents(std::vector<std::shared_ptr<BaseEvent>> &moveEvents, const int &destinationX, const int &destinationY, const bool &isPlayer);
+
 public:
-    Game();
+    explicit Game(const colors &myColor);
+
+    /**
+     * @return Whether it's the player's turn or not
+     */
+    bool isMyTurn();
 
     /**
      * @return Information about the pieces which are currently in play in the game

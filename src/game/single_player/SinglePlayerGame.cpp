@@ -2,19 +2,7 @@
 #include "SinglePlayerGame.h"
 
 SinglePlayerGame::SinglePlayerGame(const colors &playerColor)
-                : Game{}, playerColor{playerColor} {
-}
-
-colors SinglePlayerGame::getPlayerColor() {
-    return playerColor;
-}
-
-colors SinglePlayerGame::getAIColor() {
-    return playerColor == white ? black : white;
-}
-
-bool SinglePlayerGame::isPlayerTurn() {
-    return serviceTable.getCurrentPlayer() == playerColor;
+                : Game{playerColor} {
 }
 
 void SinglePlayerGame::movePlayerPiece(const int &x, const int &y, const int &newX, const int &newY) {
@@ -36,7 +24,7 @@ void SinglePlayerGame::moveAIPiece() {
         return;
     std::cout << "AI move\n";
     for (auto &pieceInfo: currentPiecesInfo) {
-        if (pieceInfo.color == getAIColor()) {
+        if (pieceInfo.color == getOpponentColor()) {
             auto positions = availableMovesDestinations(pieceInfo.posX, pieceInfo.posY);
             if (!positions.empty()) {
                 auto events = movePiece(pieceInfo.posX, pieceInfo.posY, positions[0].first, positions[0].second);
@@ -45,32 +33,6 @@ void SinglePlayerGame::moveAIPiece() {
                 handleMovePieceEvents(events, positions[0].first, positions[0].second, false);
                 return;
             }
-        }
-    }
-}
-
-void SinglePlayerGame::handleMovePieceEvents(std::vector<std::shared_ptr<BaseEvent>> &moveEvents, const int &destinationX, const int &destinationY, const bool &isPlayer) {
-    for (const auto &event: moveEvents) {
-        switch (event->getEventType()) {
-            case capture:
-                removePiece(destinationX, destinationY, isPlayer ? getAIColor() : getPlayerColor());
-                break;
-            case king_under_attack:
-                if (!isPlayer)
-                    std::cout << "The player's king is under check!\n";
-                else
-                    std::cout << "The AI's king is under check!\n";
-                break;
-            case win:
-                if (isPlayer)
-                    std::cout << "The player won!\n";
-                else
-                    std::cout << "The AI won!\n";
-                isGameOver = true;
-                break;
-            default:
-                std::cout << event->getEventType() << " not implemented\n";
-                break;
         }
     }
 }

@@ -7,7 +7,7 @@
 #include "../model/domain/pieces/king/King.h"
 #include "../model/domain/pieces/pawn/Pawn.h"
 
-Game::Game() {
+Game::Game(const colors &myColor): myColor{myColor} {
     std::unique_ptr<Table> table = std::make_unique<Table>(8);
     serviceTable = ServiceTable{table, white, black};
     addInitialPieces();
@@ -76,4 +76,43 @@ void Game::removePiece(const int &posX, const int &posY, const colors &pieceColo
                                            [posX, posY, pieceColor](const piece_info &pieceInfo){
                                                 return pieceInfo.posX == posX && pieceInfo.posY == posY && pieceInfo.color == pieceColor;
                                             }), currentPiecesInfo.end());
+}
+
+colors Game::getMyColor() {
+    return myColor;
+}
+
+colors Game::getOpponentColor() {
+    return myColor == white ? black : white;
+}
+
+bool Game::isMyTurn() {
+    return serviceTable.getCurrentPlayer() == getMyColor();
+}
+
+void Game::handleMovePieceEvents(std::vector<std::shared_ptr<BaseEvent>> &moveEvents,
+                                 const int &destinationX, const int &destinationY, const bool &isMe) {
+    for (const auto &event: moveEvents) {
+        switch (event->getEventType()) {
+            case capture:
+                removePiece(destinationX, destinationY, isMe ? getOpponentColor() : getMyColor());
+                break;
+            case king_under_attack:
+                if (!isMe)
+                    std::cout << "Your king is under check!\n";
+                else
+                    std::cout << "The opponent's king is under check!\n";
+                break;
+            case win:
+                if (isMe)
+                    std::cout << "You won!\n";
+                else
+                    std::cout << "The opponent won!\n";
+                isGameOver = true;
+                break;
+            default:
+                std::cout << event->getEventType() << " not implemented\n";
+                break;
+        }
+    }
 }

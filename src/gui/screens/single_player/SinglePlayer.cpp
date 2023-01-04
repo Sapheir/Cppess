@@ -7,7 +7,7 @@ SinglePlayer::SinglePlayer(sf::RenderWindow &window, sf::Font &font, const unsig
 }
 
 void SinglePlayer::draw() {
-    if (!game.isPlayerTurn()) {
+    if (!game.isMyTurn()) {
         game.moveAIPiece();
     }
     chessTable.setPieces(game.getCurrentPiecesInfo());

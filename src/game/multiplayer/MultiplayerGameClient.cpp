@@ -1,8 +1,8 @@
 // Created by Catalin
 #include "MultiplayerGameClient.h"
 
-MultiplayerGameClient::MultiplayerGameClient(asio::io_context &ioContext, const std::string &ip, const std::string &port)
-        : socket{ioContext} {
+MultiplayerGameClient::MultiplayerGameClient(asio::io_context &ioContext, const std::string &ip, const std::string &port, const colors &myColor)
+        : Game{myColor}, socket{ioContext} {
     connect(ip, port);
 }
 
@@ -43,4 +43,34 @@ void MultiplayerGameClient::readMessage() {
                              socket.close();
                          }
                      });
+}
+
+void MultiplayerGameClient::moveOpponentPiece(const int &x, const int &y, const int &newX, const int &newY) {
+    if (isGameOver)
+        return;
+    std::cout << "Opponent's move\n";
+    auto events = movePiece(x, y, newX, newY);
+    for (auto &pieceInfo: currentPiecesInfo) {
+        if (pieceInfo.posX == x && pieceInfo.posY == y) {
+            pieceInfo.posX = newX;
+            pieceInfo.posY = newY;
+            break;
+        }
+    }
+    handleMovePieceEvents(events, newX, newY, true);
+}
+
+void MultiplayerGameClient::moveMyPiece(const int &x, const int &y, const int &newX, const int &newY) {
+    if (isGameOver)
+        return;
+    std::cout << "Your move\n";
+    auto events = movePiece(x, y, newX, newY);
+    for (auto &pieceInfo: currentPiecesInfo) {
+        if (pieceInfo.posX == x && pieceInfo.posY == y) {
+            pieceInfo.posX = newX;
+            pieceInfo.posY = newY;
+            break;
+        }
+    }
+    handleMovePieceEvents(events, newX, newY, true);
 }
