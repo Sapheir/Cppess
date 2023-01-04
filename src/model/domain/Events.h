@@ -29,6 +29,10 @@ public:
     [[nodiscard]] Events getEventType() const{
         return eventType;
     };
+
+    [[nodiscard]] virtual std::vector < std::pair < int, int > > getAttackers() const{
+        return {};
+    }
 };
 
 class BasePieceEvent: public BaseEvent{
@@ -92,7 +96,7 @@ public:
     explicit KingUnderAttackEvent(std::shared_ptr < Piece > piece, std::vector < std::pair < int, int >> attackersPositions):
             BasePieceEvent(king_under_attack, piece), attackersPositions{std::move(attackersPositions)}{};
 
-    [[nodiscard]] auto getAttackersPositions() const{
+    [[nodiscard]]  std::vector < std::pair < int, int > > getAttackers() const override{
         return attackersPositions;
     }
 };

@@ -122,11 +122,16 @@ bool Table::noPieceBetween(int x1, int y1, int x2, int y2) const {
     if(abs(scaleX) != abs(scaleY))
         return true;
 
-    for(int adding = 1 ; adding <= abs(scaleX); adding++){
-        if(adding + std::min(x1, x2) == std::max(x1, x2) && adding + std::min(y1, y2) == std::max(y1, y2))
-            continue;
-        if (getPiece(adding + std::min(x1, x2), adding + std::min(y1, y2)) != nullptr)
+    if(abs(x2 - x1) == 1 && abs(y2 - y1) == 1)
+        return true;
+
+    int addingX = scaleX;
+    int addingY = scaleY;
+    while(x1 + addingX != x2){
+        if(getPiece(x1 + addingX, y1 + addingY))
             return false;
+        addingX += scaleX;
+        addingY += scaleY;
     }
 
     return true;

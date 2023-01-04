@@ -77,3 +77,5 @@ bool Piece::sameColor(const std::shared_ptr<Piece> &other) const {
 void Piece::setColor(const colors &newColor) {
     this->color = newColor;
 }
+
+void Piece::doubleMoveDisable() {}
