@@ -1,6 +1,7 @@
 // Created by Catalin
 #pragma once
 #include "../Game.h"
+#include "message.h"
 #include <asio.hpp>
 #include <iostream>
 
@@ -10,13 +11,13 @@ class MultiplayerGameClient: public Game {
 private:
     tcp::socket socket;
     asio::streambuf readBuffer;
+    bool readServerColor{};
 
     /**
      * Asynchronously connect to a game server
-     * @param ip Ip of the server
-     * @param port Port of the server
+     * @param address Address to connect to
      */
-    void connect(const std::string &ip, const std::string &port);
+    void connect(const std::string &address);
 
     /**
      * Asynchronously read messages incoming from the server owner
@@ -33,7 +34,7 @@ private:
     void moveOpponentPiece(const int &x, const int &y, const int &newX, const int &newY);
 
 public:
-    MultiplayerGameClient(asio::io_context &io_context, const std::string &ip, const std::string &port, const colors &myColor);
+    MultiplayerGameClient(asio::io_context &io_context, const std::string &address, const colors &myColor);
     void sendMessage(const std::string &message);
 
     /**

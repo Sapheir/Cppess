@@ -42,7 +42,7 @@ add_executable(Cppess
         model/domain/history/HistoryMove.cpp
         gui/GUI.cpp gui/GUI.h
         gui/components/chess_table/ChessTable.cpp gui/components/chess_table/ChessTable.h
-        gui/screens/Screen.cpp gui/screens/Screen.h gui/screens/screens.h
+        gui/screens/Screen.cpp gui/screens/Screen.h gui/screens/settings.h
         gui/screens/main_menu/MainMenu.cpp gui/screens/main_menu/MainMenu.h gui/screens/main_menu/main_menu_options.h
         gui/screens/single_player/SinglePlayerOptions.cpp gui/screens/single_player/SinglePlayerOptions.h
         gui/screens/single_player/SinglePlayer.cpp gui/screens/single_player/SinglePlayer.h
@@ -50,7 +50,9 @@ add_executable(Cppess
         game/single_player/SinglePlayerGame.cpp game/single_player/SinglePlayerGame.h
         game/multiplayer/MultiplayerGameServer.cpp game/multiplayer/MultiplayerGameServer.h
         game/multiplayer/MultiplayerGameClient.cpp game/multiplayer/MultiplayerGameClient.h
-        gui/screens/multiplayer/Multiplayer.cpp gui/screens/multiplayer/Multiplayer.h
+        gui/screens/multiplayer/MultiplayerServer.cpp gui/screens/multiplayer/MultiplayerServer.h
+        gui/screens/multiplayer/MultiplayerClient.cpp gui/screens/multiplayer/MultiplayerClient.h
+        game/multiplayer/message.h
         game/Game.cpp game/Game.h
         main.cpp)
 

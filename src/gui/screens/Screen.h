@@ -2,7 +2,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <memory>
-#include "screens.h"
+#include "settings.h"
 
 #define DEFAULT_WIDTH  800
 #define DEFAULT_HEIGHT 600

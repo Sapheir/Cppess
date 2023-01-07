@@ -1,28 +1,25 @@
 // Created by Catalin
 #include "MultiplayerGameClient.h"
 
-MultiplayerGameClient::MultiplayerGameClient(asio::io_context &ioContext, const std::string &ip, const std::string &port, const colors &myColor)
+MultiplayerGameClient::MultiplayerGameClient(asio::io_context &ioContext, const std::string &address, const colors &myColor)
         : Game{myColor}, socket{ioContext} {
-    connect(ip, port);
+    connect(address);
 }
 
-void MultiplayerGameClient::connect(const std::string &ip, const std::string &port) {
+void MultiplayerGameClient::connect(const std::string &address) {
+    unsigned int semiColPos = address.find(':');
+    std::string ip = address.substr(0, semiColPos), port = address.substr(semiColPos+1);
     tcp::resolver resolver(socket.get_executor());
     asio::connect(socket, resolver.resolve(ip, port));
     asio::ip::tcp::no_delay option(true);
     socket.set_option(option);
-
-    // Send message to server
-    sendMessage("Hello, server!\n");
     readMessage();
 }
 
 void MultiplayerGameClient::sendMessage(const std::string &message) {
     asio::async_write(socket, asio::buffer(message),
-                      [](const asio::error_code& error, std::size_t bytes_transferred)
-                      {
-                          if (error)
-                          {
+                      [](const asio::error_code& error, std::size_t bytes_transferred) {
+                          if (error) {
                               std::cerr << error.message() << "\n";
                           }
                       });
@@ -32,10 +29,19 @@ void MultiplayerGameClient::readMessage() {
     asio::async_read_until(socket, readBuffer, '\n',
                      [this](const asio::error_code& error, const std::size_t &bytesTransferred){
                          if (!error) {
-                             // Print message from server
-                             std::cout << "Message from server: " << &readBuffer << "\n";
+                             std::istream is(&readBuffer);
+                             if (!readServerColor) {
+                                 std::string color;
+                                 std::getline(is, color);
+                                 if (color == std::to_string(myColor))
+                                     std::cerr << "Same pieces color as the server owner\n";
+                                 readServerColor = true;
+                             } else {
+                                 move move;
+                                 is >> move;
+                                 std::cout << "Message from server: " << &readBuffer << "\n";
+                             }
                              readBuffer.consume(readBuffer.size());
-                             // Wait for another message from server
                              readMessage();
                          }
                          else {

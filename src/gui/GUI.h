@@ -5,7 +5,9 @@
 #include "screens/single_player/SinglePlayerOptions.h"
 #include "screens/single_player/SinglePlayer.h"
 #include "screens/multiplayer/MultiplayerOptions.h"
-#include "screens/screens.h"
+#include "screens/multiplayer/MultiplayerServer.h"
+#include "screens/multiplayer/MultiplayerClient.h"
+#include "screens/settings.h"
 
 #define FONT_SIZE 24
 
@@ -16,7 +18,7 @@ private:
     sf::Font textFont;
     std::unique_ptr<Screen> currentScreen;
     screens currentScreenType{};
-    colors playerColor;
+    settings settings;
 
     void loadFont();
     void loadIcon();

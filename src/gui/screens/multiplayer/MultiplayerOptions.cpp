@@ -2,8 +2,8 @@
 #include <iostream>
 #include "MultiplayerOptions.h"
 
-MultiplayerOptions::MultiplayerOptions(sf::RenderWindow& window, sf::Font& font, const unsigned int &fontSize, screens &nextScreen)
-        : Screen{window, font, fontSize, nextScreen}, selectedColor{white}, hoveredColor{white} {
+MultiplayerOptions::MultiplayerOptions(sf::RenderWindow& window, sf::Font& font, const unsigned int &fontSize, screens &nextScreen, settings &settings)
+        : Screen{window, font, fontSize, nextScreen}, hoveredColor{white}, selectedSettings{settings} {
     loadOptions();
     loadCursorSelections();
 }
@@ -53,6 +53,7 @@ void MultiplayerOptions::loadOptions() {
 }
 
 void MultiplayerOptions::loadCursorSelections() {
+    selectedSettings.color = white;
     selectedOption = sf::RectangleShape{sf::Vector2f{(float)window.getSize().x / 4, (float)window.getSize().y / 12}};
     selectedOption.setFillColor(sf::Color(255, 255, 255, 100));
     selectedOption.setOutlineThickness(2);
@@ -128,8 +129,8 @@ void MultiplayerOptions::handleEvent(sf::Event &event) {
     if (event.type == sf::Event::MouseMoved) {
         setCursorHoverPosition(event.mouseMove.x, event.mouseMove.y);
     } else if (event.type == sf::Event::TextEntered) {
-        if (event.text.unicode >= 32 && event.text.unicode <= 126 && joinText.size() < 40) {
-            joinText.insert(cursorPosition, 1, (char)event.text.unicode);
+        if (event.text.unicode >= 32 && event.text.unicode <= 126 && selectedSettings.joinString.size() < 40) {
+            selectedSettings.joinString.insert(cursorPosition, 1, (char)event.text.unicode);
             cursorPosition++;
         }
     } else if (event.type == sf::Event::KeyPressed) {
@@ -137,22 +138,22 @@ void MultiplayerOptions::handleEvent(sf::Event &event) {
             nextScreen = main_menu;
         }
         if (event.key.code == sf::Keyboard::BackSpace && cursorPosition > 0) {
-            joinText.erase(cursorPosition - 1, 1);
+            selectedSettings.joinString.erase(cursorPosition - 1, 1);
             cursorPosition--;
         }
-        if (event.key.code == sf::Keyboard::Delete && cursorPosition < joinText.size()) {
-            joinText.erase(cursorPosition, 1);
+        if (event.key.code == sf::Keyboard::Delete && cursorPosition < selectedSettings.joinString.size()) {
+            selectedSettings.joinString.erase(cursorPosition, 1);
         }
         if (event.key.code == sf::Keyboard::Left && cursorPosition > 0) {
             cursorPosition--;
         }
-        if (event.key.code == sf::Keyboard::Right && cursorPosition < joinText.size()) {
+        if (event.key.code == sf::Keyboard::Right && cursorPosition < selectedSettings.joinString.size()) {
             cursorPosition++;
         }
     } else if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
         handleClick(event.mouseButton.x, event.mouseButton.y);
     }
-    inputForm.setString(joinText);
+    inputForm.setString(selectedSettings.joinString);
     inputForm.setOrigin((float)inputForm.getLocalBounds().width / 2, (float)inputForm.getLocalBounds().height / 2);
     inputForm.setPosition((float)window.getSize().x / 2, (float)window.getSize().y / 2 + 50);
     inputCursor.setPosition(inputForm.findCharacterPos(cursorPosition));
@@ -181,13 +182,15 @@ void MultiplayerOptions::handleClick(const unsigned int &mouseButtonX, const uns
     if (createLabel.getGlobalBounds().contains(mouseButtonX, mouseButtonY)) {
         std::cout << "Creating\n";
     } else if (joinLabel.getGlobalBounds().contains(mouseButtonX, mouseButtonY)) {
-        std::cout << "Joining " << joinText << "\n";
+        std::cout << "Joining " << selectedSettings.joinString << "\n";
     } else if (hoveredColor == white) {
             selectedOption.setPosition(sf::Vector2f{chooseWhite.getPosition().x - selectedOption.getSize().x / 2,
                                                     chooseWhite.getPosition().y - selectedOption.getSize().y / 2});
+            selectedSettings.color = white;
     } else {
         selectedOption.setPosition(sf::Vector2f{chooseBlack.getPosition().x - selectedOption.getSize().x / 2,
                                                 chooseBlack.getPosition().y - selectedOption.getSize().y / 2});
+        selectedSettings.color = black;
     }
 }
 

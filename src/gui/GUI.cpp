@@ -1,7 +1,7 @@
 // Created by Catalin
 #include "GUI.h"
 
-GUI::GUI(): playerColor{white} {
+GUI::GUI(): settings{white, ""} {
     loadFont();
     loadIcon();
     currentScreen = std::make_unique<MainMenu>(window, textFont, FONT_SIZE, currentScreenType);
@@ -53,13 +53,19 @@ void GUI::chooseScreen() {
             currentScreen = std::make_unique<MainMenu>(window, textFont, FONT_SIZE, currentScreenType);
             break;
         case single_player_options:
-            currentScreen = std::make_unique<SinglePlayerOptions>(window, textFont, FONT_SIZE, currentScreenType, playerColor);
+            currentScreen = std::make_unique<SinglePlayerOptions>(window, textFont, FONT_SIZE, currentScreenType, settings.color);
             break;
         case single_player_game:
-            currentScreen = std::make_unique<SinglePlayer>(window, textFont, FONT_SIZE, currentScreenType, playerColor);
+            currentScreen = std::make_unique<SinglePlayer>(window, textFont, FONT_SIZE, currentScreenType, settings.color);
             break;
         case multiplayer_options:
-            currentScreen = std::make_unique<MultiplayerOptions>(window, textFont, FONT_SIZE, currentScreenType);
+            currentScreen = std::make_unique<MultiplayerOptions>(window, textFont, FONT_SIZE, currentScreenType, settings);
+            break;
+        case multiplayer_server:
+            currentScreen = std::make_unique<MultiplayerServer>(window, textFont, FONT_SIZE, currentScreenType, settings);
+            break;
+        case multiplayer_client:
+            currentScreen = std::make_unique<MultiplayerClient>(window, textFont, FONT_SIZE, currentScreenType, settings);
             break;
         default:
             currentScreen = std::make_unique<MainMenu>(window, textFont, FONT_SIZE, currentScreenType);
