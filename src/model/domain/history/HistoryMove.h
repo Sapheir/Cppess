@@ -9,7 +9,8 @@
 #include <iostream>
 
 #include "../pieces/Piece.h"
-#include "../Events.h"
+#include "../../events/Events.h"
+#include "../../events/BaseEvent.h"
 
 class HistoryMove{
 private:
