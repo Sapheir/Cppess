@@ -12,5 +12,6 @@
 #include "GameEndedEvent.h"
 #include "KingUnderAttackEvent.h"
 #include "PawnPromotionEvent.h"
+#include "CapturedPieceEvent.h"
 
 #endif //CPPESS_ALLEVENTSINCLUDE_H

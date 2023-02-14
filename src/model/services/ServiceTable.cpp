@@ -100,7 +100,15 @@ void ServiceTable::checkMoveAvailable(const int &x, const int &y, const int &new
     }
 }
 
-
+bool ServiceTable::isCastle(int posX, int posY, int newX, int newY) {
+    std::shared_ptr<Piece> theKing = table->getPiece(newX, newY);
+    if(!theKing || !theKing->isKing())
+        return false;
+    std::shared_ptr<Piece> theRook = table->getPiece(posX, posY);
+    if(!theRook || !theRook->isRook())
+        return false;
+    return table->noPieceBetween(posX, posY, newX, newY);
+}
 
 std::vector < std::shared_ptr < BaseEvent > > ServiceTable::movePiece(const int &x, const int &y,
                                                                            const int &newX, const int &newY){

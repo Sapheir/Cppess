@@ -249,3 +249,7 @@ TEST(testMovePiece, win){
         std::cout << error;
     }
 }
+
+TEST(testMovePiece, testIsCastle){
+
+}

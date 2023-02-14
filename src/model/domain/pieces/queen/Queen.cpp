@@ -34,4 +34,8 @@ bool Queen::isKing() const {
     return false;
 }
 
+bool Queen::isRook() const {
+    return false;
+}
+
 

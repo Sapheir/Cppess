@@ -15,7 +15,7 @@ enum Events{
     en_passant,
     castling,
     king_under_attack,
-    win
+    win,
 };
 
 #endif //CPPESS_EVENTS_H

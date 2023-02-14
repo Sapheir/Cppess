@@ -174,6 +174,13 @@ public:
         */
         [[nodiscard]] colors getCurrentPlayer() const;
 
+        /**
+         * Check if the current move is castle
+         * @params (posX, posY) - the position of the current piece
+         * @params (newX, newY) - the new position of the current piece
+         */
+        bool isCastle(int posX, int posY, int newX, int newY);
+
 };
 
 

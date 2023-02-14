@@ -42,6 +42,11 @@ public:
      */
     [[nodiscard]] bool isKing() const override;
 
+    /**
+     * Returns true because the current piece is a rook
+     * @return bool
+     */
+    [[nodiscard]] bool isRook() const override;
 
 };
 

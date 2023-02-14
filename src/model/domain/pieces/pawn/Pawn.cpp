@@ -48,3 +48,7 @@ void Pawn::doubleMoveDisable() {
     this->doubleMoveAvailable = false;
 }
 
+bool Pawn::isRook() const {
+    return false;
+}
+
