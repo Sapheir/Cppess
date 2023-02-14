@@ -33,7 +33,7 @@ add_executable(Cppess
         model/domain/pieces/Piece.cpp model/domain/pieces/Piece.h
         model/domain/pieces/colors.h
         model/domain/pieces/pieces.h
-        model/events/Events.h
+        model/domain/Events.h
         model/table/Table.cpp model/table/Table.h
         model/services/ServiceTable.cpp model/services/ServiceTable.h
         model/table/History.h
