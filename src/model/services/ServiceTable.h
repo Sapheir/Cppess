@@ -181,6 +181,8 @@ public:
          */
         bool isCastle(int posX, int posY, int newX, int newY);
 
+        [[nodiscard]]bool noCoordinateUnderAttackBtw(int posX, int posY, int newX, int newY) const;
+
 };
 
 

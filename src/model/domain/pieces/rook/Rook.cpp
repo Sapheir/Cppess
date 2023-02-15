@@ -33,6 +33,6 @@ bool Rook::isKing() const {
 }
 
 bool Rook::isRook() const {
-    return false;
+    return true;
 }
 

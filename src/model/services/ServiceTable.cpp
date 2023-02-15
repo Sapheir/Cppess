@@ -100,18 +100,50 @@ void ServiceTable::checkMoveAvailable(const int &x, const int &y, const int &new
     }
 }
 
+bool ServiceTable::noCoordinateUnderAttackBtw(int posX, int posY, int newX, int newY) const{
+    for(int X = std::min(posX, newX) ; X < std::max(posX, newX) ; X++)
+        for(int Y = std::min(posY, newY) ; Y <= std::max(posY, newY) ; Y++){
+            if(X == posX && Y == posY) continue;
+            if(X == newX && Y == newY) continue;
+            for(auto attackers: this->table->underAttack(X, Y)){
+                if(this->table->getPiece(attackers.first, attackers.second)->getColor() != this->currentPlayer)
+                    return false;
+            }
+        }
+    return true;
+}
+
+
 bool ServiceTable::isCastle(int posX, int posY, int newX, int newY) {
-    std::shared_ptr<Piece> theKing = table->getPiece(newX, newY);
-    if(!theKing || !theKing->isKing())
+    std::shared_ptr<Piece> theKing = table->getPiece(posX, posY);
+    if(!theKing || !theKing->isKing() || !theKing->getFirstMove())
         return false;
-    std::shared_ptr<Piece> theRook = table->getPiece(posX, posY);
-    if(!theRook || !theRook->isRook())
+    std::shared_ptr<Piece> theRook = table->getPiece(newX, newY);
+    if(!theRook || !theRook->isRook() || !theKing->getFirstMove())
         return false;
-    return table->noPieceBetween(posX, posY, newX, newY);
+
+    if(!this->table->underAttack(theRook->getX(), theRook->getY()).empty())
+        return false;
+
+    if(theRook->getColor() != theKing->getColor()) return false;
+
+    if(theRook->getY() != theKing ->getY()) return false;
+
+    if(!table->noPieceBetween(posX, posY, newX, newY)) return false;
+
+    if(!this->noCoordinateUnderAttackBtw(posX, posY, newX, newY)) return false;
+
+    return true;
 }
 
 std::vector < std::shared_ptr < BaseEvent > > ServiceTable::movePiece(const int &x, const int &y,
                                                                            const int &newX, const int &newY){
+    
+    if(this->isCastle(x, y, newX, newY)) {
+        std::cout << "Castleeee\n";
+        return {};
+    }
+
     checkMoveAvailable(x, y, newX, newY);
     std::shared_ptr<Piece> piece = table->getPiece(x, y);
     addInHistory(x, y, newX, newY, piece);
