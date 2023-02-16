@@ -9,7 +9,15 @@
 #include <string>
 #include "../table/Table.h"
 #include "../domain/pieces/Piece.h"
-#include "../domain/Events.h"
+#include "../events/Events.h"
+#include "../events/BaseEvent.h"
+#include "../events/BasePieceEvent.h"
+#include "../events/CastlingEvent.h"
+#include "../events/PawnPromotionEvent.h"
+#include "../events/CapturedPieceEvent.h"
+#include "../events/EnPassantEvent.h"
+#include "../events/KingUnderAttackEvent.h"
+#include "../events/GameEndedEvent.h"
 #include "../table/History.h"
 
 class ServiceTable {
