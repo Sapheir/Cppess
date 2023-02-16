@@ -2,10 +2,11 @@
 // Created by Turca Vasile on 14/02/2023.
 //
 
-#include "BaseEvent.h"
-
 #ifndef CPPESS_BASEPIECEEVENT_H
 #define CPPESS_BASEPIECEEVENT_H
+
+#include "BaseEvent.h"
+
 
 class BasePieceEvent: public BaseEvent{
 private:
