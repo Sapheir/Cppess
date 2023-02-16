@@ -13,5 +13,6 @@
 #include "KingUnderAttackEvent.h"
 #include "PawnPromotionEvent.h"
 #include "CapturedPieceEvent.h"
+#include "CastlingEvent.h"
 
 #endif //CPPESS_ALLEVENTSINCLUDE_H

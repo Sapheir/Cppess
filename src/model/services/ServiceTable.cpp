@@ -136,12 +136,45 @@ bool ServiceTable::isCastle(int posX, int posY, int newX, int newY) {
     return true;
 }
 
+std::pair<int, int> ServiceTable::computeNewCoordinatesCastlingKing(const std::pair<int, int> &kingPos,
+                                                                         const std::pair<int, int> &rookPos) {
+    return std::make_pair(kingPos.first + (rookPos.first - kingPos.first > 0 ? 2:-2), kingPos.second);
+}
+
+std::pair<int, int> ServiceTable::computeNewCoordinatesCastlingRook(const std::pair<int, int> &kingPos,
+                                                                    const std::pair<int, int> &rookPos) {
+    return std::make_pair(kingPos.first + (rookPos.first - kingPos.first > 0 ? 1:-1), kingPos.second);
+}
+
+std::vector<std::shared_ptr<BaseEvent> >
+ServiceTable::castlePieces(const int &x, const int &y, const int &newX, const int &newY) {
+    std::vector < std::shared_ptr < BaseEvent > > events;
+    std::pair < int, int > newKing = computeNewCoordinatesCastlingKing({x,y}, {newX, newY});
+    std::pair < int, int > newRook = computeNewCoordinatesCastlingRook({x, y}, {newX, newY});
+
+    std::shared_ptr<Piece> king = this->table->getPiece(x, y);
+    this->table->movePieceOnValidDestination(king, newKing.first, newKing.second);
+
+    std::shared_ptr<Piece> rook = this->table->getPiece(newX, newY);
+    this->table->movePieceOnValidDestination(rook, newRook.first, newRook.second);
+
+    events.push_back(std::make_unique<CastlingEvent>(std::make_pair(x, y), std::make_pair(newX, newY), newKing, newRook));
+
+    auto kingUnderAttackEvents = checkIfTheOpponentKingIsUnderAttack();
+    for(const auto &event: kingUnderAttackEvents)
+        events.push_back(event);
+    return events;
+}
+
+
 std::vector < std::shared_ptr < BaseEvent > > ServiceTable::movePiece(const int &x, const int &y,
                                                                            const int &newX, const int &newY){
-    
     if(this->isCastle(x, y, newX, newY)) {
-        std::cout << "Castleeee\n";
-        return {};
+        return castlePieces(x, y, newX, newY);
+    }
+
+    if(this->isCastle(newX, newY, x, y)){
+        return castlePieces(newX, newY, x, y);
     }
 
     checkMoveAvailable(x, y, newX, newY);
