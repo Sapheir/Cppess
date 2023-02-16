@@ -31,3 +31,8 @@ bool Rook::isPawn() const {
 bool Rook::isKing() const {
     return false;
 }
+
+bool Rook::isRook() const {
+    return true;
+}
+

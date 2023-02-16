@@ -41,6 +41,12 @@ public:
      */
     [[nodiscard]] bool isKing() const override;
 
+    /**
+     * Returns false because current piece is not a rook
+     * @return bool
+     */
+    [[nodiscard]] bool isRook() const override;
+
 };
 
 #endif //CPPESS_KING_H

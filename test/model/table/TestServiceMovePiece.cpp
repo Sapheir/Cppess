@@ -249,3 +249,71 @@ TEST(testMovePiece, win){
         std::cout << error;
     }
 }
+
+TEST(testMovePiece, testIsCastle){
+    int kingX = 0;
+    int kingY = 5;
+    int rookX = 0;
+    int rookY = 0;
+    int pawnX = 0;
+    int pawnY = 2;
+    int tableSize = 10;
+
+    colors color = black;
+    colors anotherColor = white;
+    std::unique_ptr<Table> table = std::make_unique<Table>(tableSize);
+    ServiceTable serviceTable{table, color, anotherColor};
+
+    serviceTable.addPiece(std::make_unique < King > (kingX, kingY, color));
+    serviceTable.addPiece(std::make_unique<Rook>(rookX, rookY, color));
+
+    ASSERT_TRUE(serviceTable.isCastle(kingX, kingY, rookX, rookY));
+
+    serviceTable.addPiece(std::make_unique<Pawn>(pawnX, pawnY, color));
+    ASSERT_FALSE(serviceTable.isCastle(kingX, kingY, rookX, rookY));
+}
+
+TEST(testMovePiece, testIsCastleWithKingFirstMove){
+    int kingX = 0;
+    int kingY = 5;
+    int rookX = 0;
+    int rookY = 0;
+    int tableSize = 10;
+
+    colors color = black;
+    colors anotherColor = white;
+    std::unique_ptr<Table> table = std::make_unique<Table>(tableSize);
+    ServiceTable serviceTable{table, color, anotherColor};
+
+    serviceTable.addPiece(std::make_unique < King > (kingX, kingY, color));
+    serviceTable.addPiece(std::make_unique<Rook>(rookX, rookY, color));
+
+    ASSERT_TRUE(serviceTable.isCastle(kingX, kingY, rookX, rookY));
+
+    serviceTable.movePiece(kingX, kingY, kingX, kingY - 1);
+
+    ASSERT_FALSE(serviceTable.isCastle(kingX, kingY, rookX, rookY));
+}
+
+
+TEST(testMovePiece, testIsCastleWithRookFirstMove){
+    int kingX = 0;
+    int kingY = 5;
+    int rookX = 0;
+    int rookY = 0;
+    int tableSize = 10;
+
+    colors color = black;
+    colors anotherColor = white;
+    std::unique_ptr<Table> table = std::make_unique<Table>(tableSize);
+    ServiceTable serviceTable{table, color, anotherColor};
+
+    serviceTable.addPiece(std::make_unique < King > (kingX, kingY, color));
+    serviceTable.addPiece(std::make_unique<Rook>(rookX, rookY, color));
+
+    ASSERT_TRUE(serviceTable.isCastle(kingX, kingY, rookX, rookY));
+
+    serviceTable.movePiece(rookX, rookY, rookX, rookY + 1);
+
+    ASSERT_FALSE(serviceTable.isCastle(kingX, kingY, rookX, rookY));
+}

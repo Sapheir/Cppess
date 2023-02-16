@@ -32,3 +32,7 @@ bool Bishop::isKing() const {
     return false;
 }
 
+bool Bishop::isRook() const {
+    return false;
+}
+

@@ -15,6 +15,10 @@ private:
     int tableSize;
     std:: map < std::pair < int, int >, std::shared_ptr < Piece > > tableContent;
 
+public:
+
+    Table() = delete;
+
     /**
      * Returns true if there is no piece between (x1, y1) and (x2, y2) and false otherwise
      * @param x1 - int
@@ -24,10 +28,6 @@ private:
      * @return bool
      */
     [[nodiscard]] bool noPieceBetween(int x1, int y1, int x2, int y2) const;
-
-public:
-
-    Table() = delete;
 
     /**
      * Create a table with size tableSize x tableSize

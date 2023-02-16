@@ -35,3 +35,7 @@ bool Knight::isKing() const {
     return false;
 }
 
+bool Knight::isRook() const {
+    return false;
+}
+

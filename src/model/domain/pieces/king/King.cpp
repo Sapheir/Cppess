@@ -53,3 +53,7 @@ bool King::isPawn() const {
 bool King::isKing() const {
     return true;
 }
+
+bool King::isRook() const {
+    return false;
+}

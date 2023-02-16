@@ -79,3 +79,11 @@ void Piece::setColor(const colors &newColor) {
 }
 
 void Piece::doubleMoveDisable() {}
+
+void Piece::setFirstMove(bool firstMove) {
+    this->firstMove = firstMove;
+}
+
+bool Piece::getFirstMove() const{
+    return firstMove;
+}

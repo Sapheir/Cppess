@@ -142,6 +142,7 @@ void Table::movePieceOnValidDestination(std::shared_ptr<Piece> piece, int newX, 
     this->tableContent[{newX, newY}] = piece;
     piece->setX(newX);
     piece->setY(newY);
+    piece->setFirstMove(false);
 }
 
 bool Table::pieceWillBeOnOppositeEdge(const int &newX, const int &newY) const {

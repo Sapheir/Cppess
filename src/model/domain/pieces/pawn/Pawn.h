@@ -47,6 +47,12 @@ public:
      */
     void doubleMoveDisable() override;
 
+    /**
+     * Returns false because current piece is not a rook
+     * @return bool
+     */
+    [[nodiscard]] bool isRook() const override;
+
 };
 
 #endif //CPPESS_PAWN_H

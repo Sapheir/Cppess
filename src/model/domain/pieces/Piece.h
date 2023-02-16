@@ -14,6 +14,7 @@ protected:
     int positionX;
     int positionY;
     colors color;
+    bool firstMove;
 
     /**
      * Check if a coordinate is in range [1, limit]
@@ -50,7 +51,9 @@ protected:
 public:
 
     /** Constructor for piece */
-    Piece(const int &positionX, const int &positionY, const colors &color): positionX{positionX}, positionY{positionY}, color{color}{};
+    Piece(const int &positionX, const int &positionY, const colors &color): positionX{positionX}, positionY{positionY}, color{color}{
+        this->firstMove = true;
+    };
 
     /**
      * Return a list of all possible positions inside the chess table where the bishop could be moved
@@ -133,9 +136,29 @@ public:
      [[nodiscard]] virtual bool isKing() const = 0;
 
      /**
+      * Returns true if the current piece is a rook
+      * @return bool
+      */
+     [[nodiscard]] virtual bool isRook() const = 0;
+
+     /**
       * If the piece is able to doubleMove, it will disable that. Otherwise, nothing will happen
       */
       virtual void doubleMoveDisable();
+
+    /**
+     * Set the firstMove flag
+     * @param firstMove - bool
+     */
+     void setFirstMove(bool firstMove);
+
+    /**
+     * Returns the state of the firstMove flag
+     * @return bool
+     */
+     bool getFirstMove() const;
+
+
 };
 
 
