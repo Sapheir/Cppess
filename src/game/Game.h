@@ -29,7 +29,7 @@ protected:
 
     /**
      * Handles the events of a piece being moved
-     * @param moveEvents events to handle
+     * @param moveEvents Events to handle
      * @param destinationX Destination X coordinate of the move
      * @param destinationY Destination Y coordinate of the move
      * @param isPlayer whether the player or the AI made the move
