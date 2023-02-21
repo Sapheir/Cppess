@@ -71,11 +71,18 @@ std::vector<std::shared_ptr<BaseEvent> > Game::movePiece(const int &x, const int
     return serviceTable.movePiece(x, y, newX, newY);
 }
 
-void Game::removePiece(const int &posX, const int &posY, const colors &pieceColor) {
+void Game::removePieceVisually(const int &posX, const int &posY, const colors &pieceColor) {
     currentPiecesInfo.erase(std::remove_if(currentPiecesInfo.begin(), currentPiecesInfo.end(),
                                            [posX, posY, pieceColor](const piece_info &pieceInfo){
                                                 return pieceInfo.posX == posX && pieceInfo.posY == posY && pieceInfo.color == pieceColor;
                                             }), currentPiecesInfo.end());
+}
+
+void Game::movePieceVisually(const piece_types &pieceType, const int &posX, const int &posY, const colors &pieceColor, const int &newPosX, const int &newPosY) {
+    std::replace_if(currentPiecesInfo.begin(), currentPiecesInfo.end(),
+                       [pieceType, posX, posY, pieceColor](const piece_info &pieceInfo){
+                           return pieceInfo.posX == posX && pieceInfo.posY == posY && pieceInfo.color == pieceColor && pieceInfo.piece_type == pieceType;
+                       }, piece_info{pieceType, newPosX, newPosY, pieceColor});
 }
 
 colors Game::getMyColor() {
@@ -92,22 +99,25 @@ bool Game::isMyTurn() {
 
 void Game::handleMovePieceEvents(std::vector<std::shared_ptr<BaseEvent>> &moveEvents,
                                  const int &destinationX, const int &destinationY, const bool &isMe) {
+    auto color = isMe ? getOpponentColor() : getMyColor(), otherColor = !isMe ? getOpponentColor() : getMyColor();
+    std::cout << "Events: ";
     for (const auto &event: moveEvents) {
+        std::cout << event->getEventType() << " ";
         switch (event->getEventType()) {
             case capture:
-                removePiece(destinationX, destinationY, isMe ? getOpponentColor() : getMyColor());
+                removePieceVisually(destinationX, destinationY, color);
                 break;
+            case castling: {
+                auto [kingAfterX, kingAfterY] = event->getKingPosAfterCastle();
+                auto [rookBeforeX, rookBeforeY] = event->getRookPosBeforeCastle();
+                auto [rookAfterX, rookAfterY] = event->getRookPosAfterCastle();
+                movePieceVisually(king, rookBeforeX, rookBeforeY, otherColor, kingAfterX, kingAfterY);
+                movePieceVisually(rook, rookBeforeX, rookBeforeY, otherColor, rookAfterX, rookAfterY);
+                break;
+            }
             case king_under_attack:
-                if (!isMe)
-                    std::cout << "Your king is under check!\n";
-                else
-                    std::cout << "The opponent's king is under check!\n";
                 break;
             case win:
-                if (isMe)
-                    std::cout << "You won!\n";
-                else
-                    std::cout << "The opponent won!\n";
                 isGameOver = true;
                 break;
             default:
@@ -115,4 +125,5 @@ void Game::handleMovePieceEvents(std::vector<std::shared_ptr<BaseEvent>> &moveEv
                 break;
         }
     }
+    std::cout << ";\n";
 }

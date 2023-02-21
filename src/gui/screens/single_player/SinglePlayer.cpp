@@ -7,9 +7,6 @@ SinglePlayer::SinglePlayer(sf::RenderWindow &window, sf::Font &font, const unsig
 }
 
 void SinglePlayer::draw() {
-    if (!game.isMyTurn()) {
-        game.moveAIPiece();
-    }
     chessTable.setPieces(game.getCurrentPiecesInfo());
     window.draw(chessTable);
     for (const auto &hovered: availablePositions) {
@@ -60,7 +57,10 @@ void SinglePlayer::colorAvailablePositions(int posX, int posY) {
 
 void SinglePlayer::tryMoveToPosition(int posX, int posY) {
     try {
-        game.movePlayerPiece(selectedPiecePos.first, selectedPiecePos.second, posX, posY);
+        if (game.isMyTurn())
+            game.movePlayerPiece(selectedPiecePos.first, selectedPiecePos.second, posX, posY);
+        else
+            game.moveOpponentPiece(selectedPiecePos.first, selectedPiecePos.second, posX, posY);
     } catch (std::exception &exception) {
         std::cerr << exception.what() << "\n";
     }

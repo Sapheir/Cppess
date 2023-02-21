@@ -36,6 +36,26 @@ protected:
      */
     void handleMovePieceEvents(std::vector<std::shared_ptr<BaseEvent>> &moveEvents, const int &destinationX, const int &destinationY, const bool &isPlayer);
 
+    /**
+     * Removes a piece from the game visually
+     * @param posX X coordinate of the piece to remove
+     * @param posY Y coordinate of the piece to remove
+     * @param pieceColor color of the piece to remove
+     */
+    void removePieceVisually(const int &posX, const int &posY, const colors &pieceColor);
+
+    /**
+     * Moves a piece in the game visually
+     * @param type Type of the piece to move
+     * @param posX X coordinate of the piece to move
+     * @param posY Y coordinate of the piece to move
+     * @param pieceColor color of the piece to move
+     * @param newPosX destination X coordinate
+     * @param newPosY destination Y coordinate
+     */
+    void movePieceVisually(const piece_types &type, const int &posX, const int &posY, const colors &pieceColor, const int &newPosX, const int &newPosY);
+
+
 public:
     explicit Game(const colors &myColor);
 
@@ -56,12 +76,4 @@ public:
      * @return List of all available destinations for the piece
      */
     [[nodiscard]] std::vector < std::pair < int, int > > availableMovesDestinations(const int &posX, const int &posY);
-
-    /**
-     * Removes a piece from the game
-     * @param posX X coordinate of the piece to remove
-     * @param posY Y coordinate of the piece to remove
-     * @param pieceColor color of the piece to remove
-     */
-    void removePiece(const int &posX, const int &posY, const colors &pieceColor);
 };
